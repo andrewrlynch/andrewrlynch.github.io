@@ -21,11 +21,5 @@ Genomic instability is a major hallmark of human cancer. Chromosomal instability
 <br><br>
 **[READ THE PREPRINT](https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1)**
 <br><br>
-### Identifying transcriptional determinants of karyotype selection
-  <img src = "{{site.baseurl}}/images/ezgif-com-video-to-gif.gif" width = "310">{:style="float: right; padding-left: 20px;"}
-  <div style="text-align:justify">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna condimentum mattis pellentesque id nibh tortor id aliquet lectus. Tellus cras adipiscing enim eu turpis egestas pretium aenean. Lacus viverra vitae congue eu. Mauris cursus mattis molestie a iaculis at erat pellentesque. In fermentum posuere urna nec tincidunt praesent semper feugiat. Donec massa sapien faucibus et molestie ac feugiat sed. Facilisis magna etiam tempor orci eu lobortis elementum nibh.
-  </div>
-<br><br>
 <br><br>
 <div style="clear:both;"></div>
