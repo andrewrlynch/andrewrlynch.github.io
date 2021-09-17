@@ -9,7 +9,7 @@ published: true
 Genomic instability is a major hallmark of human cancer. Chromosomal instability (CIN), the propensity for a cell to lose or gain chromosomes, occurs at varying rates in upwards of 90% of cancers. The presence of CIN is associated with advanced clinical features and worse patient prognosis. However, high "levels" of CIN are tumor inhibiting. Despite its clinical significance, an efficient and quantitative method for quantifyng the "levels" of CIN *in vivo* does not exist. 
 <br>
   </p>
-***My research aims to better understand the occurence of CIN in tumors and the nuanced relationship between the CIN phenotype and cellular consequences that drive cancer progression.***
+**My research aims to better understand the occurence of CIN in tumors and the nuanced relationship between the CIN phenotype and cellular consequences that drive cancer progression.**
 <br><br>
 
 ### Computational modeling of CIN in tumor evolution and improving *in vivo* measures
