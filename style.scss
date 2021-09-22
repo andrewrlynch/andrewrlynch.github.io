@@ -20,8 +20,9 @@ html {
 body {
   margin-top: 30px;
   background: $white;
-  font: 12px $Helvetica;
-  color: $darkGray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: $black;
 }
 
 .container {
