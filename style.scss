@@ -214,7 +214,7 @@ img:hover {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: $black;
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 300;
@@ -224,7 +224,7 @@ img:hover {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: $black;
   font-size: 16px;
 
   @include mobile {
