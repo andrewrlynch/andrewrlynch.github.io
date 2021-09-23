@@ -70,7 +70,7 @@ p {
   margin: 14px 0;
   color: $black;
 	a {
-		text-decoration: underline;
+		text-decoration: none;
 	}
 		
 }
@@ -84,7 +84,7 @@ a {
 	};
    a:active {
      color: Coral;	
- 	}
+ 	};
 }
 
 ul, ol {
