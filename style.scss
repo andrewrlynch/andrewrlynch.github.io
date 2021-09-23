@@ -79,10 +79,10 @@ a {
   color: Tomato;
   text-decoration: none;
 	cursor: pointer;
-   a:hover {
+   &:hover {
 	color: $black;
 	};
-   a:active {
+   &:active {
      color: Tomato;	
  	};
 }
@@ -257,10 +257,10 @@ nav {
     color: Tomato;
     text-decoration: none;
     cursor: pointer;
-    	a:hover {
+    	&:hover {
 		color: $black;
 		}; 
-   	a:active {
+   	&:active {
      		color: Tomato;	
  		};
 
