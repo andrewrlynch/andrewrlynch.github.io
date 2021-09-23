@@ -79,8 +79,11 @@ a {
   color: Coral;
   text-decoration: none;
 	cursor: pointer;
-   &:hover, &:active {
-     color: $black;	
+   a:hover {
+	color: $black;
+	};
+   a:active {
+     color: Coral;	
  	}
 }
 
