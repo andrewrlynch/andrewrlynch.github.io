@@ -251,10 +251,18 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $black;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
+    color: Coral;
+    text-decoration: none;
+    cursor: pointer;
+    	a:hover {
+		color: $black;
+		}; 
+   	a:active {
+     		color: Coral;	
+ 		};
 
     @include mobile {
       margin: 0 10px;
