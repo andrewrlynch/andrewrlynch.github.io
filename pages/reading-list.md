@@ -9,30 +9,42 @@ published: true
 *Disclaimer II: books listed are not necessarily endorsements. I hated "On the Road".*
 <br>
 ## Currently Reading:
-#### as of 18 Feb 2021
-**Between the World and Me** - Ta-Nehisi Coates<br>
+#### as of 07 July 2021
+**The Dragon Reborn** - Robert Jordan <br>
+**The Dispossessed** - Ursula K. Le Guin <br>
 
 ## Have Read:
-#### since 2017 starting with most recent
+#### 2021
+**The Darkness That Comes Before** - R. Scott Bakker <br>
+**The Slow Regard of Silent Things** - Patrick Rothfuss <br>
+**Breach of Peace** - Daniel B. Greene<br>
+**Why Buddhism is True** - Robert Wright<br>
+**Ancillary Justice** - Ann Leckie(AB)<br>
+**Between the World and Me** - Ta-Nehisi Coates<br>
 **The New Jim Crow: Mass Incarceration in the Age of Colorblindness** - Michelle Alexander<br>
 **Rhythm Of War** - Brandon Sanderson<br>
+#### 2020
 **Theft of Swords** - Michael J. Sullivan(AB)<br>
 **Wherever You Go, There You Are** - Jon Kabat-Zinn<br>
 **Kings of the Wyld** - Nicholas Eames<br>
 **The Great Hunt** - Robert Jordan<br>
 **The Silmarillion** - JRR Tolkien<br>
-**Casino Royale** - Ian Fleming<br>
 **Snakewood** - Adrian Selby<br>
+**A Dance with Dragons** - George RR Martin(AB)<br>
+**Casino Royale** - Ian Fleming<br>
+#### 2019
 **A Feast for Crows** - George RR Martin(AB)<br>
 **A Storm of Swords** - George RR Martin(AB)<br>
 **Clash of Kings** - George RR Martin(AB)<br>
-**The Collapsing Empire** - John Scalzi(AB)<br>
 **A Walk in the Woods** - Bill Bryson<br>
 **Last Argument of Kings** - Joe Abercrombie(AB)<br>
 **Before They Are Hanged** - Joe Abercrombie(AB)<br>
 **The Blade Itself** - Joe Abercrombie(AB)<br>
+#### 2018
+**The Collapsing Empire** - John Scalzi(AB)<br>
 **Old Man's War** - John Scalzi<br>
 **Gardens of the Moon** - Steven Erikson<br>
+#### 2017
 **Oathbringer** - Brandon Sanderson<br>
 **The Wise Man's Fear** - Patrick Rothfuss<br>
 **The Gene** - Siddhartha Mukherjee<br>
@@ -46,28 +58,3 @@ published: true
 **Words of Radiance** - Brandon Sanderson<br>
 **On the Road** - Jack Kerouac<br>
 **The Way of Kings** - Brandon Sanderson<br>
-    
-## To Read:
-#### as of 04 Dec 2020
-**White Fragility** - Robin DiAngelo<br>
-**Guns, Germs, and Steel** - Jared Diamond<br>
-**TED Talks: The Official TED Guide to Public Speaking** - Chris Anderson<br>
-**Catch and Kill** - Ronan Farrow<br>
-**The Fate of Food** - Amanda Little<br>
-**The Subtle Art of Not Giving a Fuck** - Mark Manson<br>
-**The Obstacle is the Way** - Ryan Holiday<br>
-**The Daily Stoic** - Ryan Holiday<br>
-**The First Cell** - Azra Raza<br>
-**Fiasco** - Thomas E. Ricks<br>
-**Zealot: the life and times of Jesus of Nazareth** - Reza Aslan<br>
-**Congo: the epic history of a people** - David Van Reybrouck<br>
-**Beyond Redemption** - Michael R. Fletcher<br>
-**The Winter Road** - Adrian Selby<br>
-**Binti** - Nnedi Okorafor<br>
-**Winter Tide** - Ruthanna Emrys<br>
-**The Tangled Tree: a radical new history of life** - David Quammen<br>
-**She Has Her Mother's Laugh** - Carl Zimmer<br>
-**Push** - Tommy Caldwell<br>
-**Children of Blood and Bone** - Tomy Adeyemi<br>
-**The Sea Around Us** - Rachel Carson<br>
-**Algorithms to Live By** - Brian Christian & Tom Griffiths<br>

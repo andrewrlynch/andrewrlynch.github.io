@@ -31,7 +31,7 @@
             <a href="{{ site.baseurl }}/">About</a>
             <a href="{{ site.baseurl }}/blog">Posts</a>
             <a href="{{ site.baseurl }}/pages/research">Research</a>
-            <a href="https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/lynch_cv_public.pdf">CV</a>
+            <a href="{{ site.baseurl }}/lynch_cv_public.pdf">CV</a>
           </nav>
         </header>
       </div>
@@ -39,14 +39,6 @@
 
     <div id="main" role="main" class="container">
       {{ content }}
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
     </div>
 
     {% include analytics.html %}
