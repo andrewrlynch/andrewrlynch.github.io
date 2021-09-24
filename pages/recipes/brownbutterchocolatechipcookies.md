@@ -4,13 +4,13 @@ title: Recipes
 permalink: /pages/recipes/brownbutterchocolatechipcookies
 published: true
 ---
-
-Ingredients
+This recipe is heavily inspired by Serious Eats' [The Food Lab's Chocolate Chip Cookies](https://www.seriouseats.com/the-food-lab-best-chocolate-chip-cookie-recipe). Modified to suit my tastes.
+#### Ingredients
 
 2.25 sticks unsalted butter
 1 ice cube
 
-280 g flour
+260 g flour
 2 tsp salt
 0.75 tsp baking soda
 
@@ -25,7 +25,7 @@ Ingredients
 10 oz 72% cacao chocolate chips — Note: try to get the flat, wafer-shaped chips. This should result in a marbled appearance when baked. Ghirardelli makes these.
 
 
-Directions
+#### Directions
 
 1)	Brown the butter in a medium saucepan on medium-low heat, stirring constantly (~6 min) — Note: the browning will occur quickly when it begins foaming.
 2)	Whisk ice cube into butter. This will foam heavily so do this over the sink.
