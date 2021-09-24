@@ -83,7 +83,7 @@ a {
 	color: $black;
 	}
    &:active {
-     color: #b53333;	
+     color: $black;	
  	}
 }
 
@@ -261,7 +261,7 @@ nav {
 		color: $black;
 		} 
    	&:active {
-     		color: #b53333;	
+     		color: $black;	
  		}
 
     @include mobile {
