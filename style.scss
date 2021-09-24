@@ -76,15 +76,15 @@ p {
 }
 
 a {
-  color: Teal;
+  color: DarkSlateGray;
   text-decoration: none;
 	cursor: pointer;
    &:hover {
 	color: $black;
-	};
+	}
    &:active {
-     color: Teal;	
- 	};
+     color: DarkSlateGray;	
+ 	}
 }
 
 ul, ol {
@@ -254,15 +254,15 @@ nav {
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
-    color: Teal;
+    color: DarkSlateGray;
     text-decoration: none;
     cursor: pointer;
     	&:hover {
 		color: $black;
-		}; 
+		} 
    	&:active {
-     		color: Teal;	
- 		};
+     		color: DarkSlateGray;	
+ 		}
 
     @include mobile {
       margin: 0 10px;
