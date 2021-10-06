@@ -11,7 +11,7 @@ published: true
 ## Currently Reading:
 #### as of 07 July 2021
 **The Dragon Reborn** - Robert Jordan <br>
-**The Dispossessed** - Ursula K. Le Guin <br>
+**Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 
 ## Have Read:
 #### 2021
