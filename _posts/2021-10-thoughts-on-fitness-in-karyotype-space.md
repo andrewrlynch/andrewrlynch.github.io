@@ -8,3 +8,14 @@ The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.
 <img align="center" width="400" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Visualization_of_two_dimensions_of_a_NK_fitness_landscape.png">
 
 I want to be clear about what I'm trying to produce. 
+### Permutation to generate karyotypic space
+
+### Calculating ploidy, aneuploidy, and fitness of each karyotype
+
+## Fitness landscapes with respect to ploidy and aneuploidy
+
+### Two-dimensional fitness landscape (linear)
+
+### Three-dimensional fitness landscapes
+
+### n-dimensional fitness landscape (adjacency)
