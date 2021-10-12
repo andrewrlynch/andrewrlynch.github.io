@@ -14,8 +14,8 @@ I want to be clear about what I'm trying to produce.
 
 ## Fitness landscapes with respect to ploidy and aneuploidy
 
-### Two-dimensional fitness landscape (linear)
+### Two-dimensional linear fitness landscape
 
 ### Three-dimensional fitness landscapes
 
-### n-dimensional fitness landscape (adjacency)
+### n-dimensional fitness landscape using adjacency
