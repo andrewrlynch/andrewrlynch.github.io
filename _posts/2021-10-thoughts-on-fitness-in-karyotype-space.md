@@ -9,7 +9,7 @@ The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.
 
 I want to be clear about what I'm trying to produce. I want a granular landscape where fitness values are defined for every unique karyotype from haploid to tetraploid presented in an intuitive and useful way.
 ### Permutation through karyotypic space
-My first impressions of fitness landscapes were conceptual. Reality struck when I remembered how quickly permutation sets grow. Generation of unique karyotypes is simply permutation with repetition. Thus, there are <img src="https://render.githubusercontent.com/render/math?math=4^23"> unique karyotypes between an *n* of 1 and 4. 
+My first impressions of fitness landscapes were conceptual. Reality struck when I remembered how quickly permutation sets grow. Generation of unique karyotypes is simply permutation with repetition. Thus, there are 4<sup>23</sup> unique karyotypes between an *n* of 1 and 4. 
 ~~~
 library(arrangements)
 #Selecting copy numbers 1-4 for k chromosomes
