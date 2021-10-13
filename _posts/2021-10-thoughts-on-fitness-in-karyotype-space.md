@@ -27,7 +27,7 @@ karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
 
 <img align = "center" width = "400" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/SurfaceLandscape.tiff">
 
-### n-dimensional fitness landscape using adjacency
+### n-dimensional fitness landscape using adjacency networks
 ~~~
 #Function to calculate manhattan distance between two vectors
 manhattan_dist <- function(a, b){
