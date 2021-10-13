@@ -7,16 +7,18 @@ published: false
 The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1) on advancing quantification of chromosomal instability is nigh. I'm wrapping up a long stretch of revisions for the re-submit and, as a result, have been thinking a great deal about karyotype selection. Ultimately, we want to be able to experimentally quantify selection, but how to represent this? Reviews on the effects of selection, in general, are rife with toy visualizations of 'genotype spaces'. The concept is understandable to me and is easily generalized to the biology of aneuploidy — a 'karyotype space'. However, I've recently been attempting to plot out a fitness landscape for karyotypes and it's clear I underestimated the difficulty of implementing a *useful* visualization of karyotypic space.<br>
 <img align="center" width="400" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Visualization_of_two_dimensions_of_a_NK_fitness_landscape.png">
 
-I want to be clear about what I'm trying to produce. I want a granular landscape where fitness values are defined for every unique karyotype from haploid to tetraploid presented in an intuitive and useful way. 
+I want to be clear about what I'm trying to produce. I want a granular landscape where fitness values are defined for every unique karyotype from haploid to tetraploid presented in an intuitive and useful way.
 ### Permutation through karyotypic space
+My first impressions of fitness landscapes were conceptual. Reality struck when I remembered how quickly permutation sets grow. Generation of unique karyotypes is simply permutation with repetition. Thus, there are <img src="https://render.githubusercontent.com/render/math?math=4^23"> unique karyotypes between an *n* of 1 and 4. 
 ~~~
-#Selecting 
-karyos <- as.data.frame(combinations(4, 23, v=1:4, repeats.allowed = T))
+library(arrangements)
+#Selecting copy numbers 1-4 for k chromosomes
+k <- 12
+karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
+
 ~~~
 {: .language-r}
 ### Calculating ploidy, aneuploidy, and fitness of each karyotype
-
-## Fitness landscapes with respect to ploidy and aneuploidy
 
 ### Two-dimensional linear fitness landscape
 
