@@ -1,3 +1,4 @@
+---
 layout: post
 title: theme_pubready: a ggplot theme for small, publication ready plots
 date: xx October 2021
