@@ -21,4 +21,5 @@ function(){
          strip.text = element_text(size = 7)
       )
 }
-~~~{: .language-r}
+~~~
+{: .language-r}
