@@ -52,3 +52,4 @@ karyo.copies <- 4 #copies from 1-4
 karyo.set <- 2 #two chromosomes of a karyotypes
 karyotypes <- permutations(n=karyo.copies,r=karyo.set,v=1:karyo.copies, repeats.allowed = T)
 ~~~
+{: .language-r}
