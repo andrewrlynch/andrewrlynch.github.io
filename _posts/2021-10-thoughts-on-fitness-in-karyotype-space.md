@@ -17,8 +17,15 @@ k <- 8
 karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
 ~~~
 {: .language-r}
-### Calculating ploidy, aneuploidy, and fitness of each karyotype
 
+### Calculating ploidy, aneuploidy, and *theoretical* fitness of each karyotype
+~~~
+chrscores <- c()
+karyos$ploidy
+karyos$aneuploidy
+karyos$fitness
+~~~
+{: .language-r}
 ### Two-dimensional linear fitness landscape
 
 <img align = "center" width = "400" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/LinearLandscape.tiff">
