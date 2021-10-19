@@ -9,12 +9,12 @@ published: true
 *Disclaimer II: books listed are not necessarily endorsements. I hated "On the Road".*
 <br>
 ## Currently Reading:
-#### as of 07 July 2021
+#### as of 19 October 2021
 **The Dragon Reborn** - Robert Jordan <br>
-**Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 
 ## Have Read:
 #### 2021
+**Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 **The Darkness That Comes Before** - R. Scott Bakker <br>
 **The Slow Regard of Silent Things** - Patrick Rothfuss <br>
 **Breach of Peace** - Daniel B. Greene<br>
