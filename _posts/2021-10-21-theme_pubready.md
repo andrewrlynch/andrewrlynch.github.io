@@ -4,8 +4,9 @@ title: theme_pubready: a ggplot theme for small, publication-ready plots
 date: 21 October 2021
 published: true
 ---
-<br>
-A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to 'declutter' the small visuals. To save time, I generated this ggplot theme.<br>
+
+A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to 'declutter' the small visuals. To save time, I generated this ggplot theme.
+
 ~~~
 theme_pubready <- function(){
    font <- "Arial"
@@ -45,4 +46,4 @@ ggarrange(p1,p2)
 ~~~
 {: .language-r}
 <br>
-<img align = "center" width = "300" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-21_theme_pubready/theme_pubready_example.png" width = "300">
+<img align = "center" width = "300" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-21_theme_pubready/theme_pubready_example.png">
