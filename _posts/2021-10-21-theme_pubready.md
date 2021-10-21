@@ -45,4 +45,4 @@ ggarrange(p1,p2)
 ~~~
 {: .language-r}
 <br>
-<img align = "center" width = "300" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-21_theme_pubready/theme_pubready_example.png">
+![](/post_files/2021-10-21_theme_pubready/theme_pubready_example.png)
