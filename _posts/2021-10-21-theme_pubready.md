@@ -1,13 +1,11 @@
 ---
 layout: post
-title: theme_pubready: a ggplot theme for small, publication-ready plots
-date: 21 Oct 2021
-published: true
+title: A Decade In-Review
+date: 31 Dec 2019
+published: false
 ---
 A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to 'declutter' the small visuals. To save time, I generated this ggplot theme.
-Well here we are. We're nearing the end of the Twenty-Tens. A decade of increasing global unrest, political polarization, climate change-related weather anomalies, CRISPR-babies, and Taylor Swift!
-<br><br>
-This year - 2019 - has been a great year for me. And this decade offers a lot to reflect on - within my own personal life and without. I'd like to kick off a new decade with a 'mental flush' of the events that resonated with me as defining the last 10 years.
+
 ~~~
 theme_pubready <- function(){
    font <- "Arial"
