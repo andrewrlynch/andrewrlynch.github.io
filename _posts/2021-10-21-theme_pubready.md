@@ -43,4 +43,5 @@ p2 <- ggplot(df,aes(x=x,y=y)) +
 ggarrange(p1,p2)
 ~~~
 {: .language-r}
-<img src = "{{site.baseurl}}/post_files/2021-10-21_theme_pubready/theme_pubready_example.png" width = "300">{:style="float: center;"}
+<br>
+<img src = "{{site.baseurl}}/post_files/2021-10-21_theme_pubready/theme_pubready_example.png" width = "300">
