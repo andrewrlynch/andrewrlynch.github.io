@@ -4,7 +4,7 @@ title: theme_pubready: a ggplot theme for small, publication-ready plots
 date: 21 October 2021
 published: true
 ---
-
+### Title
 A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to 'declutter' the small visuals. To save time, I generated this ggplot theme.
 
 ~~~
