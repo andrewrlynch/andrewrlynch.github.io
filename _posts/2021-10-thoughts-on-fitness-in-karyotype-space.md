@@ -28,11 +28,11 @@ karyos$fitness
 {: .language-r}
 ### Two-dimensional linear fitness landscape
 
-<img align = "center" width = "400" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/LinearLandscape.tiff">
+![](/post_files/2021-10-karyotype-fitness-landscapes/LinearLandscape.tiff)
 
 ### Three-dimensional fitness landscapes
 
-<img align = "center" width = "400" src = "https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/SurfaceLandscape.tiff">
+![](/post_files/2021-10-karyotype-fitness-landscapes/SurfaceLandscape.tiff)
 
 ### n-dimensional fitness landscape using adjacency networks
 ~~~
