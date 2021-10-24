@@ -27,6 +27,8 @@ karyos$aneuploidy <- apply()
 karyos$fitness <- apply()
 ~~~
 {: .language-r}
+So ploidy and aneuploidy are pretty easy to calculate. But how do you calculate fitness of aneuploid karyotypes? Well, it's an open question and depends on how karyotypes are selected which is highly context dependent. Through the appearance of recurrent copy number alterations in cancer, it seems aneuploidy provides cancer cells with an adaptive advantage and this may be tissue-type dependent to a degree. Yet, the relationship between the fitness of these specific aneuploid karyotypes and the molecular etiology of their fitness advantage is unclear as is the extent to which ongoing alteration is selected for or against. While the pattern of aneuploidy is often clonal, subclonal alterations are common and characteristic of ongoing chromosomal instability. 
+
 ### Two-dimensional linear fitness landscape
 
 ![](/post_files/2021-10-karyotype-fitness-landscapes/LinearLandscape.tiff)
