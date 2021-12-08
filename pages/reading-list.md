@@ -9,11 +9,12 @@ published: true
 *Disclaimer II: books listed are not necessarily endorsements. I hated "On the Road".*
 <br>
 ## Currently Reading:
-#### as of 19 October 2021
-**The Dragon Reborn** - Robert Jordan <br>
+#### as of 07 December 2021
+**WOT IV: The Shadow Rising** - Robert Jordan <br>
 
 ## Have Read:
 #### 2021
+**WOT III: The Dragon Reborn** - Robert Jordan <br>
 **Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 **The Darkness That Comes Before** - R. Scott Bakker <br>
 **The Slow Regard of Silent Things** - Patrick Rothfuss <br>
@@ -27,7 +28,7 @@ published: true
 **Theft of Swords** - Michael J. Sullivan(AB)<br>
 **Wherever You Go, There You Are** - Jon Kabat-Zinn<br>
 **Kings of the Wyld** - Nicholas Eames<br>
-**The Great Hunt** - Robert Jordan<br>
+**WOT II: The Great Hunt** - Robert Jordan<br>
 **The Silmarillion** - JRR Tolkien<br>
 **Snakewood** - Adrian Selby<br>
 **A Dance with Dragons** - George RR Martin(AB)<br>
@@ -54,7 +55,7 @@ published: true
 **Return of the King** - JRR Tolkien (reread)<br>
 **The Two Towers** - JRR Tolkien (reread)<br>
 **The Fellowship of the Ring** - JRR Tolkien (reread)<br>
-**The Eye of the World** - Robert Jordan<br>
+**WOT I: The Eye of the World** - Robert Jordan<br>
 **Words of Radiance** - Brandon Sanderson<br>
 **On the Road** - Jack Kerouac<br>
 **The Way of Kings** - Brandon Sanderson<br>
