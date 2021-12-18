@@ -27,7 +27,7 @@ karyos$aneuploidy <- apply()
 karyos$fitness <- apply()
 ~~~
 {: .language-r}
-So ploidy and aneuploidy are pretty easy to calculate. But how do you calculate fitness of aneuploid karyotypes? Well, it's an open question and depends on how karyotypes are selected which is highly context dependent. Through the appearance of recurrent copy number alterations in cancer, it seems aneuploidy provides cancer cells with an adaptive advantage and this may be tissue-type dependent to a degree. Yet, the relationship between the fitness of these specific aneuploid karyotypes and the molecular etiology of their fitness advantage is unclear as is the extent to which ongoing alteration is selected for or against. While the pattern of aneuploidy is often clonal, subclonal alterations are common and characteristic of ongoing chromosomal instability. Most experimental evidence points to stabilizing selection around some 'core' karyotype, euploid or otherwise
+So ploidy and aneuploidy are pretty easy to calculate as just the average copy number and intra-karyotype variance respectively. But how do you calculate fitness of aneuploid karyotypes? One way to look at this is through the lens of stabilizing selection—selection against clones with karyotypes that stray too far from a 'core' karyotype. Current evidence, at least in non-cancer-derived tissue suggests that aneuploid cellular fitness is negatively correlated to the number of genes on the chromosome(s) for which a cell is aneuploid<sup>1,2</sup>. For example, aneuploidy of chromosome 1 having a larger fitness detriment than that of chromosome 18.
 
 ### Two-dimensional linear fitness landscape
 
@@ -63,3 +63,7 @@ karyo.set <- 2 #two chromosomes of a karyotypes
 karyotypes <- permutations(n=karyo.copies,r=karyo.set,v=1:karyo.copies, repeats.allowed = T)
 ~~~
 {: .language-r}
+
+### Footnotes
+1. DOI:10.1101/2021.08.31.458318
+2. DOI:10.1016/j.tig.2011.07.003
