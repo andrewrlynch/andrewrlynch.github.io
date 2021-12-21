@@ -3,6 +3,7 @@ layout: post
 title: A Decade In-Review
 date: 31 Dec 2019
 published: true
+tags: personal
 ---
 Well here we are. We're nearing the end of the Twenty-Tens. A decade of increasing global unrest, political polarization, climate change-related weather anomalies, CRISPR-babies, and Taylor Swift!
 <br><br>
