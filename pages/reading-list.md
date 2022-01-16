@@ -15,6 +15,7 @@ published: true
 ## Have Read:
 #### 2021
 **The Psychology of Money** - Morgan Housel <br>
+#### 2021
 **WOT III: The Dragon Reborn** - Robert Jordan <br>
 **Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 **The Darkness That Comes Before** - R. Scott Bakker <br>
