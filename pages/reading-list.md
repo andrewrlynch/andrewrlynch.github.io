@@ -13,7 +13,7 @@ published: true
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
 
 ## Have Read:
-#### 2021
+#### 2022
 **The Psychology of Money** - Morgan Housel <br>
 #### 2021
 **WOT III: The Dragon Reborn** - Robert Jordan <br>
