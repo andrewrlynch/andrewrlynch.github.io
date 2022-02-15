@@ -182,5 +182,5 @@ plot.network(net,
 As you can see things quickly get out of control as dimensionality increases. And the real karyotype space has 23 dimensions! I think the most visually useful pot was the 3D surface, but that is derived under the assumption that always decreases with aneuploidy. While this is probably a fair assumption in non-tumor tissue, we don't actually know what that surface looks like. I think these networks are a more interesting way to think about the karyotype fitness landscape, but I think more work is needed to figure out how these could be useful visually. In the mean time, perhaps it would be useful to look at specific copy number interactions in this way?
 
 ### Footnotes
-1. DOI:10.1101/2021.08.31.458318
-2. DOI:10.1016/j.tig.2011.07.003
+1. [DOI:10.1101/2021.08.31.458318](https://www.biorxiv.org/content/biorxiv/early/2021/08/31/2021.08.31.458318.full.pdf)
+2. [DOI:10.1016/j.tig.2011.07.003](https://pubmed.ncbi.nlm.nih.gov/21872963/)
