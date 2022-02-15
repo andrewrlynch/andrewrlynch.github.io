@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Thoughts on visualizing fitness in karyotype space
-date: xx October 2021
-published: false
+date: 14 February 2022
+published: true
 tags: science data-visualization aneuploidy
 ---
 The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1) on advancing quantification of chromosomal instability is nigh. I'm wrapped up a long stretch of revisions for the re-submit and, as a result, have been thinking a great deal about karyotype selection. Ultimately, we want to be able to experimentally quantify selection. We're not there yet, but how would we represent this when that time comes? Reviews on the effects of selection, in general, are rife with toy visualizations of 'genotype spaces'. The *concept* is understandable to me and is easily generalized to the biology of aneuploidy — a 'karyotype space'. However, I've recently been attempting to plot out a fitness landscape for karyotypes and it's clear I underestimated the difficulty of implementing a *useful* visualization of karyotypic space.<br>
@@ -79,11 +79,38 @@ ggplot(karyos, aes(x=reorder.factor(id,fitness), y=fitness)) +
 Okay cool! So what does this tell us? In general, karyotypes that are more aneuploid are less fit! That jives with what we know about the biology of aneuploidy in normal, non-cancerous tissue. But it doesn't appear to be a clean gradient. Looking closely there are interspersed pockets of blue and red, so this doesn't give us all the information we need to resolve the full fitness landscape.
 
 ### Three-dimensional fitness landscapes
-Now let's shoot for something more like the 'classic' fitness landscape. The nice surface plot
+Now let's shoot for something more like the 'classic' fitness landscape — a nice surface plot. Since we already have our x, y, and z (ploidy, aneuploidy, and fitness), we can just go straight to interpolation.
+
+~~~
+library(akima)
+library(lattice)
+
+# Spline interpolation, without extrapolation, and using the median of duplicate datapoints. 
+interp_fitness <- interp(karyos$ploidy,karyos$aneuploidy,karyos$fitness,linear=F,extrap=F, duplicate="median")
+
+wireframe(interp_fitness$z,
+          scales=list(z=list(distance = 1), arrows=T, col = "black"),
+          drape=T,
+          colorkey=F, 
+          col='white',
+          lwd = 0.2,
+          col.regions = colorRampPalette(c("tomato1",  "steelblue1"))(100), 
+          screen = list(z = -200, x = -70),
+          xlab = "Ploidy", 
+          ylab = "Aneuploidy", 
+          zlab = list("Fitness", rot = 90, distance = 3),
+          par.settings = list(axis.line = list(col = 0)))
+~~~
+{: .language-r}
+
+That's looking nice! We can see that fitness generally decreases (blue to red) as aneuploidy increases. Also, because non-integer ploidy values generally indicate some degree of aneuploidy, there is a nice 'wave' of fitness along the ploidy axis. It also looks like fitness drops off more quickly at lower ploidy values than higher ploidy values. This concurs with the idea that higher ploidy buffers cellular fitness against the negative effects of unbalanced karyotypes. From a stoichiometric standpoint, with a greater denominator, the cells are just less aneuploid. Yet this still doesn't tell us much about specific karyotypes and how individual copy number alterations interact to alter fitness.
+
 <img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/3d_fitness.png" width="300" height="300" img align="center">
 
-### n-dimensional fitness landscape using adjacency networks
+### n-dimensional karyotype space using adjacency networks
+So to fully understand how single alterations could change fitness, we need to think of karyotype space as a network, visualizing each unique karyotype as a node, and single alterations that link two karyotypes as ridges. First we need some utilities to calculate manhattan distance between karyotypes. 
 ~~~
+library(network)
 #Function to calculate manhattan distance between two vectors
 manhattan_dist <- function(a, b){
   dist <- abs(a-b)
@@ -102,12 +129,57 @@ pairwise.manhattan <- function(x){
   }
   return(results.matrix)
 }
-
-karyo.copies <- 4 #copies from 1-4
-karyo.set <- 2 #two chromosomes of a karyotypes
-karyotypes <- permutations(n=karyo.copies,r=karyo.set,v=1:karyo.copies, repeats.allowed = T)
 ~~~
 {: .language-r}
+
+Alright. Now let's take a look at the "network" starting with a "karyotype" with only 1 chromosome that can have a copy number of 1-4. 
+
+~~~
+karyo.copies <- 4 #copies from 1-4
+karyo.set <- 1 #two chromosomes of a karyotypes
+karyotypes <- permutations(n=karyo.copies,r=karyo.set,v=1:karyo.copies, repeats.allowed = T)
+
+# Get the manhattan distance between each karyotype
+pairwise.karyotypes <- pairwise.manhattan(unique(karyotypes)) 
+
+# Convert manhattan distances to intersections. All distances not equal to 1 become 0. 
+pairwise.karyotypes[is.na(pairwise.karyotypes)] <- 0
+pairwise.karyotypes[pairwise.karyotypes != 1] <- 0
+pairwise.karyotypes.manhattan.1 <- pairwise.karyotypes
+diag(pairwise.karyotypes) <- 0
+
+# Create the network
+net <- as.network(x = pairwise.karyotypes.manhattan.1, # the network object
+                  directed = F, # network direction not necessary
+                  loops = F, # no self interactions
+                  matrix.type = "adjacency"
+)
+
+# Create an attribute for vertices that represent euploid karyotypes
+set.vertex.attribute(net, 
+                     "Euploid", 
+                     apply(unique(karyotypes), 1, function(x){length(unique(x)) == 1}) 
+)
+
+# Create labels for each vertex that represent the karyotype
+network.vertex.names(net) <- apply(karyotypes,1,function(x){paste(x,collapse="")})
+
+# Make euploid karyotypes orange and aneuploid karyotypes grey
+nodecolors <- ifelse(apply(unique(karyotypes), 1, function(x){length(unique(x)) == 1}), "Orange", "Grey")
+
+# Gimme that network plot
+plot.network(net,
+             vertex.col = nodecolors,
+             vertex.cex = 2,
+             displaylabels = T,
+             label.pos = 5,
+             label.cex = 0.6)
+~~~
+{: .language-r}
+
+<img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/networkplots.tiff" width="900" img align="center">
+
+As you can see things quickly get out of control as dimensionality increases. And the real karyotype space has 23 dimensions! I think the most visually useful pot was the 3D surface, but that is derived under the assumption that always decreases with aneuploidy. While this is probably a fair assumption in non-tumor tissue, we don't actually know what that surface looks like. I think these networks are a more interesting way to think about the karyotype fitness landscape, but I think more work is needed to figure out how these could be useful visually. In the mean time, perhaps it would be useful to look at specific copy number interactions in this way?
 
 ### Footnotes
 1. DOI:10.1101/2021.08.31.458318
