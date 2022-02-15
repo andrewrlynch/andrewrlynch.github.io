@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Thoughts on visualizing fitness in karyotype space
-date: 14 February 2022
+date: 14 Feb 2022
 published: true
 tags: science data-visualization aneuploidy
 ---
