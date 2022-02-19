@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Research
-permalink: /pages/research/
+title: Work
+permalink: /pages/work/
 published: true
 ---
 ## Chromosomal Instability in the Progression of Human Cancer
