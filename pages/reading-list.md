@@ -21,7 +21,7 @@ published: true
 **The Slow Regard of Silent Things** - Patrick Rothfuss <br>
 **Breach of Peace** - Daniel B. Greene<br>
 **Why Buddhism is True** - Robert Wright<br>
-**Ancillary Justice** - Ann Leckie(AB)<br>
+**Ancillary Justice** - Ann Leckie (audiobook)<br>
 **Between the World and Me** - Ta-Nehisi Coates<br>
 **The New Jim Crow: Mass Incarceration in the Age of Colorblindness** - Michelle Alexander<br>
 **Rhythm Of War** - Brandon Sanderson<br>
