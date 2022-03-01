@@ -9,11 +9,13 @@ published: true
 *Disclaimer II: books listed are not necessarily endorsements. I hated "On the Road".*
 <br>
 ## Currently Reading:
-#### as of 07 December 2021
+#### as of 01 March 2021
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
+**The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
 
 ## Have Read:
 #### 2022
+**The Color of Magic** - Terry Pratchett <br>
 **The Psychology of Money** - Morgan Housel <br>
 #### 2021
 **WOT III: The Dragon Reborn** - Robert Jordan <br>
