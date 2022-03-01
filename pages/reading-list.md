@@ -11,10 +11,10 @@ published: true
 **The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
 
 ## Have Read:
-#### 2022
+### 2022
 **The Color of Magic** - Terry Pratchett <br>
 **The Psychology of Money** - Morgan Housel <br>
-#### 2021
+### 2021
 **WOT III: The Dragon Reborn** - Robert Jordan <br>
 **Gomorrah: A Personal Journey into the Violent International Empire of Naples' Organized Crime System** - Roberto Saviano <br>
 **The Darkness That Comes Before** - R. Scott Bakker <br>
@@ -25,7 +25,7 @@ published: true
 **Between the World and Me** - Ta-Nehisi Coates<br>
 **The New Jim Crow: Mass Incarceration in the Age of Colorblindness** - Michelle Alexander<br>
 **Rhythm Of War** - Brandon Sanderson<br>
-#### 2020
+### 2020
 **Theft of Swords** - Michael J. Sullivan (audiobook)<br>
 **Wherever You Go, There You Are** - Jon Kabat-Zinn<br>
 **Kings of the Wyld** - Nicholas Eames<br>
@@ -34,7 +34,7 @@ published: true
 **Snakewood** - Adrian Selby<br>
 **A Dance with Dragons** - George RR Martin (audiobook)<br>
 **Casino Royale** - Ian Fleming<br>
-#### 2019
+### 2019
 **A Feast for Crows** - George RR Martin (audiobook)<br>
 **A Storm of Swords** - George RR Martin (audiobook)<br>
 **Clash of Kings** - George RR Martin (audiobook)<br>
@@ -42,11 +42,11 @@ published: true
 **Last Argument of Kings** - Joe Abercrombie (audiobook)<br>
 **Before They Are Hanged** - Joe Abercrombie (audiobook)<br>
 **The Blade Itself** - Joe Abercrombie (audiobook)<br>
-#### 2018
+### 2018
 **The Collapsing Empire** - John Scalzi (audiobook)<br>
 **Old Man's War** - John Scalzi<br>
 **Gardens of the Moon** - Steven Erikson<br>
-#### 2017
+### 2017
 **Oathbringer** - Brandon Sanderson<br>
 **The Wise Man's Fear** - Patrick Rothfuss<br>
 **The Gene** - Siddhartha Mukherjee<br>
