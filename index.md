@@ -11,7 +11,6 @@ I received a B.S. in Biochemistry and Molecular Biology at the University of Wis
 ### Outside of science...
 
 [What I'm reading...](https://andrewrlynch.github.io/pages/reading-list/) <br>
-[Where I've been...](https://andrewrlynch.github.io/pages/photography/) <br>
 [What I'm cooking...](https://andrewrlynch.github.io/pages/recipes/). 
 
 </div>
