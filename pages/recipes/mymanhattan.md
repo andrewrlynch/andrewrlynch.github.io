@@ -4,15 +4,14 @@ title: Recipes
 permalink: /pages/recipes/mymanhattan
 published: true
 ---
-Rich
 #### Ingredients
-1 bar spoon amarenna cherry syrup
-2 dashes Fee Brothers Orange Bitters
-4 dashes Angostura Bitters
-0.25 oz Cocchi Vermouth di Torino
-2 oz Four Roses Kentucky Bourbon or Knob Creek Small Batch Rye
-1/2 shaker/glass ice
-Twist of orange
+1 bar spoon amarenna cherry syrup <br>
+2 dashes Fee Brothers Orange Bitters <br>
+4 dashes Angostura Bitters <br>
+0.25 oz Cocchi Vermouth di Torino <br>
+2 oz Four Roses Kentucky Bourbon or Knob Creek Small Batch Rye <br>
+1/2 shaker/glass ice <br>
+Twist of orange <br>
 Amarenna cherry
 
 #### Directions
