@@ -1,0 +1,15 @@
+---
+layout: page
+title: Recipes
+permalink: /pages/recipes/honeybeegarden
+published: true
+---
+#### Ingredients
+3/4 shaker of ice
+0.5 oz honey syrup (1:1 honey:water)
+5 dashes Fee Brothers Orange Bitters
+1.5 oz Seedlip Garden 108
+A splash of the spiciest ginger beer/ale you can find.
+
+#### Directions
+In a cocktail shaker 3/4 full of ice, add honey syrup, orange bitters, and the Seedlip. Shake and serve up or on the rocks with a splash of ginger.
