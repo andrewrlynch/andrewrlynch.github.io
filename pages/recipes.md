@@ -13,6 +13,6 @@ published: true
 [Brown butter chocolate chip cookies](https://andrewrlynch.github.io/pages/recipes/brownbutterchocolatechipcookies)
 <br>
 ### Cocktails
-[Honeybee Garden](https://andrewrlynch.github.io/pages/recipes/honeybeegarden)
+[Honeybee Garden (NA)](https://andrewrlynch.github.io/pages/recipes/honeybeegarden)
 <br>
 </div>
