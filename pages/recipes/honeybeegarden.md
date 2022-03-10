@@ -4,6 +4,7 @@ title: Recipes
 permalink: /pages/recipes/honeybeegarden
 published: true
 ---
+Herbal, bittersweet, and refreshing.
 #### Ingredients
 3/4 shaker of ice <br>
 0.5 oz honey syrup (1:1 honey:water) <br>
