@@ -4,14 +4,13 @@ title: Reading List
 permalink: /pages/reading-list/
 published: true
 ---
-*Updated 01 March 2022*
+*Updated 27 March 2022*
 ## Currently Reading:
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
-**Conan the Barbarian - Collected Adventures** - Robert E. Howard <br>
-**The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
 
 ## Have Read:
 ### 2022
+**The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
 **The Color of Magic** - Terry Pratchett <br>
 **The Psychology of Money** - Morgan Housel <br>
 ### 2021
