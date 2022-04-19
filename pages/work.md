@@ -17,7 +17,7 @@ Genomic instability is a major hallmark of human cancer. Chromosomal instability
   
   CIN is a dynamic process that occurs over many cellular divisions. This makes its study in human tumors—which cannot be constantly monitored—difficult. As such, the precise association between a tumor's intrinsic level of CIN—its rate of chromosome mis-segregation—and intratumoral karyotype diversity remain ambiguous. Modeling and parameterization of the factors that contribute to karyotype diversity—time, mis-segregation rate, and selective pressure—enables the simulation of the process of CIN. The outcomes of these simulations can be compared to tumor-derived single cell sequencing datasets that, while only providing a snapshot in time, can provide a great deal of information on the karyotypic diversity of the tumor. 
 <br><br>
-**[READ THE PREPRINT](https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1)**
+**[READ THE PAPER](https://elifesciences.org/articles/69799)**
 <br><br>
 <br><br>
 <div style="clear:both;"></div>
