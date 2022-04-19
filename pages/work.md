@@ -22,7 +22,7 @@ Genomic instability is a major hallmark of human cancer. Chromosomal instability
 <br><br>
 
 ### Comparing measures of CIN in inducible models
-  <img src = "{{site.baseurl}}/images/6d3r1h.gif" width = "300">{:style="float: left; padding-right: 20px;"}
+  <img src = "{{site.baseurl}}/images/6d3r1h.gif" width = "300">{:style="float: right; padding-left: 20px;"}
   
   In progress
 
