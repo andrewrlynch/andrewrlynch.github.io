@@ -4,12 +4,13 @@ title: Reading List
 permalink: /pages/reading-list/
 published: true
 ---
-*Updated 01 May 2022*
+*Updated 07 June 2022*
 ## Currently Reading:
-**WOT IV: The Shadow Rising** - Robert Jordan <br>
+**WOT V: The Fires of Heaven** - Robert Jordan <br>
 
 ## Have Read:
 ### 2022
+**WOT IV: The Shadow Rising** - Robert Jordan <br>
 **The Pearl** - John Steinbeck <br>
 **The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
 **The Color of Magic** - Terry Pratchett <br>
