@@ -105,7 +105,7 @@ wireframe(interp_fitness$z,
 
 That's looking nice! We can see that fitness generally decreases (blue to red) as aneuploidy increases. Also, because non-integer ploidy values generally indicate some degree of aneuploidy, there is a nice 'wave' of fitness along the ploidy axis. It also looks like fitness drops off more quickly at lower ploidy values than higher ploidy values. This concurs with the idea that higher ploidy buffers cellular fitness against the negative effects of unbalanced karyotypes. From a stoichiometric standpoint, with a greater denominator, the cells are just less aneuploid. Yet this still doesn't tell us much about specific karyotypes and how individual copy number alterations interact to alter fitness.
 
-<img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/3d_fitness.png" width="300" height="300" img align="center">
+<img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/3d_fitness.png?raw=true" width="300" height="300" img align="center">
 
 ### n-dimensional karyotype space using adjacency networks
 So to fully understand how single alterations could change fitness, we need to think of karyotype space as a network, visualizing each unique karyotype as a node, and single alterations that link two karyotypes as ridges. First we need some utilities to calculate manhattan distance between karyotypes. 
@@ -177,7 +177,7 @@ plot.network(net,
 ~~~
 {: .language-r}
 
-<img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/networkplots.tiff" width="900" img align="center">
+<img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/networkplots.tiff?raw=true" width="900" img align="center">
 
 As you can see things quickly get out of control as dimensionality increases. And the real karyotype space has 23 dimensions! I think the most visually useful plot was the 3D surface, but that is derived under the assumption that always decreases with aneuploidy. While this is probably a fair assumption in non-tumor tissue, we don't actually know what that surface looks like. I think these networks are a more interesting way to think about the karyotype fitness landscape, but I think more work is needed to figure out how these could be useful visually. In the mean time, perhaps it would be useful to look at specific copy number interactions in this way?
 
