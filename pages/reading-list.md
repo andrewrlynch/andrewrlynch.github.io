@@ -4,12 +4,12 @@ title: Reading List
 permalink: /pages/reading-list/
 published: true
 ---
-*Updated 07 June 2022*
 ## Currently Reading:
 **WOT V: The Fires of Heaven** - Robert Jordan <br>
 
 ## Have Read:
 ### 2022
+**Truman** - David McCullough <br>
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
 **The Pearl** - John Steinbeck <br>
 **The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
