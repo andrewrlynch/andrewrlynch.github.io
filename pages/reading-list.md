@@ -9,7 +9,7 @@ published: true
 
 ## Have Read:
 ### 2022
-**Truman** - David McCullough <br>
+**Truman** - David McCullough (audiobook) <br>
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
 **The Pearl** - John Steinbeck <br>
 **The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
