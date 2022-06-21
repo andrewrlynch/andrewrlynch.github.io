@@ -9,6 +9,7 @@ published: true
 
 ## Have Read:
 ### 2022
+**Sapiens: A Brief History of Humankind** - Yuval Noah Harari (audiobook) <br>
 **Truman** - David McCullough (audiobook) <br>
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
 **The Pearl** - John Steinbeck <br>
