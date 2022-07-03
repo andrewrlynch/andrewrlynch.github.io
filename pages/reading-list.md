@@ -5,10 +5,11 @@ permalink: /pages/reading-list/
 published: true
 ---
 ## Currently Reading:
-**WOT V: The Fires of Heaven** - Robert Jordan <br>
+**WOT VI: Lord of Chaos** - Robert Jordan <br>
 
 ## Have Read:
 ### 2022
+**WOT V: The Fires of Heaven** - Robert Jordan <br>
 **Sapiens: A Brief History of Humankind** - Yuval Noah Harari (audiobook) <br>
 **Truman** - David McCullough (audiobook) <br>
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
