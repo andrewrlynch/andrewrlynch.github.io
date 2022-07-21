@@ -9,7 +9,7 @@ published: true
 
 ## Have Read:
 ### 2022
-**The Undiscovered Self** - Carl Jung
+**The Undiscovered Self** - Carl Jung <br>
 **WOT V: The Fires of Heaven** - Robert Jordan <br>
 **Sapiens: A Brief History of Humankind** - Yuval Noah Harari (audiobook) <br>
 **Truman** - David McCullough (audiobook) <br>
