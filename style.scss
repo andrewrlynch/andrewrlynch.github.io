@@ -31,9 +31,6 @@ footer {
 	text-align: center;
   font-size: 12px;
   color: $black;
-  @include mobile {
-    text-align: center;
-  }
 }
 
 .container {
