@@ -26,6 +26,16 @@ body {
   line-height: 1.5;
 }
 
+footer {
+  padding: 0px 0px 10px 0px;
+	text-align: center;
+  font-size: 12px;
+  color: $grey;
+  @include mobile {
+    text-align: center;
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: 700px;
@@ -303,21 +313,6 @@ nav {
   .read-more {
     text-transform: uppercase;
     font-size: 16px;
-  }
-}
-
-.footer {
-  padding: 0px 0px 10px 0px;
-	text-align: center;
-  font-size: 12px;
-  color: $grey;
-
-  //margin-top: 0px;
-  //margin-bottom: 15px;
-  //border-top: 1px solid $black;
-  //background: #FFFFFF;
-  @include mobile {
-    text-align: center;
   }
 }
 
