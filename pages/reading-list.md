@@ -6,7 +6,7 @@ published: true
 ---
 ## Currently Reading:
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
-
+**Thinking, Fast and Slow** - Daniel Kahneman <br>
 ## Have Read:
 ### 2022
 **The Undiscovered Self** - Carl Jung <br>
