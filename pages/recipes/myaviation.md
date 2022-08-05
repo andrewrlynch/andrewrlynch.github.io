@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Recipes
-permalink: /pages/recipes/mymanhattan
+permalink: /pages/recipes/myaviation
 published: true
 ---
 1 bar spoon amarenna cherry syrup <br>
