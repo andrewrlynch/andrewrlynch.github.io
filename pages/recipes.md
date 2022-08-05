@@ -15,4 +15,5 @@ published: true
 ### Cocktails
 [Honeybee Garden (NA)](https://andrewrlynch.github.io/pages/recipes/honeybeegarden) <br>
 [My Manhattan](https://andrewrlynch.github.io/pages/recipes/mymanhattan) <br>
+[My Aviation](https://andrewrlynch.github.io/pages/recipes/myaviation) <br>
 </div>
