@@ -8,9 +8,9 @@ published: true
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 **Proof: the Science of Booze** - Adam Rogers <br>
-**Snow Crash** - Neal Stephenson <br>
 ## Have Read:
 ### 2022
+**Snow Crash** - Neal Stephenson <br>
 **The Undiscovered Self** - Carl Jung <br>
 **WOT V: The Fires of Heaven** - Robert Jordan <br>
 **Sapiens: A Brief History of Humankind** - Yuval Noah Harari <br>
