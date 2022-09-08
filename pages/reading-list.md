@@ -7,7 +7,7 @@ published: true
 ## Currently Reading:
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
-**Proof: the Science of Booze** - Adam Rogers <br>
+**Proof: The Science of Booze** - Adam Rogers <br>
 ## Have Read:
 ### 2022
 **Breath: The New Science of a Lost Art** - James Nestor <br>
