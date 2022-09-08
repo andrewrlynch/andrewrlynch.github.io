@@ -10,6 +10,7 @@ published: true
 **Proof: the Science of Booze** - Adam Rogers <br>
 ## Have Read:
 ### 2022
+**Breath: The New Science of a Lost Art** - James Nestor <br>
 **Snow Crash** - Neal Stephenson <br>
 **The Undiscovered Self** - Carl Jung <br>
 **WOT V: The Fires of Heaven** - Robert Jordan <br>
