@@ -28,4 +28,10 @@ Under construction... Stay tuned! :)
 <br><br>
 <br><br>
 
+### Modeling the karyotypic consequences of mis-segregation and multipolar divisions
+  <img src = "{{site.baseurl}}/images/Screen Shot 2022-09-21 at 12.26.23 PM.png" width = "300">{:style="float: left; padding-right: 20px;"}
+  
+Under construction... Stay tuned! :)
+<br><br>
+<br><br>
 <div style="clear:both;"></div>
