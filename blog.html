@@ -9,7 +9,7 @@ layout: default
 
       <div class="entry">
         <h4>{{ post.date | date: "%-d %B %Y"}}</h4>
-        {{ post }}
+        {{ post.content }}
       </div>
         <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
