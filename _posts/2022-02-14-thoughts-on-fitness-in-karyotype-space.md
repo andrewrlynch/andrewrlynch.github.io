@@ -12,13 +12,12 @@ I want to be clear about what I'm trying to produce. I want a granular landscape
 ### Permutation through karyotypic space
 My first impressions of fitness landscapes were conceptual. In reality, there are 4<sup>23</sup> unique karyotypes between an *n* of 1 and 4 and I don't think it would necessarily be useful to consider all 70 trillion+. Let's consider a smaller karyotypic space of, say, 8 chromosomes. Permuting yields 65,536 unique karyotypes.
 
-```
+```r
 library(arrangements)
 #Selecting copy numbers 1-4 for k chromosomes
 k <- 8
 karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
 ```
-{: .language-r}
 
 ### Calculating ploidy, aneuploidy, and *theoretical* fitness of each karyotype
 We can now calculate the individual characteristics of these karyotypes that are actually interesting. Ploidy and aneuploidy are pretty easy to calculate as just the average copy number and average intra-karyotype variance respectively. But how do you calculate fitness of aneuploid karyotypes? One way to look at this is through the lens of stabilizing selection—selection against clones with karyotypes that stray too far from a 'core' karyotype. Current evidence, at least in non-cancer-derived tissue suggests that aneuploid cellular fitness is negatively correlated to the number of genes on the chromosome(s) for which a cell is aneuploid<sup>1,2</sup>. For example, aneuploidy of chromosome 1 having a larger fitness detriment than that of chromosome 18 [1,2]. So in this case it's all about balancing the stoichiometry of expressed genes.
