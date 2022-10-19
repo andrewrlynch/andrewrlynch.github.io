@@ -39,6 +39,10 @@ footer {
   width: 100%;
 }
 
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
 body::-webkit-scrollbar-track {
   background: transparent; 
 }
