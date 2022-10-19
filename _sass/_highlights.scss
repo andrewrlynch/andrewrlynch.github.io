@@ -13,6 +13,20 @@ pre.highlight {
   margin: auto;
   overflow: auto;
   line-height: 1;
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #555; 
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+  }
 }
 
 .highlight .c { color: #7f7f7f } /* Comment */
