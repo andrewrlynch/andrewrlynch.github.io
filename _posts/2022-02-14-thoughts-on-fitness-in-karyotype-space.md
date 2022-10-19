@@ -11,12 +11,13 @@ The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.
 I want to be clear about what I'm trying to produce. I want a granular landscape where fitness values are defined for every unique karyotype from haploid to tetraploid presented in an intuitive and useful way.
 ### Permutation through karyotypic space
 My first impressions of fitness landscapes were conceptual. In reality, there are 4<sup>23</sup> unique karyotypes between an *n* of 1 and 4 and I don't think it would necessarily be useful to consider all 70 trillion+. Let's consider a smaller karyotypic space of, say, 8 chromosomes. Permuting yields 65,536 unique karyotypes.
-~~~
+
+```
 library(arrangements)
 #Selecting copy numbers 1-4 for k chromosomes
 k <- 8
 karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
-~~~
+```
 {: .language-r}
 
 ### Calculating ploidy, aneuploidy, and *theoretical* fitness of each karyotype
