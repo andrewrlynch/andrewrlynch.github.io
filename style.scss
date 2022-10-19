@@ -39,17 +39,18 @@ footer {
   width: 100%;
 }
 
-/* Track */
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
 body::-webkit-scrollbar-track {
   background: transparent; 
 }
 
-/* Handle */
 body::-webkit-scrollbar-thumb {
   background: #555; 
 }
 
-/* Handle on hover */
 body::-webkit-scrollbar-thumb:hover {
   background: #888; 
 }
