@@ -15,6 +15,23 @@ pre.highlight {
   line-height: 1;
 }
 
+pre.highlight::-webkit-scrollbar {
+    width: 10px;
+}
+
+pre.highlight::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+pre.highlight::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+pre.highlight::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .highlight .c { color: #7f7f7f } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #ffffff } /* Generic */
