@@ -12,14 +12,8 @@ pre.highlight {
   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
   margin: auto;
   overflow: auto;
-  line-height: 1.2;
+  line-height: 1;
 }
-
-.highlight {
-  font-family:'Andale Mono','Courier', monospace;
-  font-size: 10;
-}
-
 
 .highlight .c { color: #7f7f7f } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
