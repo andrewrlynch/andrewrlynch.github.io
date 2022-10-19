@@ -6,7 +6,6 @@ pre.highlight {
   max-width: 1000px;
   border-radius: 5px;
   text-align: left;
-  font-size: 12;
   border: 1px solid transparent;
   border-top: none;
   border-bottom: 1px solid #DDD;
@@ -20,6 +19,7 @@ pre.highlight {
 
 code {
   font-family:'Andale Mono','Courier', monospace;
+  font-size: 12;
 }
 
 .highlight .c { color: #7f7f7f } /* Comment */
