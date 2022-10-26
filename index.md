@@ -10,4 +10,4 @@ I received a B.S. in Biochemistry and Molecular Biology at the University of Wis
 
 </div>
 
-<img src = "{{site.baseurl}}/images/eLife2022.png" width = "300" class="shadow">
+<img src = "{{site.baseurl}}/images/eLife2022.png" width = "300" class="paper">
