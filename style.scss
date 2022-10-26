@@ -66,7 +66,6 @@ body::-webkit-scrollbar-thumb:hover {
 /***************/
 
 img.paper {
-transition: .25s ease;
 box-shadow:
 1px 1px #e3e3e3,
 2px 2px #e3e3e3,
@@ -77,7 +76,6 @@ box-shadow:
 }
 
 img.paper:hover{
-.rotate img:hover{
 -webkit-transform: rotateZ(-5deg);
 -ms-transform: rotateZ(-5deg);
 transform: rotateZ(-5deg);
