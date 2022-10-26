@@ -64,11 +64,8 @@ body::-webkit-scrollbar-thumb:hover {
 /* IMAGE RULES */
 /***************/
 
-img.shadow {
+img.paper {
 transition: .25s ease;
-}
-
-img.shadow:hover{
 box-shadow:
 1px 1px #e3e3e3,
 2px 2px #e3e3e3,
@@ -76,9 +73,14 @@ box-shadow:
 4px 4px #e3e3e3,
 5px 5px #e3e3e3,
 6px 6px #e3e3e3;
--webkit-transform: translateX(-3px);
-transform: translateX(-3px);
-transition: .25s ease;
+}
+
+img.paper:hover{
+.rotate img:hover{
+-webkit-transform: rotateZ(-5deg);
+-ms-transform: rotateZ(-5deg);
+transform: rotateZ(-5deg);
+transition: 0.5s ease;
 }
 
 /**************/
