@@ -60,13 +60,13 @@ body::-webkit-scrollbar-thumb:hover {
   background: #888; 
 }
 
-.shadow img {
-transition: .5s ease;
-}
-
 /***************/
 /* IMAGE RULES */
 /***************/
+
+.shadow img {
+transition: .5s ease;
+}
 
 .shadow img:hover{
 box-shadow:
