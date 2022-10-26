@@ -66,13 +66,7 @@ body::-webkit-scrollbar-thumb:hover {
 /***************/
 
 img.paper {
-box-shadow:
-1px 1px #e3e3e3,
-2px 2px #e3e3e3,
-3px 3px #e3e3e3,
-4px 4px #e3e3e3,
-5px 5px #e3e3e3,
-6px 6px #e3e3e3;
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 img.paper:hover{
