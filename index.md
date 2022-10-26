@@ -16,6 +16,11 @@ I received a B.S. in Biochemistry and Molecular Biology at the University of Wis
         <img src = "{{site.baseurl}}/images/eLife2022.png" width = "300" class="paper">
       </a>
     </div>
+    <div class="column">
+      <a href = "https://www.andrewlynch.io/papers/2015-JUCR.pdf">
+        <img src = "{{site.baseurl}}/images/2015-JUCR.png" width = "300" class="paper">
+      </a>
+    </div>
   </div>
   
 </div>
