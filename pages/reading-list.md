@@ -5,11 +5,11 @@ permalink: /pages/reading-list/
 published: true
 ---
 ## Currently Reading:
-**The Fifth Season** - N.K. Jemisin <br>
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 ## Have Read:
 ### 2022
+**The Fifth Season** - N.K. Jemisin <br>
 **Proof: The Science of Booze** - Adam Rogers <br>
 **Breath: The New Science of a Lost Art** - James Nestor <br>
 **Snow Crash** - Neal Stephenson <br>
