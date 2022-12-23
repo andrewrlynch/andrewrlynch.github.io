@@ -9,6 +9,7 @@ published: true
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 ## Have Read:
 ### 2022
+**A Psalm for the Wild-Built** - Becky Chambers <br>
 **The Fifth Season** - N.K. Jemisin <br>
 **Proof: The Science of Booze** - Adam Rogers <br>
 **Breath: The New Science of a Lost Art** - James Nestor <br>
