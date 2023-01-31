@@ -4,10 +4,12 @@ title: Reading List
 permalink: /pages/reading-list/
 published: true
 ---
-## Currently Reading:
+## Reading
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
-## Have Read:
+## Finished
+### 2023
+**The Empress of Salt and Fortune** - Nghi Vo <br>
 ### 2022
 **A Psalm for the Wild-Built** - Becky Chambers <br>
 **The Fifth Season** - N.K. Jemisin <br>
