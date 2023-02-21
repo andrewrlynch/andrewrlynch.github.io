@@ -9,6 +9,7 @@ published: true
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 ## Finished
 ### 2023
+**Artificial Condition** - Martha Wells <br>
 **All Systems Red** - Martha Wells <br>
 **The Empress of Salt and Fortune** - Nghi Vo <br>
 ### 2022
