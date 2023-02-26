@@ -13,13 +13,11 @@ I received a B.S. in Biochemistry and Molecular Biology at the University of Wis
       <a href = "https://doi.org/10.7554/eLife.69799">
         <img src = "{{site.baseurl}}/images/eLife2022.png" width = "300" class="paper">
       </a>
-      <small><b>Lynch et al. 2022. eLife.</b></small>
     </div>
     <div class="column">
       <a href = "https://www.andrewlynch.io/papers/2015-JUCR.pdf">
         <img src = "{{site.baseurl}}/images/2015-JUCR.png" width = "300" class="paper">
       </a>
-      <small><b>Yang et al. 2015. JUCR.</b></small>
     </div>
   </div>
   
