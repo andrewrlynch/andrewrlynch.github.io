@@ -19,19 +19,5 @@ Genomic instability is a major hallmark of human cancer. Chromosomal instability
 <br><br>
 **[Lynch et al., *eLife*, 2022](https://elifesciences.org/articles/69799)**
 <br><br>
-<br><br>
 
-### Comparing measures of CIN in inducible models
-  <img src = "{{site.baseurl}}/images/6d3r1h.gif" width = "300">{:style="float: right; padding-left: 20px;"}
-  
-Under construction... Stay tuned! :)
-<br><br>
-<br><br>
-
-### Modeling the karyotypic consequences of mis-segregation and multipolar divisions
-  <img src = "{{site.baseurl}}/images/Screen Shot 2022-09-21 at 12.26.23 PM.png" width = "300">{:style="float: left; padding-right: 20px;"}
-  
-Under construction... Stay tuned! :)
-<br><br>
-<br><br>
 <div style="clear:both;"></div>
