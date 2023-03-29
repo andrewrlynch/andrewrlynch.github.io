@@ -19,6 +19,16 @@ I received a B.S. in Biochemistry and Molecular Biology at the University of Wis
         <img src = "{{site.baseurl}}/images/2015-JUCR.png" width = "200" class="paper">
       </a>
     </div>
+     <div class="column">
+      <a href = "https://doi.org/10.7554/eLife.69799">
+        <img src = "{{site.baseurl}}/images/eLife2022.png" width = "200" class="paper">
+      </a>
+    </div>
+     <div class="column">
+      <a href = "https://doi.org/10.7554/eLife.69799">
+        <img src = "{{site.baseurl}}/images/eLife2022.png" width = "200" class="paper">
+      </a>
+    </div>
   </div>
   
 </div>
