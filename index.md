@@ -14,6 +14,8 @@ In **2023** I earned a **Ph.D.** in **Cellular and Molecular Pathology** at the 
 
 In **2016** I earned a **B.S.** in **Biochemistry and Molecular Biology** at the **University of Wisconsin - Eau Claire** where I studied the antigenic potential of MUC1 mimotopes using solid phase peptide synthesis and 2D NMR.
 
+---
+
   <div class="row">
     
     <div class="column">
