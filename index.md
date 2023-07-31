@@ -17,7 +17,7 @@ In **2016** I earned a **B.S.** in **Biochemistry and Molecular Biology** at the
   <div class="row">
     
     <div class="column">
-      <a href = "[https://doi.org/10.7554/eLife.69799](https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf)">
+      <a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
         <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" width = "250" class="paper">
       </a>
     </div>
