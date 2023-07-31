@@ -78,14 +78,16 @@ body::-webkit-scrollbar-thumb:hover {
 /***************/
 
 img.paper {
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  opacity:0.5;
 }
 
 img.paper:hover{
--webkit-transform: rotateZ(-2.5deg);
--ms-transform: rotateZ(-2.5deg);
-transform: rotateZ(-2.5deg);
-transition: 0.25s ease;
+  opacity:1;
+/*-webkit-transform: rotateZ(-2.5deg);
+/*-ms-transform: rotateZ(-2.5deg);
+/*transform: rotateZ(-2.5deg);
+/*transition: 0.25s ease;
 }
 
 /**************/
