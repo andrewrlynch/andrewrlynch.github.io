@@ -142,14 +142,16 @@ code {
 }
 
 a {
-  color: #b53333;
-  text-decoration: none;
+  color: #000000;
+  text-decoration: underline;
+	-webkit-text-decoration-style: dotted;
+  	text-decoration-style: dotted;
 	cursor: pointer;
    &:hover {
-	color: $black;
+	color: #313131;
 	}
    &:active {
-     color: $black;	
+     color: #000000;	
  	}
 }
 
