@@ -142,7 +142,8 @@ a {
   text-decoration-style: solid;
   cursor: pointer;
    &:hover {
-	text-decoration: none;
+	   text-decoration: none;
+	   text-shadow: #FC0 1px 0 10px;
 	}
 }
 
