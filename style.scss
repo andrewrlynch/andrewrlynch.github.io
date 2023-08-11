@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 26px;
   a {
-    color: inherit;
+    text-decoration: none;
   }
 }
 
@@ -130,10 +130,6 @@ h4 {
 p {
   margin: 15px 0;
   color: $black;
-	a {
-		text-decoration: none;
-	}
-		
 }
 
 code {
@@ -144,11 +140,14 @@ code {
 a {
   color: #000000;
   text-decoration: underline;
-	-webkit-text-decoration-style: dotted;
-  	text-decoration-style: dotted;
-	cursor: pointer;
+  -webkit-text-decoration-style: dotted;
+  text-decoration-style: dotted;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
    &:hover {
 	color: #313131;
+        text-decoration-style: dotted;
 	}
    &:active {
      color: #000000;	
@@ -327,7 +326,7 @@ nav {
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
-    color: #b53333;
+    color: #000000;
     text-decoration: none;
     cursor: pointer;
     	&:hover {
