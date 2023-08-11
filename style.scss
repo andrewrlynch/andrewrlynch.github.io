@@ -138,6 +138,7 @@ p {
 	  transition: all ease 0.5s;
 	  cursor: pointer;
 	   &:hover {
+		   -webkit-font-smoothing: subpixel-antialiased;
 		   -webkit-backface-visibility: hidden;
 		   transform: scale(1.05);
 		   -webkit-transform: translateZ(0) scale(1.05, 1.05);
@@ -304,6 +305,7 @@ img:hover {
   transition: all ease 0.5s;
   cursor: pointer;
    &:hover {
+	   -webkit-font-smoothing: subpixel-antialiased;
 	   -webkit-backface-visibility: hidden;
 	   transform: scale(1.05);
 	   -webkit-transform: translateZ(0) scale(1.05, 1.05);
@@ -346,6 +348,7 @@ nav {
 	transition: all ease 0.5s;
 	cursor: pointer;
 	&:hover {
+		-webkit-font-smoothing: subpixel-antialiased;
 		-webkit-backface-visibility: hidden;
 		transform: scale(1.05);
 		-webkit-transform: translateZ(0) scale(1.05, 1.05);
