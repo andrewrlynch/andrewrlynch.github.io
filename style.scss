@@ -134,18 +134,12 @@ p {
 	  color: #000000;
 	  display: inline-block;
 	  text-decoration: none;
-	  text-shadow: #FC0 0px 0px 2px;
-	  text-weight: 500;
+	  text-weight: 600;
 
-	  transition: all ease 0.5s;
+	  transition: all ease 0.25s;
 	  cursor: pointer;
 	   &:hover {
-		   -webkit-font-smoothing: subpixel-antialiased;
-		   -webkit-backface-visibility: hidden;
-		   transform: scale(1.05);
-		   -webkit-transform: translateZ(0) scale(1.05, 1.05);
-		   text-shadow: #FC0 1px 1px 10px;
-		   text-weight: 300;
+		   text-weight: 200;
 		}
 	}
 }
@@ -301,19 +295,6 @@ img:hover {
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
-	a {
-  color: #000000;
-  display: inline-block;
-  text-decoration: none;
-  transition: all ease 0.5s;
-  cursor: pointer;
-   &:hover {
-	   -webkit-font-smoothing: subpixel-antialiased;
-	   -webkit-backface-visibility: hidden;
-	   transform: scale(1.05);
-	   -webkit-transform: translateZ(0) scale(1.05, 1.05);
-	}
-}
 }
 
 .site-description {
@@ -343,19 +324,7 @@ nav {
   a {
 	margin-left: 20px;
 	text-align: right;
-	font-weight: 300;
 	letter-spacing: 1px;
-	color: #000000;
-	display: inline-block;
-	text-decoration: none;
-	transition: all ease 0.5s;
-	cursor: pointer;
-	&:hover {
-		-webkit-font-smoothing: subpixel-antialiased;
-		-webkit-backface-visibility: hidden;
-		transform: scale(1.05);
-		-webkit-transform: translateZ(0) scale(1.05, 1.05);
-	}
 	  
     @include mobile {
       margin: 0 10px;
