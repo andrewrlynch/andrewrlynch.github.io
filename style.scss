@@ -134,11 +134,12 @@ p {
 	  color: #000000;
 	  display: inline-block;
 	  text-decoration: underline;
-	  text-decoration-style: dotted;
-	  text-decoration-thickness: 3px;
+	  text-decoration-style: solid;
+	  text-decoration-thickness: 2px;
 	  transition: all ease 0.25s;
 	  cursor: pointer;
 	   &:hover {
+		   text-decoration: none;
 		   color: #ACCE21;
 		}
 	}
