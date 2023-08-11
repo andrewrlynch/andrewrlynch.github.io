@@ -139,13 +139,15 @@ code {
 
 a {
   color: #000000;
+  display: inline-block;
   text-decoration: none;
   text-shadow: #FC0 1px 1px 2px;
   transition: all ease 0.5s;
   cursor: pointer;
    &:hover {
-	   transform: scale(1.2);
-	   -webkit-transform:scale(1.2, 1.2);
+	   -webkit-backface-visibility: hidden;
+	   transform: scale(1.1);
+	   -webkit-transform: translateZ(0) scale(1.1, 1.1);
 	   text-shadow: #FC0 1px 1px 10px;
 	}
 }
