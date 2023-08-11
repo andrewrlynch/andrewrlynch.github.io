@@ -84,9 +84,10 @@ transition: 0.5s ease;
 }
 
 img.paper:hover{
--webkit-transform: scale(1.025);
--ms-transform: scale(1.025);
-transform: scale(1.025);
+backface-visibility: hidden;
+-webkit-transform: scale(1.025) translateZ(0);
+-ms-transform: scale(1.025) translateZ(0);
+transform: scale(1.025) translateZ(0);
 opacity: 1;
 }
 
