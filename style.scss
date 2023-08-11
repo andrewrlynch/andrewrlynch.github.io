@@ -130,6 +130,20 @@ h4 {
 p {
   margin: 15px 0;
   color: $black;
+	a {
+	  color: #000000;
+	  display: inline-block;
+	  text-decoration: none;
+	  text-shadow: #FC0 1px 1px 2px;
+	  transition: all ease 0.5s;
+	  cursor: pointer;
+	   &:hover {
+		   -webkit-backface-visibility: hidden;
+		   transform: scale(1.05);
+		   -webkit-transform: translateZ(0) scale(1.05, 1.05);
+		   text-shadow: #FC0 1px 1px 10px;
+		}
+	}
 }
 
 code {
@@ -141,14 +155,12 @@ a {
   color: #000000;
   display: inline-block;
   text-decoration: none;
-  text-shadow: #FC0 1px 1px 2px;
   transition: all ease 0.5s;
   cursor: pointer;
    &:hover {
 	   -webkit-backface-visibility: hidden;
-	   transform: scale(1.1);
-	   -webkit-transform: translateZ(0) scale(1.1, 1.1);
-	   text-shadow: #FC0 1px 1px 10px;
+	   transform: scale(1.05);
+	   -webkit-transform: translateZ(0) scale(1.05, 1.05);
 	}
 }
 
@@ -293,6 +305,18 @@ img:hover {
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
+	a {
+  color: #000000;
+  display: inline-block;
+  text-decoration: none;
+  transition: all ease 0.5s;
+  cursor: pointer;
+   &:hover {
+	   -webkit-backface-visibility: hidden;
+	   transform: scale(1.05);
+	   -webkit-transform: translateZ(0) scale(1.05, 1.05);
+	}
+}
 }
 
 .site-description {
@@ -320,20 +344,21 @@ nav {
   }
 
   a {
-    margin-left: 20px;
-    text-align: right;
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
-    	&:hover {
-		color: $black;
-		} 
-   	&:active {
-     		color: $black;	
- 		}
-
+	margin-left: 20px;
+	text-align: right;
+	font-weight: 300;
+	letter-spacing: 1px;
+	color: #000000;
+	display: inline-block;
+	text-decoration: none;
+	transition: all ease 0.5s;
+	cursor: pointer;
+	&:hover {
+		-webkit-backface-visibility: hidden;
+		transform: scale(1.05);
+		-webkit-transform: translateZ(0) scale(1.05, 1.05);
+	}
+}
     @include mobile {
       margin: 0 10px;
       color: #000000;
