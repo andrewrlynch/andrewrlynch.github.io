@@ -138,12 +138,13 @@ code {
 }
 
 a {
-  text-decoration: underline;
-  text-decoration-style: solid;
+  color: #000000;
+  text-shadow: #FC0 1px 0 10px;
+  transition: all ease 0.5s;
   cursor: pointer;
    &:hover {
-	   text-decoration: none;
-	   text-shadow: #FC0 1px 0 10px;
+	   transform: scale(0.8);
+	   text-shadow: #FC0 1px 0 1px;
 	}
 }
 
