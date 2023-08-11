@@ -153,15 +153,7 @@ code {
 
 a {
   color: #000000;
-  display: inline-block;
-  text-decoration: none;
-  transition: all ease 0.5s;
   cursor: pointer;
-   &:hover {
-	   -webkit-backface-visibility: hidden;
-	   transform: scale(1.05);
-	   -webkit-transform: translateZ(0) scale(1.05, 1.05);
-	}
 }
 
 ul, ol {
