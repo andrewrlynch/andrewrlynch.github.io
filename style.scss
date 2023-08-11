@@ -134,7 +134,8 @@ p {
 	  color: #000000;
 	  display: inline-block;
 	  text-decoration: underline;
-	  text-decoration-style: wavy;
+	  text-decoration-style: dotted;
+	  text-decoration-thickness: 3px;
 	  transition: all ease 0.25s;
 	  cursor: pointer;
 	   &:hover {
@@ -325,6 +326,9 @@ nav {
 	margin-left: 20px;
 	text-align: right;
 	letter-spacing: 1px;
+	&:hover {
+		   color: #ACCE21;
+		}
 	  
     @include mobile {
       margin: 0 10px;
