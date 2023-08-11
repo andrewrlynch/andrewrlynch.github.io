@@ -358,7 +358,7 @@ nav {
 		transform: scale(1.05);
 		-webkit-transform: translateZ(0) scale(1.05, 1.05);
 	}
-}
+	  
     @include mobile {
       margin: 0 10px;
       color: #000000;
