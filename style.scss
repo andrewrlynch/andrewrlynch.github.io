@@ -135,7 +135,6 @@ p {
 	  display: inline-block;
 	  text-decoration: none;
 	  text-weight: 600;
-
 	  transition: all ease 0.25s;
 	  cursor: pointer;
 	   &:hover {
@@ -151,6 +150,7 @@ code {
 
 a {
   color: #000000;
+  text-decoration: none;
   cursor: pointer;
 }
 
