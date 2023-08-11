@@ -140,7 +140,7 @@ p {
 	   &:hover {
 		   font-weight: 200;
 		};
-		&::before
+		&::before {
 	    display: block;
 	    content: attr(title);
 	    font-weight: bold;
