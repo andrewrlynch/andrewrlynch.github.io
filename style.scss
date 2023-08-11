@@ -84,10 +84,9 @@ transition: 0.5s ease;
 }
 
 img.paper:hover{
-backface-visibility: hidden;
--webkit-transform: scale(1.025) translateZ(0);
--ms-transform: scale(1.025) translateZ(0);
-transform: scale(1.025) translateZ(0);
+-webkit-transform: scale(1.025);
+-ms-transform: scale(1.025);
+transform: scale(1.025);
 opacity: 1;
 }
 
@@ -140,9 +139,8 @@ p {
 	  cursor: pointer;
 	   &:hover {
 		   font-weight: 200;
-		}
-	}
-	a::before {
+		};
+		&::before
 	    display: block;
 	    content: attr(title);
 	    font-weight: bold;
