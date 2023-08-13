@@ -26,4 +26,4 @@ CIN is a dynamic process that occurs over many cellular divisions. This makes it
 We found that this approach to measuring CIN outperforms traditional methods such as mitotic chromosome and centromeric FISH counts. **[Lynch et al., *bioRxiv*, 2023](https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf)** To make this approach more... aproachable, I developed **[CINFER](https://burkardlab.shinyapps.io/CINFER/)**, a tool to estimate mis-segregation rates from single cell copy number data.
 
 ### [How do multipolar divisions reshape cells' karyotypes? Meet iBover.](https://andrewrlynch.shinyapps.io/iBover/)
-<img src="{{site.baseurl}}/images/iBover.png" style="width:30%" align="left">
+<img src="{{site.baseurl}}/images/iBover.png" style="width:75%" align="center">
