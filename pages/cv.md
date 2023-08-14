@@ -4,7 +4,12 @@ title: CV
 permalink: /pages/cv/
 published: true
 ---
-## Professional & Service Experience
+
+
+<iframe src="https://github.com/andrewrlynch/andrewrlynch.github.io/blob/f6c019bb0460c7395579232a205b9a6b45843ac4/lynch_cv_public.pdf" style="width: 100%; border: 1px"></iframe>
+
+
+## Professional Experience
 
 **Postdoctoral Fellow** (2023-now) <br>
 University of Texas MD Anderson Cancer Center <br>
@@ -13,14 +18,6 @@ _Genomic instability, tumor evolution, and phenotypic plasticity._
 **Graduate Research Assistant** (2017-2023) <br>
 University of Wisconsin - Madison <br>
 _Genomics, computation, and cell and molecular biology to improve measures of chromosomal instability in cancer._
-
-**Steering Committee** (2021-2023) <br>
-Cellular and Molecular Training Program, University of Wisconsin - Madison <br>
-_Represented graduate student perspective and interest in the governance of the Cellular and Molecular PhD Training Program._
-
-**Recruitment Leader** (2018-2021) <br>
-Cellular and Molecular Training Program, University of Wisconsin - Madison <br>
-_Student-side planning and execution of recruitment weekend for Cellular and Molecular PhD Training Program._
 
 **Adult Family Home Caregiver** (2013-2017) <br>
 Reality Unlimited <br>
@@ -46,8 +43,20 @@ _Thesis: "Quantifying Chromosomal Instability: from first principles toward clin
 **B.Sc. Biochemistry and Molecular Biology** (2012-2016) <br>
 University of Wisconsin - Eau Claire
 
-## Publications
+## Service Appointments
+**Steering Committee** (2019-2023) <br>
+Cellular and Molecular Training Program <br>
+University of Wisconsin - Madison
 
-## Awards
+**Carbone Cancer Center Trainee Network Leadership** (2019-2023) <br>
+University of Wisconsin Carbone Cancer Center
 
-**[UNDER CONSTRUCTION]**
+**Recruitment Leader** (2018-2021) <br>
+Cellular and Molecular Training Program <br>
+University of Wisconsin - Madison
+
+## Grants and Awards
+
+## Preprints & Manuscripts Under Review
+
+## Peer Reviewed Publications
