@@ -4,11 +4,6 @@ title: CV
 permalink: /pages/cv/
 published: true
 ---
-
-
-<iframe src="https://github.com/andrewrlynch/andrewrlynch.github.io/blob/f6c019bb0460c7395579232a205b9a6b45843ac4/lynch_cv_public.pdf" style="width: 100%; border: 1px"></iframe>
-
-
 ## Professional Experience
 
 **Postdoctoral Fellow** (2023-now) <br>
@@ -56,7 +51,21 @@ Cellular and Molecular Training Program <br>
 University of Wisconsin - Madison
 
 ## Grants and Awards
+(2023-now) CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) <br>
+(2022) University of Wisconsin - Madison SRGC Travel Award <br>
+(2021-2022) Ruth L. Kirschtein NRSA and Predoctoral Individual Fellowship (National Cancer Institute - 1**F31**CA254247) <br>
+2019-2021 Ruth L. Kirschtein NRSA and Predoctoral Traineeship (Genomic Sciences Training Program - **T32**HG002760) <br>
+(2017-2018) Ruth L. Kirschtein NRSA and Predoctoral Traineeship (Cellular and Molecular Pathology Training Program - **T32**GM081061) <br>
+(2014) University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award
 
 ## Preprints & Manuscripts Under Review
+3. **Andrew R. Lynch**, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard. bioRxiv 2023.06.15.544840. (under review)
+
+2. **Lynch, A. R.**, Shermineh, B., Burkard, M.E. The Reckoning of Chromosomal Instability: past, present, and future. (under review)
+
+1. Zhou, A.S., Tucker, J.B., Scribano, C.M., **Lynch, A. R.**, Carlsen, C.L., Burkard, M.E., Weaver, B.A. Chromosome missegregation on multipolar spindles is a conserved mechanism of microtubule poisons. (under review)
 
 ## Peer Reviewed Publications
+2. **Lynch, A. R.**, Arp, N. L., Zhou, A. S., Weaver, B. A., & Burkard, M. E. (2022). Quantifying chromosomal instability from intratumoral karyotype diversity using agent-based modeling and Bayesian inference. eLife, 11, e69799.
+
+1. Her, C., **Lynch, A.R.**, White, R.J., Wang, M., and Westler, W.M., Yang, T. (2015). Short proline-substituted MUC1 Mucin peptides can bind to mouse MUC1 monoclonal antibody as revealed by STD NMR. Journal of Undergraduate Chemistry Research, 14(1): 5-11
