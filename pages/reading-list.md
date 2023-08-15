@@ -9,6 +9,7 @@ published: true
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 ## Finished
 ### 2023
+**The Warrior Prophet** - R. Scott Bakker <br>
 **Artificial Condition** - Martha Wells <br>
 **All Systems Red** - Martha Wells <br>
 **The Empress of Salt and Fortune** - Nghi Vo <br>
