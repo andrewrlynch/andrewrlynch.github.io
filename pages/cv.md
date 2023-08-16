@@ -65,8 +65,10 @@ University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award (2
 2. **Lynch, A. R.**, Shermineh, B., Burkard, M.E. The Reckoning of Chromosomal Instability: past, present, and future. (under review)
 
 1. Zhou, A.S., Tucker, J.B., Scribano, C.M., **Lynch, A. R.**, Carlsen, C.L., Burkard, M.E., Weaver, B.A. Chromosome missegregation on multipolar spindles is a conserved mechanism of microtubule poisons. (under review)
+{: reversed="reversed"}
 
 ## Peer Reviewed Publications
 2. **Lynch, A. R.**, Arp, N. L., Zhou, A. S., Weaver, B. A., & Burkard, M. E. (2022). Quantifying chromosomal instability from intratumoral karyotype diversity using agent-based modeling and Bayesian inference. eLife, 11, e69799.
 
 1. Her, C., **Lynch, A.R.**, White, R.J., Wang, M., and Westler, W.M., Yang, T. (2015). Short proline-substituted MUC1 Mucin peptides can bind to mouse MUC1 monoclonal antibody as revealed by STD NMR. Journal of Undergraduate Chemistry Research, 14(1): 5-11
+{: reversed="reversed"}
