@@ -73,4 +73,4 @@ University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award (2
 1. Her, C., **Lynch, A.R.**, White, R.J., Wang, M., and Westler, W.M., Yang, T. (2015). Short proline-substituted MUC1 Mucin peptides can bind to mouse MUC1 monoclonal antibody as revealed by STD NMR. Journal of Undergraduate Chemistry Research, 14(1): 5-11
 {: reversed="reversed"}
 
-Updated: 2023-08-16
+_Updated: 2023-08-16_
