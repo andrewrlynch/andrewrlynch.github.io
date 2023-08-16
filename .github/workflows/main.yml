@@ -1,0 +1,24 @@
+name: Advanced Usage
+
+on:
+  push:
+    branches:
+      - main
+    # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
+    paths:
+      - pages/cv.md
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: --output=pages/cv.pdf pages/cv.md
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pages
+          path: pages
