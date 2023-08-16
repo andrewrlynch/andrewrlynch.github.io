@@ -24,7 +24,7 @@ _Used 2D NMR to probe the antigenic potential of MUC1 mimotopes._
 
 **NSF REU Mentor** (June-August, 2016) <br>
 University of Wisconsin - Eau Claire <br>
-_Mentored REU participants in laboratory safety, fundamental biochemistry concepts, solid phase peptide synthesis, and NMR analysis._
+_Mentored REU participants in laboratory safety, basic biochemistry, solid phase peptide synthesis, and NMR analysis._
 
 **Research Intern** (June-July, 2014) <br>
 Ohio University + Pontificia Universidad Católica del Ecuador <br>
