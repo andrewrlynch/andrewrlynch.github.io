@@ -51,14 +51,15 @@ Cellular and Molecular Training Program <br>
 University of Wisconsin - Madison
 
 ## Grants and Awards
-(2023-now) CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) <br>
-(2022) University of Wisconsin - Madison SRGC Travel Award <br>
-(2021-2022) Ruth L. Kirschtein NRSA and Predoctoral Individual Fellowship (National Cancer Institute - 1**F31**CA254247) <br>
-2019-2021 Ruth L. Kirschtein NRSA and Predoctoral Traineeship (Genomic Sciences Training Program - **T32**HG002760) <br>
-(2017-2018) Ruth L. Kirschtein NRSA and Predoctoral Traineeship (Cellular and Molecular Pathology Training Program - **T32**GM081061) <br>
-(2014) University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award
+CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) (2023-now) <br>
+University of Wisconsin - Madison SRGC Travel Award (2022) <br>
+National Research Service Award/Fellowship (NCI-**F31**CA254247)(2021-2022) <br>
+National Research Service Award/Traineeship (NHGRI-**T32**HG002760) (2019-2021) <br>
+(2017-2018) National Research Service Award/Traineeship (NIGMS-**T32**GM081061) (2017-2018) <br>
+University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award (2014) 
 
 ## Preprints & Manuscripts Under Review
+
 3. **Andrew R. Lynch**, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard. bioRxiv 2023.06.15.544840. (under review)
 
 2. **Lynch, A. R.**, Shermineh, B., Burkard, M.E. The Reckoning of Chromosomal Instability: past, present, and future. (under review)
