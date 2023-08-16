@@ -1,4 +1,4 @@
-name: Advanced Usage
+name: PandocConvert
 
 on: 
   workflow_dispatch:
@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+      - run: mkdir output
+      - uses: maxheld83/pandoc@v2
 
       - uses: docker://pandoc/latex:2.9
         with:
-          args: --output=pages/cv.pdf pages/cv.md
-          
-      - uses: actions/upload-artifact@v3
+          args: "--standalone --output=output/cv.pdf pages/cv.md"
+      - uses: actions/upload-artifact@master
         with:
-          name: pages
-          path: pages
+          name: output
+          path: output
