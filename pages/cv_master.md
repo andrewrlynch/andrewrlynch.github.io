@@ -1,4 +1,3 @@
-
 ## Professional Experience
 
 **Postdoctoral Fellow** (2023-now)  
