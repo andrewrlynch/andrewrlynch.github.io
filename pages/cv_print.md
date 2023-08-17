@@ -9,7 +9,7 @@ published: true
 <div class="row">
 
   <div class="column">
-    <h1 style="vertical-align: middle;font-size: 30px;">Andrew Lynch</h1>
+    <h1 style="vertical-align: middle;font-size: 24px;">Andrew Lynch</h1>
   </div>
   
   <div class="column">
