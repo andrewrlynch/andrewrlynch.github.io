@@ -8,7 +8,7 @@ published: true
 
 **Postdoctoral Fellow** (2023-now)  
 University of Texas MD Anderson Cancer Center  
-_Genomic instability, tumor evolution, and phenotypic plasticity._   
+_Genomic instability, tumor evolution, and phenotypic plasticity._
 
 **Graduate Research Assistant** (2017-2023)  
 University of Wisconsin - Madison  
