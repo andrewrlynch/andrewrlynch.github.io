@@ -4,8 +4,8 @@ title: CV
 permalink: /pages/cv/
 published: true
 ---
-<p align="center">
-  <a href="{{ site.baseurl }}/pages/cv_print.md"
+<p align="right">
+  <a href="{{ site.baseurl }}/pages/cv_print">Printable</a>
 </p>
 
 {% include_relative cv_master.md %}
