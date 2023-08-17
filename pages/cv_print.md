@@ -14,13 +14,13 @@ published: true
   </div>
   
   <div class="column">
-    <img src="https://icons-for-free.com/iconfiles/png/64/web+icon-1320184984876265064.png" style="width:14px;vertical-align: middle;"/> Houston, TX <br>
-    <img src="https://icons-for-free.com/iconfiles/png/64/orcid-1324440209112295092.png" style="width:14px;vertical-align: middle;"/> Houston, TX <br>
+    <img src="https://icons-for-free.com/iconfiles/png/64/web+icon-1320184984876265064.png" style="width:14px;vertical-align: middle;"/> andrewlynch.io <br>
+    <img src="https://icons-for-free.com/iconfiles/png/64/orcid-1324440209112295092.png" style="width:14px;vertical-align: middle;"/> 0000-0002-0238-682X <br>
   </div>
 
   <div class="column">
       <img src="https://icons-for-free.com/iconfiles/png/64/github+icon-1320168274457504277.png" style="width:14px;vertical-align: middle;"/> andrewrlynch <br>
-      <img src="https://icons-for-free.com/iconfiles/png/16/linkedin+icon-1320168276873005114.png" style="width:14px;vertical-align: middle;"/> andrewrlynch <br>
+      <img src="https://icons-for-free.com/iconfiles/png/64/linkedin+icon-1320168276873005114.png" style="width:14px;vertical-align: middle;"/> andrewrlynch <br>
   </div>
 
 </div>
