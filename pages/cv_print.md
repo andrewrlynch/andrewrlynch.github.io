@@ -1,4 +1,6 @@
 ---
+layout: cv
+title: CV
 permalink: /pages/cv_print/
 published: true
 ---
