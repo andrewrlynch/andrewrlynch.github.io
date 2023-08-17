@@ -4,9 +4,13 @@ title: CV
 permalink: /pages/cv_print/
 published: true
 ---
-# Andrew Lynch
+
 
 <div class="row">
+
+  <div class="column">
+    <h1 style="vertical-align: middle;font-size; 30px;">Andrew Lynch</h>
+  </div>
   
   <div class="column">
     <img src="https://icons-for-free.com/iconfiles/png/64/location+on+48px-131985190511036505.png" style="width:14px;vertical-align: middle;"/> Houston, TX <br>
