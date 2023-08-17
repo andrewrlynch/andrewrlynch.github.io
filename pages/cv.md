@@ -5,7 +5,7 @@ permalink: /pages/cv/
 published: true
 ---
 
-<object data="lynch_cv_public.pdf" type='application/pdf'></object>
+<object data="{{ site.baseurl }}/lynch_cv_public.pdf" type='application/pdf'></object>
 
 ## Professional Experience
 
