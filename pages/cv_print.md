@@ -14,3 +14,4 @@ published: true
 
 {% include_relative cv_master.md %}
 
+<img src="https://icons-for-free.com/iconfiles/png/64/location+on+48px-131985190511036505.png" style="width:16px;vertical-align: middle;"/> Houston, TX  
