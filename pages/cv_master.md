@@ -48,8 +48,8 @@ University of Wisconsin - Madison
 CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) (2023-now)  
 University of Wisconsin - Madison SRGC Travel Award (2022)  
 NCI-National Research Service Award/Fellowship (**F31**CA254247) (2021-2022)  
-NHGRI-National Research Service Award/Traineeship (NHGRI-**T32**HG002760) (2019-2021)  
-NIGMS-National Research Service Award/Traineeship (NIGMS-**T32**GM081061) (2017-2018)  
+NHGRI-National Research Service Award/Traineeship (**T32**HG002760) (2019-2021)  
+NIGMS-National Research Service Award/Traineeship (**T32**GM081061) (2017-2018)  
 University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award (2014) 
 
 ## Preprints & Manuscripts Under Review
