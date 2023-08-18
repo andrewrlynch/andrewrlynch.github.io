@@ -21,7 +21,12 @@ published: true
   <div class="column">
     <img src="https://icons-for-free.com/iconfiles/png/64/orcid-1324440209112295092.png" style="width:14px;vertical-align: middle;"/> 0000-0002-0238-682X <br>
     <img src="https://icons-for-free.com/iconfiles/png/64/github+icon-1320168274457504277.png" style="width:14px;vertical-align: middle;"/> andrewrlynch <br>
-    <img src="https://icons-for-free.com/iconfiles/png/64/linkedin+icon-1320168276873005114.png" style="width:14px;vertical-align: middle;"/> andrewrlynch <br>
+    <img src="https://icons-for-free.com/iconfiles/png/64/linkedin+icon-1320168276873005114.png" style="width:14px;vertical-align: middle;"/> /in/andrewrlynch <br>
+  </div>
+
+  <div class="column">
+    <img src="https://icons-for-free.com/download-icon-medium-1329858347864495943_64.png" style="width:14px;vertical-align: middle;"/> @andrew-lynch <br>
+    <img src="https://icons-for-free.com/download-icon-twitter+icon-1320183239913758690_64.png" style="width:15px;vertical-align: middle;"/> @AndrewLynchBio
   </div>
 
 </div>
