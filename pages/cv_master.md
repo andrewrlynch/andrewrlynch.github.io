@@ -4,53 +4,53 @@
 University of Texas MD Anderson Cancer Center  
 _Genomic instability, tumor evolution, and phenotypic plasticity._
 
-**Graduate Research Assistant** (2017-2023)  
+**Graduate Research Assistant** <span style="float: inline-end;">(2017-2023)</span>  
 University of Wisconsin - Madison  
 _Genomics, computation, and cell and molecular biology to improve measures of chromosomal instability in cancer._
 
-**Adult Family Home Caregiver** (2013-2017)  
+**Adult Family Home Caregiver** <span style="float: inline-end;">(2013-2017)</span>  
 Reality Unlimited  
 _Provided guidance, care, and companionship to survivors of traumatic brain injury._
 
-**Undergraduate Research Assistant** (2013-2016)  
+**Undergraduate Research Assistant** <span style="float: inline-end;">(2013-2016)</span>  
 University of Wisconsin - Eau Claire  
 _Used 2D NMR to probe the antigenic potential of MUC1 mimotopes._
 
-**NSF REU Mentor** (June-August, 2016)  
+**NSF REU Mentor** <span style="float: inline-end;">(June-August, 2016)</span>  
 University of Wisconsin - Eau Claire  
 _Mentored REU participants in laboratory safety, basic biochemistry, solid phase peptide synthesis, and NMR analysis._
 
-**Research Intern** (June-July, 2014)  
+**Research Intern** <span style="float: inline-end;">(June-July, 2014)</span>  
 Ohio University + Pontificia Universidad Católica del Ecuador  
 _Laboratory and field work characterizing domiciliary triatomine species carrying Trypanosoma cruzi._
 
 ## Education
-**Ph.D. Cellular and Molecular Pathology** (2017-2023)  
+**Ph.D. Cellular and Molecular Pathology** <span style="float: inline-end;">(2017-2023)</span>  
 University of Wisconsin - Madison  
 _Thesis: "Quantifying Chromosomal Instability: from first principles toward clinical value."_
 
-**B.Sc. Biochemistry and Molecular Biology** (2012-2016)  
+**B.Sc. Biochemistry and Molecular Biology** <span style="float: inline-end;">(2012-2016)</span>  
 University of Wisconsin - Eau Claire
 
 ## Service Appointments
-**Steering Committee** (2019-2023)  
+**Steering Committee** <span style="float: inline-end;">(2019-2023)</span>  
 Cellular and Molecular Training Program  
 University of Wisconsin - Madison
 
-**Carbone Cancer Center Trainee Network Leadership** (2019-2023)  
+**Carbone Cancer Center Trainee Network Leadership** <span style="float: inline-end;">(2019-2023)</span>  
 University of Wisconsin Carbone Cancer Center
 
-**Recruitment Leader** (2018-2021)  
+**Recruitment Leader** <span style="float: inline-end;">(2018-2021)</span>  
 Cellular and Molecular Training Program  
 University of Wisconsin - Madison
 
 ## Grants and Awards
-CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) (2023-now)  
-University of Wisconsin - Madison SRGC Travel Award (2022)  
-NCI-National Research Service Award/Fellowship (**F31**CA254247) (2021-2022)  
-NHGRI-National Research Service Award/Traineeship (**T32**HG002760) (2019-2021)  
-NIGMS-National Research Service Award/Traineeship (**T32**GM081061) (2017-2018)  
-University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award (2014) 
+CPRIT TRIUMPH Postdoctoral Fellowship (MD Anderson Cancer Center - RP210028) <span style="float: inline-end;">(2023-now)</span>  
+University of Wisconsin - Madison SRGC Travel Award <span style="float: inline-end;">(2022)</span>  
+NCI-National Research Service Award/Fellowship (**F31**CA254247) <span style="float: inline-end;">(2021-2022)</span>  
+NHGRI-National Research Service Award/Traineeship (**T32**HG002760) <span style="float: inline-end;">(2019-2021)</span>  
+NIGMS-National Research Service Award/Traineeship (**T32**GM081061) <span style="float: inline-end;">(2017-2018)</span>  
+University of Wisconsin - Eau Claire ORSP Faculty-Student Collaboration Award <span style="float: inline-end;">(2014)</span> 
 
 ## Preprints & Manuscripts Under Review
 
