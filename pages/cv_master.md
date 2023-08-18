@@ -1,6 +1,6 @@
 ## Professional Experience
 
-**Postdoctoral Fellow** (2023-now){: style="float: inline-end"}  
+**Postdoctoral Fellow** (2023-now){: style="float: inline-end;"}  
 University of Texas MD Anderson Cancer Center  
 _Genomic instability, tumor evolution, and phenotypic plasticity._
 
