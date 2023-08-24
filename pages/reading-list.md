@@ -7,10 +7,11 @@ published: true
 ## Reading
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
-**The Light Fantastic** - Terry Pratchett <br>
 **The Thousandfold Thought** - R. Scott Bakker <br>
+**Equal Rites** - Terry Pratchett <br>
 ## Finished
 ### 2023
+**The Light Fantastic** - Terry Pratchett <br>
 **The Warrior Prophet** - R. Scott Bakker <br>
 **Artificial Condition** - Martha Wells <br>
 **All Systems Red** - Martha Wells <br>
