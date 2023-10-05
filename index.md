@@ -38,11 +38,10 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 
 </div>
 
-<a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
-  <div class="paperbox">
-    <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" height="125" style="float: left;border-width: 1px; border-style: solid; margin-right: 20px;">
-    <b>A survey of CIN measures across mechanistic models</b>
-    <p>Andrew R. Lynch, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard</p>
-  </div>
+<div class="paperbox" onclick="location.href='https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf';">
+  <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" height="150" style="float: left;border-width: 1px; border-style: solid; border-color: #D1D1D1; margin-right: 20px;">
+  <b>A survey of CIN measures across mechanistic models</b>
+  <p>Lynch AR, Bradford S, Zhou AS, et al. A survey of CIN measures across mechanistic models. Preprint. bioRxiv. 2023;2023.06.15.544840. Published 2023 Jun 15. doi:10.1101/2023.06.15.544840</p>
+</div>
 
 
