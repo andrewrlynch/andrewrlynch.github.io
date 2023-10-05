@@ -73,6 +73,21 @@ body::-webkit-scrollbar-thumb:hover {
   display: table;
 }
 
+.paperbox {
+	width: 100%;
+	padding: 10px;
+	height: 150px;
+	border-style: round;
+	border-width: 1px;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	transition: 0.5s ease;
+	&:hover{
+		-webkit-transform: scale(1.025);
+		-ms-transform: scale(1.025);
+		transform: scale(1.025);
+	}
+}
+
 /***************/
 /* IMAGE RULES */
 /***************/
