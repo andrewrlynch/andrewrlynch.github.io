@@ -12,7 +12,7 @@ I'm currently a [CPRIT TRIUMPH](https://www.mdanderson.org/education-training/re
 
 I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/) or [cooking](https://andrewrlynch.github.io/pages/recipes/). 
 
-### Skip to the papers👇
+### Publications
 
   <div class="row">
     
@@ -36,5 +36,14 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
     
   </div>
 
-  
 </div>
+
+<a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
+  <div class="paperbox">
+    <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" width = "200" style: "float: left;">
+    <b>A survey of CIN measures across mechanistic models</b>
+    <p>Andrew R. Lynch, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard</p>
+  </div>
+</a>
+
+
