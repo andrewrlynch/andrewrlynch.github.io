@@ -40,10 +40,9 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 
 <a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
   <div class="paperbox">
-    <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" width="200" style="float: left;border-width: 1px;">
+    <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" height="125" style="float: left;border-width: 1px; border-style: solid;">
     <b>A survey of CIN measures across mechanistic models</b>
     <p>Andrew R. Lynch, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard</p>
   </div>
-</a>
 
 
