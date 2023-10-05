@@ -79,7 +79,7 @@ body::-webkit-scrollbar-thumb:hover {
 	height: 150px;
 	border-style: round;
 	border-width: 1px;
-	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
 	transition: 0.5s ease;
 	&:hover{
 		-webkit-transform: scale(1.025);
