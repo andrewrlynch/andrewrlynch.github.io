@@ -63,15 +63,7 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 </div>
 -->
 
-<div class="card-deck">
-  {% for post in site.publications %} 
-    {% include papers.html %}
-  {% endfor %}
-</div>
-
-
-
-
+{% include papers.html %}
 
 
 
