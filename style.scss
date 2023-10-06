@@ -94,16 +94,17 @@ body::-webkit-scrollbar-thumb:hover {
 /***************/
 
 img.paper {
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-opacity: 0.5;
+border-style: solid;
+border-color: #D1D1D1;
+border-width: 1px;
 transition: 0.5s ease;
 }
 
 img.paper:hover{
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3)
 -webkit-transform: scale(1.025);
 -ms-transform: scale(1.025);
 transform: scale(1.025);
-opacity: 1;
 }
 
 /**************/
