@@ -84,7 +84,7 @@ body::-webkit-scrollbar-thumb:hover {
 	transition: 0.3s ease;
 	&:hover{
 		border-color: #ACCE21;
-		border-width: 4px;
+		box-shadow:0 2px 5px rgba(0, 0, 0, 0.3);
 	}
 }
 
