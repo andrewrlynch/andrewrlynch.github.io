@@ -2,7 +2,12 @@
   {% for post in site.publications %} 
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="card paperbox">
-          {{post.title}}
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.authors}}</p>
+          <a href="#" class="card-link">Paper</a>
+          <a href="#" class="card-link">Code</a>
+          <a href="#" class="card-link">Data</a>
+          <a href="#" class="card-link">Cite</a>
         </div>
       </div>
   {% endfor %}
