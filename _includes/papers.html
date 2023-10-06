@@ -4,10 +4,13 @@
         <div class="card paperbox">
           <h5 class="card-title">{{post.title}}</h5>
           <p class="card-text">{{post.authors}}</p>
-          <a href="#" class="card-link">Paper</a>
-          <a href="#" class="card-link">Code</a>
-          <a href="#" class="card-link">Data</a>
-          <a href="#" class="card-link">Cite</a>
+          <p class="card-text">{{post.venue}} | {{post.year}}</p>
+            <div class="card-footer>
+              <a href="#" class="card-link">Paper</a>
+              <a href="#" class="card-link">Code</a>
+              <a href="#" class="card-link">Data</a>
+              <a href="#" class="card-link">Cite</a>
+            </div
         </div>
       </div>
   {% endfor %}
