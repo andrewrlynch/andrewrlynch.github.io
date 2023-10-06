@@ -63,9 +63,7 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 </div>
 -->
 
-{% for post in site.publications reversed %} 
-  <div style="border-style: solid; border-color: black; border-width: 1px; border-radius: 5px;">
-    {{post.title}}
-  </div>
+{% for post in site.publications %} 
+  {% include papers.html %}
 {% endfor %}
 
