@@ -76,13 +76,15 @@ body::-webkit-scrollbar-thumb:hover {
 .paperbox {
 	max-height: 200px;
 	padding: 10px;
-	margin-bottom: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	border-style: solid;
 	border-radius: 5px;
 	border-width: 1px;
 	transition: 0.3s ease;
 	&:hover{
 		border-color: #ACCE21;
+		border-width: 4px;
 	}
 }
 
