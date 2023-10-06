@@ -13,27 +13,27 @@ I'm currently a [CPRIT TRIUMPH](https://www.mdanderson.org/education-training/re
 I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/) or [cooking](https://andrewrlynch.github.io/pages/recipes/). 
 
 ### Publications
-  <div class="row">
-    
-    <div class="column">
-      <a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
-        <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" width = "250" class="paper">
-      </a>
-    </div>
-    
-    <div class="column">
-      <a href = "https://doi.org/10.7554/eLife.69799">
-        <img src = "{{site.baseurl}}/images/eLife2022.png" width = "250" class="paper">
-      </a>
-    </div>
-    
-    <div class="column">
-      <a href = "https://www.andrewlynch.io/papers/2015-JUCR.pdf">
-        <img src = "{{site.baseurl}}/images/2015-JUCR.png" width = "250" class="paper">
-      </a>
-    </div>
-    
+<div class="row">
+  
+  <div class="column">
+    <a href = "https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf">
+      <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" width = "250" class="paper">
+    </a>
   </div>
+  
+  <div class="column">
+    <a href = "https://doi.org/10.7554/eLife.69799">
+      <img src = "{{site.baseurl}}/images/eLife2022.png" width = "250" class="paper">
+    </a>
+  </div>
+  
+  <div class="column">
+    <a href = "https://www.andrewlynch.io/papers/2015-JUCR.pdf">
+      <img src = "{{site.baseurl}}/images/2015-JUCR.png" width = "250" class="paper">
+    </a>
+  </div>
+  
+</div>
 
 <!--
 <div class="paperbox" onclick="location.href='https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf';">
@@ -61,7 +61,8 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 </div>
 -->
 
-{% for post in site.publications %} 
-  {% include papers.html %}
-{% endfor %}
-
+<div>
+  {% for post in site.publications %} 
+    {% include papers.html %}
+  {% endfor %}
+</div>
