@@ -63,7 +63,7 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 </div>
 -->
 
-<div class="row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+<div class="card-deck row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
   {% for post in site.publications %} 
     {% include papers.html %}
   {% endfor %}
