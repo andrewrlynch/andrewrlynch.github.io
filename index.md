@@ -13,6 +13,7 @@ I'm currently a [CPRIT TRIUMPH](https://www.mdanderson.org/education-training/re
 I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/) or [cooking](https://andrewrlynch.github.io/pages/recipes/). 
 
 ### Publications
+<!-- PAPER GALLERY
 <div class="row">
   
   <div class="column">
@@ -34,8 +35,9 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
   </div>
   
 </div>
+-->
 
-<!--
+<!-- PAPERBOX1
 <div class="paperbox" onclick="location.href='https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf';">
   <img src = "{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png" height="150" style="float: left;border-width: 1px; border-style: solid; border-color: #D1D1D1; margin-right: 20px;">
   <b>A survey of CIN measures across mechanistic models</b>
