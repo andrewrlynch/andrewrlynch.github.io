@@ -91,6 +91,23 @@ body::-webkit-scrollbar-thumb:hover {
 	}
 }
 
+.card {
+	padding: 5px;
+}
+
+.card-title{
+	font-size:12px;
+}
+
+.card-text{
+	font-size: 10px;
+}
+
+.card-footer {
+	background-color: #FFFFFF;
+	border-style: none;
+}
+
 /***************/
 /* IMAGE RULES */
 /***************/
