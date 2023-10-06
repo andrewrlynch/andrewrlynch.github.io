@@ -63,3 +63,30 @@ I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/
 </div>
 -->
 
+<div class="row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+{% for post in site.publications reversed %} 
+
+  <div class="item card text-black overflow-hidden {{ post.categories | uniq | join: " " }}">
+    <div class="card-img">
+        <div class="maxthumb">
+            <a href="{{ site.baseurl }}{{ post.url }}">
+                {% if post.image %}
+
+                    {% if site.lazyimages == "enabled" %}
+                        <img class="img-fluid lazyimg rounded-lg cover" style="object-fit: cover;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
+                    {% else %}
+                        <img class="img-fluid rounded-lg cover" style="object-fit: cover;" src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}"> 
+                    {% endif %}
+
+                {% endif %}
+            </a>
+        </div>
+    </div>
+    <div class="card-img-overlay cardtext rounded-lg">
+        <a class="stretched-link text-dark" style="text-align: center" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+
