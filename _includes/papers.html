@@ -7,8 +7,8 @@
           <p class="card-text" style="font-size: 10px;">{{post.venue}} | {{post.year}}</p>
             <div class="card-footer">
               {% if post.paperurl %}<a href="{{ post.paperurl }}" class="card-link">Paper</a>{% endif %}
-              {% if post.codeurl %}<a href={{ post.codeurl }} class="card-link">Code</a>{% endif %}
-              {% if post.dataurl %}<a href={{ post.dataurl }} class="card-link">Data</a>{% endif %}
+              {% if post.codeurl %}<a href="{{ post.codeurl }}" class="card-link">Code</a>{% endif %}
+              {% if post.dataurl %}<a href="{{ post.dataurl }}" class="card-link">Data</a>{% endif %}
             </div>
         </div>
       </div>
