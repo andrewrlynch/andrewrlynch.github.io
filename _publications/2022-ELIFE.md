@@ -5,6 +5,7 @@ permalink: /publications/2022-ELIFE
 year: 2022
 venue: 'eLife'
 paperurl: 'https://doi.org/10.7554/eLife.69799'
+codeurl: 'https://osf.io/snrg3/'
 collection: publications
 image: '{{site.baseurl}}/images/eLife2022.png'
 citation: 'Andrew R Lynch, Nicholas L Arp, Amber S Zhou, Beth A Weaver, Mark E Burkard (2022) Quantifying chromosomal instability from intratumoral karyotype diversity using agent-based modeling and Bayesian inference eLife 11:e69799'
