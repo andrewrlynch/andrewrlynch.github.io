@@ -9,9 +9,13 @@
               {% if post.paperurl %}<a href="{{ post.paperurl }}" class="card-link">Paper</a>{% endif %}
               {% if post.codeurl %}<a href="{{ post.codeurl }}" class="card-link">Code</a>{% endif %}
               {% if post.dataurl %}<a href="{{ post.dataurl }}" class="card-link">Data</a>{% endif %}
-              {% if post.doi %}<span class='altmetric-embed' style="display:inline-block;" data-badge-type='donut' data-doi="{{ post.doi }}"></span>{% endif %}
+              {% if post.doi %}
+              <span class='altmetric-embed' style="display:inline-block;" data-badge-type='donut' data-doi="{{ post.doi }}"></span>
+              <span class="__dimensions_badge_embed__" data-doi="{{ post.doi }}" data-legend="never" data-style="small_rectangle"></span>
+              {% endif %}
             </div>
         </div>
       </div>
   {% endfor %}
 </div>
+<script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
