@@ -7,7 +7,7 @@ venue: 'bioRxiv'
 paperurl: 'https://www.biorxiv.org/content/10.1101/2023.06.15.544840v1.full.pdf'
 doi: '10.1101/2023.06.15.544840'
 collection: publications
-image: '{{site.baseurl}}/images/2023_CINSurvey_bioRxiv.png'
+image: '{{site.baseurl}}/images/Screenshot 2023-10-10 at 5.27.54 PM.png'
 citation: 'Lynch AR, Bradford S, Zhou AS, Oxendine K, Henderson L, Horner VL, Weaver BA, Burkard ME. A survey of CIN measures across mechanistic models. bioRxiv [Preprint]. 2023 Jun 15:2023.06.15.544840. doi: 10.1101/2023.06.15.544840. PMID: 37398147; PMCID: PMC10312700.'
 ---
 # {{post.title}}
