@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "A survey of CIN measures across mechanistic models"
 authors: 'Andrew R. Lynch, Shermineh Bradford, Amber S. Zhou, Kim Oxendine, Les Henderson, Vanessa L. Horner, Beth A. Weaver, Mark E. Burkard'
 permalink: /publications/2023-CINSurvey
