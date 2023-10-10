@@ -9,7 +9,7 @@ codeurl: 'https://osf.io/snrg3/'
 dataurl: 'https://osf.io/snrg3/'
 doi: '10.7554/eLife.69799'
 collection: publications
-image: 'images/eLife2022.png'
+image: 'images/Screenshot 2023-10-10 at 5.46.56 PM.png'
 citation: 'Andrew R Lynch, Nicholas L Arp, Amber S Zhou, Beth A Weaver, Mark E Burkard (2022) Quantifying chromosomal instability from intratumoral karyotype diversity using agent-based modeling and Bayesian inference eLife 11:e69799'
 ---
 # {{post.title}}
