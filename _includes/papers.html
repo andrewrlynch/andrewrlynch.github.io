@@ -6,7 +6,7 @@
           <h5 class="card-title" style="font-size: 12px; margin: 5px;">{{post.title}}</h5>
           <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.authors}}</p>
           <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.venue}} | {{post.year}}</p>
-            <div class="card-footer" style="margin: 5px;">
+            <div class="card-footer" style="margin: 5px; vertical-align: middle;">
               {% if post.paperurl %}<a href="{{ post.paperurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon doc"></i></a>{% endif %}
               {% if post.codeurl %}<a href="{{ post.codeurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon code"></i></a>{% endif %}
               {% if post.dataurl %}<a href="{{ post.dataurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon data"></i></a>{% endif %}
