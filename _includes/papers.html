@@ -2,7 +2,7 @@
   {% for post in site.publications reversed %} 
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="card paperbox" style="padding: 0px;">
-          {% if post.image %}<img src="{{ site.baseurl }}/{{ post.image }}" class="card-img-top img-fluid rounded-start" style="object-fit: cover; max-height: 50px;">{% endif %}
+          {% if post.image %}<img src="{{ site.baseurl }}/{{ post.image }}" class="img-fluid rounded-start" style="object-fit: cover; max-height: 50px;">{% endif %}
           <h5 class="card-title" style="font-size: 12px; margin: 5px;">{{post.title}}</h5>
           <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.authors}}</p>
           <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.venue}} | {{post.year}}</p>
