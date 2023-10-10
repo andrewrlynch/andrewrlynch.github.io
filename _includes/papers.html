@@ -1,12 +1,12 @@
 <div class="row">
   {% for post in site.publications reversed %} 
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="card paperbox">
+        <div class="card paperbox" style="padding: 0px;">
           {% if post.image %}<img src="{{ site.baseurl }}/{{ post.image }}" class="card-img-top" style="object-fit: cover;">{% endif %}
-          <h5 class="card-title" style="font-size: 12px;">{{post.title}}</h5>
-          <p class="card-text" style="font-size: 10px;">{{post.authors}}</p>
-          <p class="card-text" style="font-size: 10px;">{{post.venue}} | {{post.year}}</p>
-            <div class="card-footer">
+          <h5 class="card-title" style="font-size: 12px; margin: 5px;">{{post.title}}</h5>
+          <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.authors}}</p>
+          <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.venue}} | {{post.year}}</p>
+            <div class="card-footer" style="margin: 5px;">
               {% if post.paperurl %}<a href="{{ post.paperurl }}" class="card-link">Paper</a>{% endif %}
               {% if post.codeurl %}<a href="{{ post.codeurl }}" class="card-link">Code</a>{% endif %}
               {% if post.dataurl %}<a href="{{ post.dataurl }}" class="card-link">Data</a>{% endif %}
