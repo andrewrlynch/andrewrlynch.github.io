@@ -8,6 +8,6 @@ I'm currently a [CPRIT TRIUMPH](https://www.mdanderson.org/education-training/re
 
 I can also be found [reading](https://andrewrlynch.github.io/pages/reading-list/) or [cooking](https://andrewrlynch.github.io/pages/recipes/). 
 
-### Publications
+### Selected Publications
 
 {% include papers.html %}
