@@ -4,6 +4,8 @@ authors: Lynch, Andrew R., Arp, Nicholas L, Zhou, Amber S, Weaver, Beth A, Burka
 year: 2022
 venue: eLife
 paperurl: https://elifesciences.org/articles/69799
+codeurl: https://osf.io/snrg3/
+dataurl: https://osf.io/snrg3/
 doi: 10.7554/eLife.69799
 permalink: /publications/2022_eLife
 selected: yes
