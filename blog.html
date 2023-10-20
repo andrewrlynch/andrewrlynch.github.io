@@ -3,16 +3,18 @@ layout: default
 ---
 <div class="posts">
   {% for post in site.posts %}
+    <div class="paperbox">
     <article class="post">
 
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-      <div class="entry">
+      <div style="padding: 10px; margin-top: 10px; margin-bottom: 10px; border-style: solid; border-radius: 5px; border-width: 1px;">
         <h4>{{ post.date | date: "%-d %B %Y"}}</h4>
         <!-- {{ post.content }} -->
         {{ post.excerpt }}
       </div>
         <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
+    </div>
   {% endfor %}
 </div>
