@@ -3,12 +3,12 @@ layout: default
 ---
 <div class="posts">
   {% for post in site.posts %}
-    <div class="paperbox">
+    <div style="style="padding: 10px; margin-top: 10px; margin-bottom: 10px; border-style: solid; border-radius: 5px; border-width: 1px;"">
     <article class="post">
 
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-      <div style="padding: 10px; margin-top: 10px; margin-bottom: 10px; border-style: solid; border-radius: 5px; border-width: 1px;">
+      <div>
         <h4>{{ post.date | date: "%-d %B %Y"}}</h4>
         <!-- {{ post.content }} -->
         {{ post.excerpt }}
