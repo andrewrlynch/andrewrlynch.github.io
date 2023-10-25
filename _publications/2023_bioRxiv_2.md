@@ -1,0 +1,15 @@
+---
+title: The history of chromosomal instability in genome doubled tumors
+authors: Toby M. Baker, Siqi Lai, Tom Lesluyes, Haixi Yan, Annelien Verfaillie, Stefan Dentro, Andrew R. Lynch, Amy L. Bowes, Nischalan Pillay, Adrienne M. Flanagan, Charles Swanton, Maxime Tarabichi, Peter Van Loo
+year: 2023
+venue: bioRxiv
+paperurl: https://www.biorxiv.org/content/10.1101/2023.10.22.563273v1.full.pdf
+doi: 10.1101/2023.10.22.563273
+permalink: /publications/2023_bioRxiv_2
+collection: publications
+layout: default
+selected: no
+---
+# The history of chromosomal instability in genome doubled tumors
+## Abstract
+Tumors frequently display high chromosomal instability (CIN) and contain multiple copies of genomic regions. Here, we describe GRITIC, a generic method for timing genomic gains leading to complex copy number states, using single-sample bulk whole-genome sequencing data. By applying GRITIC to 5,656 tumors, we found that non-parsimonious evolution is frequent in the formation of complex copy number states in genome-duplicated tumors. We measured CIN before and after genome duplication in human tumors and found that late genome doubling was followed by an increase in the rate of copy number gain. Copy number gains often accumulate as punctuated bursts, commonly after genome duplication. We infer that genome duplications typically affect the selection landscape of copy number losses, while only minimally impacting copy number gains. In summary, GRITIC is a novel copy number gain timing framework that permits the analysis of copy number evolution in chromosomally unstable tumors.
