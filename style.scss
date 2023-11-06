@@ -22,7 +22,6 @@ html {
 }
 
 body {
-  margin-left: 160px;
   background: $white;
   font-family: 'Avenir Next', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -395,7 +394,10 @@ nav {
 }
 
 //
-// .main
+ .main {
+   margin-left: 160px;
+
+}
 //
 
 .posts > .post {
