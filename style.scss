@@ -277,14 +277,10 @@ img {
 //
 
 .wrapper-masthead {
-  //margin-bottom: 10px;
-  //top: 0px;
-  //position: relative;
-	//padding: 20px;
-  	width: 100%;
-	border-bottom: solid #D3D3D3;
-  //background: #FFFFFF;  // set a color to hide content that may appear below masthead
-  //height: 150px; // need a magic number here which may break in different viewports
+	position: -webkit-sticky; /* Safari */
+  	position: sticky;
+	width: 100%;
+	border-bottom: 1px solid #D3D3D3;
 }
 
 .masthead {
