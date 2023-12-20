@@ -8,6 +8,7 @@ published: true
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 ## Finished
 ### 2023
+**Mort** - Terry Pratchett <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
 **Equal Rites** - Terry Pratchett <br>
 **The Thousandfold Thought** - R. Scott Bakker <br>
