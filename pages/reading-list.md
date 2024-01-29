@@ -7,6 +7,8 @@ published: true
 ## Reading
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 ## Finished
+### 2024
+**My Side of the Mountain** - Jean George <br>
 ### 2023
 **Mort** - Terry Pratchett <br>
 **Thinking, Fast and Slow** - Daniel Kahneman <br>
