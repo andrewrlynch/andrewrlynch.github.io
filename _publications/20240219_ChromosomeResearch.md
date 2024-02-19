@@ -1,5 +1,5 @@
 ---
-title: The reckoning of chromosomal instability: past, present, future
+title: "The reckoning of chromosomal instability past, present, future"
 authors: Andrew R. Lynch, Shermineh Bradford, Mark E. Burkard
 year: 2024
 venue: Chromosome Research
