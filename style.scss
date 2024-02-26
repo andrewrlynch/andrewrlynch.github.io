@@ -347,7 +347,8 @@ img:hover {
 
 .site-name {
   margin: 0;
-  display: block;
+  display: table-cell;
+  vertical-align: middle;
   float: left;
   color: $black;
   cursor: pointer;
@@ -370,7 +371,8 @@ img:hover {
 
 nav {
   float: right;
-  display: block;
+  display: table-cell;
+  vertical-align: middle;
   //margin-top: 30px; // @TODO: Vertically middle align
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
