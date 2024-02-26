@@ -292,14 +292,14 @@ img {
 	position: -webkit-sticky; /* Safari */
   	position: sticky;
 	top: 0;
-	max-width: 900px; 
-	width: 95%;
+	width: 100%;
 	background: #FFFFFF;
 	border-bottom: 1px solid #D3D3D3;
 }
 
 .masthead {
   padding: 0px 0px 10px 0px;
+  //margin: auto 0px;
   //margin-top: 0px;
   //margin-bottom: 15px;
   //border-bottom: 1px solid $grey;
