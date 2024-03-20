@@ -1,0 +1,19 @@
+<div class="site-section-wrapper">
+    <div class="site-section">
+        <div class="site-section-header">
+            <h1>Papers</h1>
+            <h3></h3>
+        </div>
+        {% for pub in site.publications reversed %} 
+        <a href="{{ pub.paperurl }}">
+        <div class="site-section-item section-item-minor">
+          <h3>{{pub.title}}</h3>
+          <p>{{pub.authors}}</p>
+          <p><strong>{{pub.venue}}</strong> | {{pub.year}}</p>
+        </div>
+        </a>
+        {% endfor %}
+        <div class="site-section-body">
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: panes_page
 title: Thoughts on visualizing fitness in karyotype space
 date: 14 Feb 2022
 published: true

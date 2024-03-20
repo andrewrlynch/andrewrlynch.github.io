@@ -1,0 +1,19 @@
+<div class="grid" data-masonry='{ "itemSelector": ".card-feed", "columnWidth": 360, "percentWidth": true, "horizontalOrder": true}'>
+
+  
+  <div class="card-feed-sizer"></div>
+  <div class="card-feed-gutter-sizer"></div>
+  
+  {% for post in site.publications reversed %} 
+        <div class="grid-item card card-feed" style="padding: 0px;">
+          <a href="{{ post.paperurl }}"><h5 class="card-title stretched-link" style="font-size: 12px; margin: 5px;">{{post.title}}</h5></a>
+          <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.authors}}</p>
+          <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.venue}} | {{post.year}}</p>
+        </div>
+  {% endfor %}
+  
+    <div class="grid-item card card-feed table-cell" style="padding: 0px;">
+      <a><h2 style="text-align: center; color: #dfdfdf; min-height: 50px;">All Pubs</h2></a>
+    </div>
+    
+</div>  

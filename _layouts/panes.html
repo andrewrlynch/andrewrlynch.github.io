@@ -1,0 +1,23 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Bungee+Outline&family=Forum&family=Rubik+Maze&family=Sixtyfour&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/panes.scss" />
+
+<!DOCTYPE html>
+<html class="site-container">
+<head>
+    {% include meta.html %}
+    <title>{{ site.name }}</title>
+</head>
+</head>
+<body>
+    <div style="white-space: nowrap;">
+
+        {% include 1-About.html %}
+        {% include 2-Papers.html %}
+        {% include 3-Projects.html %}
+        {% include 4-Posts.html %}
+
+    </div>
+</body>
+</html>

@@ -26,7 +26,7 @@ $raleway: 'Raleway', sans-serif;
 
 // Mobile breakpoints
 @mixin mobile {
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 720px) {
     @content;
   }
 }
@@ -34,6 +34,8 @@ $raleway: 'Raleway', sans-serif;
 // Other breakpoints
 $grid-breakpoints: (
   xs: 0,
-  sm: 700px,
-  md: 1400px
+  sm: 720px,
+  md: 1080px,
+  lg: 1440px,
+  xl: 1800px
 );

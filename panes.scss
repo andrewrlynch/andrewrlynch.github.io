@@ -1,0 +1,341 @@
+// IMPORTS
+
+@import "reset";
+@import "variables";
+
+// Syntax highlighting @import is at the bottom of this file
+
+
+// Size Rules
+
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Alegreya Sans', 'Avenir Next', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/***************/
+/* IMAGE RULES */
+/***************/
+
+img.paper {
+border-style: solid;
+border-color: #D1D1D1;
+border-width: 1px;
+transition: 0.5s ease;
+}
+
+img.paper:hover{
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+-webkit-transform: scale(1.025);
+-ms-transform: scale(1.025);
+transform: scale(1.025);
+}
+
+/**************/
+/* TEXT RULES */
+/**************/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Alegreya Sans', 'Avenir Next', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $black;
+  font-weight: bold;
+
+  line-height: 1;
+  margin: 1em 0;
+  padding: 0;
+
+  @include mobile {
+    line-height: 1.2;
+  }
+}
+
+h1 {
+  font-size: 48;
+  margin: 10px 0;
+  a {
+    text-decoration: none;
+  }
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+p {
+  margin: 16px 0;
+  color: #555;
+  text-align: left;
+  text-justify: inter-word;
+  line-height: 1.5;
+	a {
+	  color: #555;
+	  display: inline-block;
+	  text-decoration: none;
+	  transition: all ease 0.25s;
+      color: #e78080;
+	  cursor: pointer;
+	   &:hover {
+		   text-decoration: none;
+		}
+	}
+}
+
+code {
+  font-size: 12px; 
+  font-family: 'Andale Mono', 'Lucida Console', monospace;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+  color: #e78080;
+  cursor: pointer;
+}
+
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+ol ul, ul ol, ul ul, ol ol {
+  margin: 0;
+}
+
+ul ul, ol ul {
+  list-style-type: circle;
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+small {
+  font-size: 10px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.site-container {
+    max-height: 1vh;
+    
+}
+
+.site-section-wrapper {
+    display: inline-block;
+    /*min-width: 450px;*/
+    /*width: 450px;*/
+    max-width: 450px;
+    overflow-y: scroll;
+    vertical-align: top;
+    white-space:normal;
+    /*border-right: #ffd894 2px dotted;*/
+}
+
+.site-solo-menu-wrapper {
+  margin: 0 auto;
+  min-width: 450px;
+  width: 20%;
+  max-height: 100%;
+  float: left;
+  clear: both;
+  overflow-y: scroll;
+
+  .site-section-wrapper {
+    width: 100%;
+    min-height: fit-content;
+  }
+
+  .section-item-major {
+    min-height: 50px;
+  }
+}
+
+.site-solo-content-wrapper {
+    margin: 0 auto;
+    padding: 0 10px;
+    padding-bottom: 50px;
+    max-width: 900px;
+
+}
+
+.site-solo-header {
+  h1 {color: #e78080; font-weight: 200; font-family: 'Forum'}
+  h3 {color: #e78080; font-weight: 300; font-family: 'Alegreya Sans'}
+  border-bottom: solid 0.5px #ffefd0;
+}
+
+.rotated {
+  writing-mode: vertical-rl
+}
+
+.back-button {
+  transition: ease 0.25s;
+  &:hover{
+    transform:translate(-3px);
+  }
+}
+
+.site-content {
+
+}
+
+.site-section {
+
+}
+
+.site-about {
+    width: 90%;
+    margin: 0 5%;
+}
+
+.site-footer {
+    position: absolute;
+    bottom: 0;
+    background-color:#fdf3f1;
+    border-top: 0.5px solid #555;
+    width: 450px;
+    border-right: 0.5px solid #555;
+}
+
+.site-footer-content {
+    margin: 5%;
+    ul {list-style-type: none;}
+}
+
+.site-section-header {
+    h1 {color: #e78080; font-weight: 100; font-family: 'Sixtyfour'}
+    h3 {color: #e78080; font-weight: 300; font-family: 'Alegreya Sans'}
+    border-bottom: solid 0.5px #ffefd0;
+    margin: 0 5%;
+}
+
+.site-section-body {
+    margin: 0 5%;
+}
+
+.bigger-text {
+    p {
+        font-size: 1.25rem;
+    }
+}
+
+.site-section-item {
+    padding-top: 2%;
+    padding-left: 5%;
+    
+    background-color: transparent;
+    /*border-bottom: solid 0.5px #ffd894;*/
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+    
+    transition: 0.25s ease;
+    &:hover{
+        background-color: #ffefd04c;
+    }
+}
+
+.section-item-major {
+    min-height: 150px;
+    padding-right: 25%;
+
+    border-bottom: 0.5px solid #ffefd0;
+
+    opacity: 0.8;
+    background-image:  linear-gradient(#ffefd0 1px, transparent 1px), linear-gradient(to right, #ffefd0 1px, transparent 1px);
+    background-size: 20px 20px;
+
+    h2 {font-weight: 500;}
+    h4 {font-weight: 300;}
+}
+
+.section-item-minor {
+    min-height: 50px;
+    h3 {font-size: 0.9rem; font-weight: 500; margin: 0;}
+    p {font-size: 0.9rem; line-height: 1; margin: 5px 0;}
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    /*background: #fffaf0;*/
+    background: #ffefd07f;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffefd0;
+    border: 1px solid transparent;
+    background-clip: padding-box; // <== make the border work
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffefd0;
+    border: 0px;
+  }
+
+  @media only screen and (max-width:720px) {
+    .site-section-wrapper {
+        display: block;
+        margin: 0 auto; 
+        min-width: 100%;
+    }
+
+    ::-webkit-scrollbar-track {
+      /*background: #fffaf0;*/
+      background: transparent;
+    }
+  }
+
+  @media only screen and (min-width:721px) {
+    .site-section-wrapper {
+        min-height: 100%;
+        max-height: 100%;
+    }
+  }
+
+// Settled on moving the import of syntax highlighting to the bottom of the CSS
+// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
+@import "highlights";
+@import "svg-icons";
