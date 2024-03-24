@@ -83,17 +83,6 @@ p {
   text-align: left;
   text-justify: inter-word;
   line-height: 1.5;
-	a {
-	  color: #e13661;
-	  display: inline-block;
-	  text-decoration: none;
-	  transition: all ease 0.25s;
-      color: #333;
-	  cursor: pointer;
-	   &:hover {
-		   text-decoration: none;
-		}
-	}
 }
 
 code {
@@ -103,8 +92,13 @@ code {
 
 a {
   text-decoration: none;
-  color: #e13661;
+  color: #8d213e;
   cursor: pointer;
+}
+
+p a:hover {
+  color: #333;
+  text-decoration: none;
 }
 
 ul, ol {
@@ -201,7 +195,7 @@ img {
 
 .back-button {
   height: 100px;
-  background-color: #e13661;
+  background-color: #285d65;
   color: white;
   transition: ease 0.25s;
 }
@@ -240,8 +234,8 @@ img {
     margin: 0 5%;
 }
 
-.site-section-header h1 {color: #222222; font-weight: 600; font-family: 'Alegreya Sans'};
-.site-section-header h3 {color: #e13661; font-weight: 300; font-family: 'Alegreya Sans'};
+.site-section-header h1 {color: #8d213e; font-weight: 600; font-family: 'Alegreya Sans'};
+.site-section-header h3 {color: #8d213e; font-weight: 300; font-family: 'Alegreya Sans'};
 
 .site-section-body {
     margin: 0 5%;
@@ -268,7 +262,7 @@ img {
 .section-item-major h4 {font-weight: 300;}
 
 .section-item-minor {
-    min-height: 50px;
+    min-height: 30px;
 }
 
 .section-item-minor h3 {font-size: 15px; font-weight: 500; margin: 0;}

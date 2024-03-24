@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: panes_page
 title: Reading List
 permalink: /pages/reading-list/
 published: true

@@ -1,10 +1,12 @@
 ---
 title: Quantifying Chromosomal Instability
 subtitle: from algorithmic first-principles, toward clinical impact (my PhD thesis)
+forward:
 image: images/iBover.png
 permalink: projects/QuantifyingCIN
 collection: projects
 layout: panes_page
+website:
 ---
 
 ## Improving Quantification of Chromosomal Instability

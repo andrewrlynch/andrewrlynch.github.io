@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: panes_page
 title: CV
 permalink: /pages/cv/
 published: true

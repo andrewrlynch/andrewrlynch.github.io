@@ -6,4 +6,5 @@ permalink: projects/biOmics
 collection: projects
 layout: page
 website: https://biomics.andrewlynch.io
+published: false
 ---
