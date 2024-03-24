@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: panes_page
 title: Old blog posts for which one would ostensibly want a convenient list
 tags: meta
 ---

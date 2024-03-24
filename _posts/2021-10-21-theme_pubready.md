@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: panes_page
 title: theme_pubready | a ggplot theme for small, publication-ready plots
 date: 21 Oct 2021
 published: true

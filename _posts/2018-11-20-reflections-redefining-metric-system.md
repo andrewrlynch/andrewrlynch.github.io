@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: panes_page
 title: Reflections on the redefining of the metric system
 date: 20 Nov 2018
 tags: science current-events

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: panes_page
 title: A Decade In-Review
 date: 31 Dec 2019
 published: true

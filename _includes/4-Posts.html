@@ -1,0 +1,15 @@
+<div class="site-section-wrapper">
+    <div class="site-section">
+        <div class="site-section-header">
+            <h1>Posts</h1>
+        </div>
+        {% for post in site.posts  %} 
+        <a href="{{ post.url }}">
+        <div class="site-section-item section-item-minor">
+          <h3>{{post.title}}</h3>
+          <p>{{post.date | date: "%b %d, %y" }}</p>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

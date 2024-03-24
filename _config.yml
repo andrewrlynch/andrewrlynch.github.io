@@ -50,9 +50,15 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
+  projects:
+    output: true
+    permalink: /:collection/:path/
+  feed:
+    output: true
+    permalink: /:collection/:path/
     
 # The release of Jekyll Now that you're using
-version: v1.2.0
+version: v4.3.2
 
 # Jekyll 3 now only supports Kramdown for Markdown
 markdown: kramdown

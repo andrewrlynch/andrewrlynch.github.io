@@ -1,0 +1,32 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Bungee+Outline&family=Forum&family=Rubik+Maze&family=Sixtyfour&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/panes.scss" />
+
+<!DOCTYPE html>
+<html class="site-container">
+<head>
+    {% include meta.html %}
+    <title>{{ site.name }}</title>
+</head>
+</head>
+<body>
+    <div class="site-solo-content-wrapper">
+        <div class="site-solo-header">
+            <div style="white-space: nowrap;">
+                <div style="width: 10%; display: inline-block; white-space: normal;"><a href="{{site.url}}" class="rotated back-button">↓ BACK ↓</a></div>
+                <div style="width: 90%; display: inline-block; text-align: right; white-space: normal;">
+                    <h1>{{ page.title }}</h1>
+                    {% if page.subtitle %}<h3>{{ page.subtitle }}</h3>{% endif %}
+                    {% if page.date %}<h4>{{ page.date | date: "%B %d, %Y"}}</h4>{% endif %}
+                </div>
+            </div>
+        </div>
+        {% if page.forward %}
+        <p style="text-align: right;"><i><strong>{{page.forward}}</strong></i></p>
+        {% endif %}
+        
+        {{content}}
+    </div>
+</body>
+</html>

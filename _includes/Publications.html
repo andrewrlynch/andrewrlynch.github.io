@@ -1,0 +1,45 @@
+<div class="section-box">
+    <div class="section-box-title">
+        <h1>selected pubs</h1>
+    </div>
+
+    <!-- Add to below       data-masonry='{ "itemSelector": ".card", "percentWidth": true, "horizontalOrder": true, "gutter": 10}'      -->
+    <div class="row section-box-content" data-masonry='{ "itemSelector": ".paperbox", "percentWidth": true, "horizontalOrder": true}'>
+        {% for post in site.publications reversed %} 
+            <div class="paperbox card col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <!--IMAGE ON CARD {% if post.image %}<img src="{{ site.baseurl }}/{{ post.image }}" class="card-img-top" style="object-fit: cover; max-height: 50px;">{% endif %} -->
+                <a href="{{ post.paperurl }}"><h5 class="card-title" style="font-size: 12px; margin: 5px;">{{post.title}}</h5></a>
+                <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.authors}}</p>
+                <p class="card-text" style="font-size: 10px; margin: 5px;">{{post.venue}} | {{post.year}}</p>
+                <div class="card-footer" style="padding: 0px; margin: 5px; vertical-align: middle;">
+                    {% if post.paperurl %}<a href="{{ post.paperurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon doc" alt="Paper" title="Paper"></i></a>{% endif %}
+                    {% if post.codeurl %}<a href="{{ post.codeurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon code" alt="Code" title="Code"></i></a>{% endif %}
+                    {% if post.dataurl %}<a href="{{ post.dataurl }}" class="card-link" style="padding: 0px; margin: 0px; margin-right: 3px; vertical-align: middle;"><i class="svg-icon data" alt="Data" title="Data"></i></a>{% endif %}
+                    {% if post.doi %}
+                    <span class="__dimensions_badge_embed__" style="float: right; display:inline-block; vertical-align: middle; margin: 0px;; padding: 0px;" data-doi="{{ post.doi }}" data-legend="never" data-style="small_rectangle"></span>
+                    <!-- <span class='altmetric-embed' data-badge-type='bar' style="display:inline-block; vertical-align: middle; margin: 0px; padding: 0px;" data-doi="{{ post.doi }}"></span> --> 
+                    {% endif %}
+                </div>
+                
+            </div>
+        {% endfor %}
+        <div class="paperbox card col-xl-3 col-lg-4 col-md-6 col-sm-12 card-title" style="font-size: 12px; height: 100px;">
+            <p style="color: grey; margin: auto;">
+                All Pubs
+            </p>
+        </div>
+    </div>
+</div>
+
+<script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+    $('.gallery-masonry').imagesLoaded( function(){
+      $('.gallery-masonry').masonry({
+       itemSelector: '.paperbox',
+       isAnimated: true,
+       isFitWidth: false
+      });
+    });
+  </script>
