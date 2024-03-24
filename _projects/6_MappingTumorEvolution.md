@@ -1,6 +1,6 @@
 ---
 title: Mapping Tumor Evolution
-subtitle: "Tumors change in space and time: causes and clinical consequences."
+subtitle: "tumors change in space and time: causes and clinical consequences."
 forward: "Part of a multi-year effort to map genomic, transcriptomic, and phenotypic changes among metastatic sites sampled at autopsy."
 image: 
 permalink: projects/MappingTumorEvolution
