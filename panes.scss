@@ -290,19 +290,13 @@ img {
     border: 0px;
   }
   */
-/*
+
   @media only screen and (max-width:720px) {
     .site-section-wrapper {
-        display: block;
-        margin: 0 auto; 
-        min-width: 100%;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
+        width: 90%;
     }
   }
-
+/*
   @media only screen and (min-width:721px) {
     .site-section-wrapper {
         min-height: 100%;
