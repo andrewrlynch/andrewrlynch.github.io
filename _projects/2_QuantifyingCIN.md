@@ -13,7 +13,7 @@ website:
 ### How often do chromosome mis-segregations occur in cancer?
 CIN is a dynamic process that occurs over many cellular divisions. This makes its study in human tumors—which cannot be constantly monitored—difficult. As such, the precise association between a tumor's intrinsic level of CIN—its rate of chromosome mis-segregation—and intratumoral karyotype diversity remain ambiguous. Modeling and parameterization of the factors that contribute to karyotype diversity—time, mis-segregation rate, and selective pressure—enables the simulation of the process of CIN. The outcomes of these simulations can be compared to tumor-derived single cell sequencing datasets that, while only providing a snapshot in time, can provide a great deal of information on the karyotypic diversity of the tumor. **[[Lynch et al., *eLife*, 2022]](https://elifesciences.org/articles/69799)**
 
-<div style="white-space: nowrap; background-color: white; padding: 1%; border-radius: 10px; box-shadow: 0 0 15px #99999933">
+<div class="img-frame img-frame-multi">
     <img src="{{site.baseurl}}/images/image42.gif" style="width:24%">
     <img src="{{site.baseurl}}/images/image43.gif" style="width:24%">
     <img src="{{site.baseurl}}/images/image45.gif" style="width:24%">
@@ -25,6 +25,6 @@ We found that this approach to measuring CIN outperforms traditional methods suc
 ### How do multipolar divisions reshape cells' karyotypes?
 **[Meet iBover](https://andrewrlynch.shinyapps.io/iBover/)**
 
-<div style="white-space: nowrap; background-color: white; padding: 1%; border-radius: 10px; box-shadow: 0 0 15px #99999933">
+<div class="img-frame img-frame-multi">
 <img src="{{site.baseurl}}/images/iBover.png" style="width:75%" align="center">
 </div>

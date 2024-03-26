@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Recipes
+layout: panes_page
+title: Brown Butter Chocolate Chip Cookies
 permalink: /pages/recipes/brownbutterchocolatechipcookies
 published: true
 ---

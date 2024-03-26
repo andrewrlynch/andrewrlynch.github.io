@@ -3,22 +3,45 @@
         <div class="site-section-header">
             <h1>Hi! I'm Andrew.</h1>
         </div>
-        <div class="site-body site-about bigger-text">
+        <div class="site-about bigger-text">
             {% include AboutMe.html %}
 
         </div>
 
         <div class="site-footer">
             <div class="site-footer-content">
-                <a href="{{site.url}}/pages/CV/">CV</a>
-                <strong> · </strong>
-                <a href="mailto:arlynch1001@gmail.com">Email</a>
-                <strong> · </strong>
-                <a href="https://orcid.org/0000-0002-0238-682X">Orcid</a>
-                <strong> · </strong>
-                <a href="https://github.com/andrewrlynch">GitHub</a>
-                <strong> · </strong>
-                <a href="https://www.linkedin.com/in/andrewrlynch">LinkedIn</a>
+
+                <table style="vertical-align: top;">
+
+                    <td>
+                        <ul>
+                            <lh>About</lh>
+                            <li>Now</li>
+                            <li>Bio</li>
+                            <li><a href="{{site.url}}/pages/colophon">Colophon</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <lh>Contact</lh>
+                            <li><a href="mailto:arlynch1001@gmail.com">Email</a></li>
+                            <li><a href="https://www.linkedin.com/in/andrewrlynch">LinkedIn</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <lh>Docs</lh>
+                            <li><a href="{{site.url}}/pages/CV">CV</a></li>
+                            <li><a href="https://orcid.org/0000-0002-0238-682X">Orcid</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=aqTcb0IAAAAJ&hl=en&oi=sra">Google Scholar</a></li>
+                            <li><a href="https://github.com/andrewrlynch">GitHub</a></li>
+                        </ul>
+                    </td>
+                    
+                </table>
+
             </div>
         </div>
 

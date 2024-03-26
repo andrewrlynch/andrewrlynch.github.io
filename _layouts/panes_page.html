@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="site-solo-content-wrapper">
+        <!-- HEADER -->
         <div class="site-solo-header">
             <div style="white-space: nowrap;">
                 <div style="width: 10%; display: inline-block; white-space: normal;"><a href="{{site.url}}" class="rotated back-button">↓ BACK ↓</a></div>
@@ -22,11 +23,14 @@
                 </div>
             </div>
         </div>
-        {% if page.forward %}
-        <p style="text-align: right;"><i><strong>{{page.forward}}</strong></i></p>
-        {% endif %}
-        
-        {{content}}
+        <!-- BODY -->
+        <div class="site-solo-content">
+            {% if page.forward %}
+            <p style="text-align: right;"><i><strong>{{page.forward}}</strong></i></p>
+            {% endif %}
+            
+            {{content}}
+        </div>
     </div>
 </body>
 </html>

@@ -182,6 +182,25 @@ img {
     max-width: 900px;
 }
 
+.site-solo-content {
+
+}
+
+.site-solo-content {
+
+}
+
+.img-frame {
+  background-color: white; 
+  padding: 1%; 
+  border-radius: 10px; 
+  box-shadow: 0 0 15px #99999933;
+}
+
+.img-frame-multi {
+  white-space: nowrap;
+}
+
 .site-solo-header {
   border-bottom: solid 0.5px #ffefd0;
 }
@@ -213,22 +232,31 @@ img {
 }
 
 .site-about {
+    display: block;
+    overflow-y: scroll;
     width: 90%;
     margin: 0 5%;
 }
 
 .site-footer {
-    position: absolute;
-    bottom: 0;
     width: 450px;
     border-top: 0.5px solid #ffd894;
     /*border-right: 0.5px solid #555;*/
 }
 
 .site-footer-content {
-    margin: 5%;
+    margin: 0%;
     ul {list-style-type: none;}
 }
+
+.site-footer-content lh {
+  font-weight: 600;
+}
+
+.site-footer-content table td, table td * {
+  vertical-align: top;
+}
+
 
 .site-section-header {
     margin: 0 5%;

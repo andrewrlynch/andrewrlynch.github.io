@@ -1,10 +1,9 @@
 ---
-layout: page
-title: Recipes
+layout: panes_page
+title: Honey Bee Garden (NA)
 permalink: /pages/recipes/myaviation
 published: true
 ---
-### <a href="https://www.andrewlynch.io/pages/recipes">Recipes</a>/My Aviation
 I prefer mine a bit lighter on the maraschino and a bit more on the floral violette. <br>
 2 oz dry gin <br>
 0.5 oz lemon juice <br>

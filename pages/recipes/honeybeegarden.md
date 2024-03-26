@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Recipes
+layout: panes_page
+title: Honey Bee Garden (NA)
 permalink: /pages/recipes/honeybeegarden
 published: true
 ---
