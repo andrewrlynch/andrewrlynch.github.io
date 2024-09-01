@@ -5,8 +5,13 @@
 @import "highlights";
 @import "svg-icons";
 
-// Syntax highlighting @import is at the bottom of this file
-
+// Variables
+:root {
+  --backgroundColor: #074654;
+  --bodyColor: #ede3b4;
+  --accentColorPrimary: #86b8a4;
+  --accentColorSecondary: #F7FF12;
+}
 
 // Size Rules
 
@@ -26,18 +31,30 @@ body {
 
 pre {
   padding: 1%;
-  background-color: white;
+  background-color: #d3ece9;
   font-size: 0.8rem;
-  width: 100%;
+  width: 98%;
   overflow-x: scroll;
-  border: 0.75px solid #555;
-  border-radius: 5px;
+  border: 0.75px solid #86b8a4;
+  border-radius: 4px;
 }
 
 /***************/
 /* IMAGE RULES */
 /***************/
+img {
+  display: block;
+  background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+  border: 0.75px solid white;
+  border-radius: 4px;
+  max-width: 100%;
+}
 
+.adjacent {
+  display: inline-block;
+}
 
 /**************/
 /* TEXT RULES */
@@ -45,7 +62,7 @@ pre {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Alegreya Sans', 'Avenir Next', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: $black;
+  color: #ede3b4;
   font-weight: bold;
 
   line-height: 1;
@@ -79,7 +96,7 @@ h4 {
 
 p {
   margin: 16px 0;
-  color: #333;
+  color: #ede3b4;
   text-align: left;
   text-justify: inter-word;
   font-size: 18px;
@@ -93,12 +110,12 @@ code {
 
 a {
   text-decoration: none;
-  color: #8d213e;
+  color: #F7FF12;
   cursor: pointer;
 }
 
 p a:hover {
-  color: #333;
+  color: #86b8a4;
   text-decoration: none;
 }
 
@@ -137,14 +154,9 @@ small {
   font-size: 10px;
 }
 
-img {
-  max-width: 100%;
-}
-
 .site-container {
     max-height: 100%;
-    background-color: #fdf3f1;
-    
+    background-color: #074654;
 }
 
 .site-section-wrapper {
@@ -155,7 +167,7 @@ img {
     overflow-y: scroll;
     vertical-align: top;
     white-space:normal;
-    border-right: #ffd894 0.75px solid;
+    border-right: #86b8a4 0.75px solid;
 }
 
 .site-solo-menu-wrapper {
@@ -203,10 +215,10 @@ img {
 }
 
 .site-solo-header {
-  border-bottom: solid 0.5px #ffefd0;
+  border-bottom: solid 0.5px #86b8a4;
 }
-.site-solo-header h1 {color: #333; font-weight: 200; font-family: 'Forum'}
-.site-solo-header h3 {color: #333; font-weight: 300; font-family: 'Alegreya Sans'}
+.site-solo-header h1 {color: #ede3b4; font-weight: 200; font-family: 'Forum'}
+.site-solo-header h3 {color: #ede3b4; font-weight: 300; font-family: 'Alegreya Sans'}
 
 .rotated {
   writing-mode: vertical-rl;
@@ -240,7 +252,7 @@ img {
 }
 
 .site-footer {
-    border-top: 0.5px solid #ffd894;
+  border-top: 0.5px solid #86b8a4;
 }
 
 .site-footer-content {
@@ -253,16 +265,22 @@ img {
 }
 
 .site-footer-content table td, table td * {
+  color: #ede3b4;
   vertical-align: top;
+  a{
+    color: #F7FF12;
+  }
 }
+
+
 
 
 .site-section-header {
     margin: 0 5%;
 }
 
-.site-section-header h1 {color: #8d213e; font-weight: 600; font-family: 'Alegreya Sans'};
-.site-section-header h3 {color: #8d213e; font-weight: 300; font-family: 'Alegreya Sans'};
+.site-section-header h1 {color: #86b8a4; font-weight: 600; font-family: 'Alegreya Sans'};
+.site-section-header h3 {color: #86b8a4; font-weight: 300; font-family: 'Alegreya Sans'};
 
 .site-section-body {
     margin: 0 5%;
@@ -274,7 +292,7 @@ img {
   padding-left: 5%;
 
   background-color: transparent;
-  border-top: solid 0.75px #ffd894;
+  border-top: solid 0.75px #86b8a4;
 }
 
 .site-section-item:hover {background-color: #ffd89438;}
