@@ -8,6 +8,7 @@ published: true
 **WOT VI: Lord of Chaos** - Robert Jordan <br>
 ## Finished
 ### 2024
+**This is How You Lose the Time War** - Amal El-Mohtar & Max Gladsotone <br>
 **My Side of the Mountain** - Jean George <br>
 ### 2023
 **Mort** - Terry Pratchett <br>
@@ -31,7 +32,7 @@ published: true
 **Truman** - David McCullough <br>
 **WOT IV: The Shadow Rising** - Robert Jordan <br>
 **The Pearl** - John Steinbeck <br>
-**The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca, Max Bazerman <br>
+**The Power of Experiments: Decision Making in a Data-Driven World** - Michael Luca & Max Bazerman <br>
 **The Color of Magic** - Terry Pratchett <br>
 **The Psychology of Money** - Morgan Housel <br>
 ### 2021
