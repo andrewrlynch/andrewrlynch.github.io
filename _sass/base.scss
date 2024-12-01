@@ -1,0 +1,11 @@
+$backgroundColor: #ffffff;
+$bodyColor: #202020;
+$bodyFont: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+$codeFont: Menlo;
+$codeSize: 0.8rem;
+
+body {
+  background: $backgroundColor;
+  color: $bodyColor;
+  font-family: $bodyFont;
+}

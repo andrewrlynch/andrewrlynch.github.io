@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Andrew Lynch</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <div class="site-container">
+    <div class="site-header-container grid-width-full">
+      <a href = "http://localhost:4000"><b>Andrew Lynch</a></b> &rarr; Thoughts on visualizing fitness in karyotype space
+    </div>
+    <div class="site-body-container grid-width-full">
+      <p>The publication of our <a href="https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1">pre-print</a> on advancing quantification of chromosomal instability is nigh. I’m wrapped up a long stretch of revisions for the re-submit and, as a result, have been thinking a great deal about karyotype selection. Ultimately, we want to be able to experimentally quantify selection. We’re not there yet, but how would we represent this when that time comes? Reviews on the effects of selection, in general, are rife with toy visualizations of ‘genotype spaces’. The <em>concept</em> is understandable to me and is easily generalized to the biology of aneuploidy — a ‘karyotype space’. However, I’ve recently been attempting to plot out a fitness landscape for karyotypes and it’s clear I underestimated the difficulty of implementing a <em>useful</em> visualization of karyotypic space.<br />
+<img align="center" width="400" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Visualization_of_two_dimensions_of_a_NK_fitness_landscape.png" /></p>
+
+<p>I want to be clear about what I’m trying to produce. I want a granular landscape where fitness values are defined for every unique karyotype from haploid to tetraploid presented in an intuitive and useful way.</p>
+<h3 id="permutation-through-karyotypic-space">Permutation through karyotypic space</h3>
+<p>My first impressions of fitness landscapes were conceptual. In reality, there are 4<sup>23</sup> unique karyotypes between an <em>n</em> of 1 and 4 and I don’t think it would necessarily be useful to consider all 70 trillion+. Let’s consider a smaller karyotypic space of, say, 8 chromosomes. Permuting yields 65,536 unique karyotypes.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">arrangements</span><span class="p">)</span><span class="w">
+</span><span class="c1">#Selecting copy numbers 1-4 for k chromosomes</span><span class="w">
+</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span><span class="w">
+</span><span class="n">karyos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">permutations</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="nb">T</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="calculating-ploidy-aneuploidy-and-theoretical-fitness-of-each-karyotype">Calculating ploidy, aneuploidy, and <em>theoretical</em> fitness of each karyotype</h3>
+<p>We can now calculate the individual characteristics of these karyotypes that are actually interesting. Ploidy and aneuploidy are pretty easy to calculate as just the average copy number and average intra-karyotype variance respectively. But how do you calculate fitness of aneuploid karyotypes? One way to look at this is through the lens of stabilizing selection—selection against clones with karyotypes that stray too far from a ‘core’ karyotype. Current evidence, at least in non-cancer-derived tissue suggests that aneuploid cellular fitness is negatively correlated to the number of genes on the chromosome(s) for which a cell is aneuploid<sup>1,2</sup>. For example, aneuploidy of chromosome 1 having a larger fitness detriment than that of chromosome 18 [1,2]. So in this case it’s all about balancing the stoichiometry of expressed genes.</p>
+
+<pre><code class="language-{r}"># Sum the number of annotated genes on each chromosome
+chrscores &lt;- c(2880 + 2615, 1647 + 2557, 1392 + 1806, 746 + 1917, 710 + 2282, 1541 + 1539, 1082 + 1947, 959 + 1536)
+
+# Normalize the gene abundance of each chromosome to the sum across the karyotype to get relative gene abundance (relative importance to fitness). 
+chrscores &lt;- chrscores / sum(chrscores
+
+# Calculate the ploidy for each karyotype
+karyos$ploidy &lt;- apply(karyos[,1:k], 1, function(x){sum(x)/k})
+
+# Calculate the aneuploidy of each karyotype
+karyos$aneuploidy &lt;- apply(karyos[,1:k], 1, function(x){var(x)})
+
+# Calculate the fitness of each karyotype (this takes a few seconds)
+karyos$fitness &lt;- apply(karyos[,1:k], 1, function(x){
+  f &lt;- vector() #Create a vector to hold the modified fitness values of each chromosome
+  for(c in 1:k){
+    f[c] &lt;- chrscores[c] - (chrscores[c] * (abs(x[c] - mean(x))))/ mean(x) # Modify the fitness value of each chromosome by how unbalanced it is from the ploidy of the cell.
+  }
+  sum(f)
+})
+</code></pre>
+
+<p>Great! What did we just do? We generated chromosome scores for chromosomes 1-8; we calculated the ploidy and aneuploidy of each karyotype in the set; and we used these values to calculate the fitness of the karyotype by assuming a balanced (i.e. euploid) karyotype has a perfect fitness with all chromosome scores summing to 1. We also modified the chromosome scores such that chromosomes that were more unbalanced from the ploidy of the cell experienced a fitness detriment, so the sum of chromosome scores for that karyotype would be &lt; 1. There are some caveats to these assumptions like 1) the ploidy of 2.5 indicates the cell is already aneuploid so this may not be the best denominator and 2) the assumption that gains will be roughly equally detrimental as losses, which may not be true in normal tissue due to haploinsufficiency of many genes. Yet I think this is a good place to start.</p>
+
+<p>Let’s plot!</p>
+
+<h3 id="two-dimensional-fitness-landscape">Two-dimensional fitness landscape</h3>
+<p>Starting with something super simple. Let’s just consider the landscape of all 8-chromosome karyotypes ordered by fitness.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">karyos</span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">karyos</span><span class="p">)</span><span class="w"> </span><span class="c1"># Assign an id to each karyotype to easily re-order them by fitness</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">karyos</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder.factor</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">fitness</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">fitness</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fitness</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_pubready</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.ticks.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_color_gradient</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s2">"tomato1"</span><span class="p">,</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"steelblue1"</span><span class="p">,</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Karyotype"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">"Fitness"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/linear.png?raw=true" width="300" height="300" img="" align="center" /></p>
+
+<p>Okay cool! So what does this tell us? In general, karyotypes that are more aneuploid are less fit! That jives with what we know about the biology of aneuploidy in normal, non-cancerous tissue. But it doesn’t appear to be a clean gradient. Looking closely there are interspersed pockets of blue and red, so this doesn’t give us all the information we need to resolve the full fitness landscape.</p>
+
+<h3 id="three-dimensional-fitness-landscapes">Three-dimensional fitness landscapes</h3>
+<p>Now let’s shoot for something more like the ‘classic’ fitness landscape — a nice surface plot. Since we already have our x, y, and z (ploidy, aneuploidy, and fitness), we can just go straight to interpolation.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">akima</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Spline interpolation, without extrapolation, and using the median of duplicate datapoints. </span><span class="w">
+</span><span class="n">interp_fitness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">interp</span><span class="p">(</span><span class="n">karyos</span><span class="o">$</span><span class="n">ploidy</span><span class="p">,</span><span class="n">karyos</span><span class="o">$</span><span class="n">aneuploidy</span><span class="p">,</span><span class="n">karyos</span><span class="o">$</span><span class="n">fitness</span><span class="p">,</span><span class="n">linear</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="n">extrap</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="n">duplicate</span><span class="o">=</span><span class="s2">"median"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">wireframe</span><span class="p">(</span><span class="n">interp_fitness</span><span class="o">$</span><span class="n">z</span><span class="p">,</span><span class="w">
+          </span><span class="n">scales</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">arrows</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">),</span><span class="w">
+          </span><span class="n">drape</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w">
+          </span><span class="n">colorkey</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">col</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span><span class="w">
+          </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w">
+          </span><span class="n">col.regions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"tomato1"</span><span class="p">,</span><span class="w">  </span><span class="s2">"steelblue1"</span><span class="p">))(</span><span class="m">100</span><span class="p">),</span><span class="w"> 
+          </span><span class="n">screen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-200</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-70</span><span class="p">),</span><span class="w">
+          </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Ploidy"</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Aneuploidy"</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="s2">"Fitness"</span><span class="p">,</span><span class="w"> </span><span class="n">rot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w">
+          </span><span class="n">par.settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>That’s looking nice! We can see that fitness generally decreases (blue to red) as aneuploidy increases. Also, because non-integer ploidy values generally indicate some degree of aneuploidy, there is a nice ‘wave’ of fitness along the ploidy axis. It also looks like fitness drops off more quickly at lower ploidy values than higher ploidy values. This concurs with the idea that higher ploidy buffers cellular fitness against the negative effects of unbalanced karyotypes. From a stoichiometric standpoint, with a greater denominator, the cells are just less aneuploid. Yet this still doesn’t tell us much about specific karyotypes and how individual copy number alterations interact to alter fitness.</p>
+
+<p><img src="https://raw.githubusercontent.com/andrewrlynch/andrewrlynch.github.io/master/post_files/2021-10-karyotype-fitness-landscapes/3d_fitness.png?raw=true" width="300" height="300" img="" align="center" /></p>
+
+<h3 id="n-dimensional-karyotype-space-using-adjacency-networks">n-dimensional karyotype space using adjacency networks</h3>
+<p>So to fully understand how single alterations could change fitness, we need to think of karyotype space as a network, visualizing each unique karyotype as a node, and single alterations that link two karyotypes as ridges. First we need some utilities to calculate manhattan distance between karyotypes.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">network</span><span class="p">)</span><span class="w">
+</span><span class="c1">#Function to calculate manhattan distance between two vectors</span><span class="w">
+</span><span class="n">manhattan_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">){</span><span class="w">
+  </span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="w">
+  </span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1">#Function to apply the above to calculate manhattan distances between two karyotypes</span><span class="w">
+</span><span class="n">pairwise.manhattan</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="w">
+  </span><span class="n">pairwise.comparisons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">combn</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="m">2</span><span class="p">))</span><span class="w">
+  </span><span class="n">results.matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">
+  </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pairwise.comparisons</span><span class="p">)){</span><span class="w">
+    </span><span class="n">vec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pairwise.comparisons</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="w">
+    </span><span class="n">results.matrix</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="m">2</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">manhattan_dist</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">1</span><span class="p">],],</span><span class="w"> </span><span class="n">karyotypes</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">2</span><span class="p">],])</span><span class="w">
+    </span><span class="n">results.matrix</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="m">1</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">manhattan_dist</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">1</span><span class="p">],],</span><span class="w"> </span><span class="n">karyotypes</span><span class="p">[</span><span class="n">vec</span><span class="p">[</span><span class="m">2</span><span class="p">],])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">results.matrix</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Alright. Now let’s take a look at the “network” starting with a “karyotype” with only 1 chromosome that can have a copy number of 1-4.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">karyo.copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="c1">#copies from 1-4</span><span class="w">
+</span><span class="n">karyo.set</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">#two chromosomes of a karyotypes</span><span class="w">
+</span><span class="n">karyotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">permutations</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">karyo.copies</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">karyo.set</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="n">karyo.copies</span><span class="p">,</span><span class="w"> </span><span class="n">repeats.allowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Get the manhattan distance between each karyotype</span><span class="w">
+</span><span class="n">pairwise.karyotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pairwise.manhattan</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">))</span><span class="w"> 
+
+</span><span class="c1"># Convert manhattan distances to intersections. All distances not equal to 1 become 0. </span><span class="w">
+</span><span class="n">pairwise.karyotypes</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">pairwise.karyotypes</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="n">pairwise.karyotypes</span><span class="p">[</span><span class="n">pairwise.karyotypes</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="n">pairwise.karyotypes.manhattan.1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pairwise.karyotypes</span><span class="w">
+</span><span class="n">diag</span><span class="p">(</span><span class="n">pairwise.karyotypes</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+
+</span><span class="c1"># Create the network</span><span class="w">
+</span><span class="n">net</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.network</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pairwise.karyotypes.manhattan.1</span><span class="p">,</span><span class="w"> </span><span class="c1"># the network object</span><span class="w">
+                  </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="c1"># network direction not necessary</span><span class="w">
+                  </span><span class="n">loops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="c1"># no self interactions</span><span class="w">
+                  </span><span class="n">matrix.type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"adjacency"</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Create an attribute for vertices that represent euploid karyotypes</span><span class="w">
+</span><span class="n">set.vertex.attribute</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> 
+                     </span><span class="s2">"Euploid"</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">apply</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">})</span><span class="w"> 
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Create labels for each vertex that represent the karyotype</span><span class="w">
+</span><span class="n">network.vertex.names</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="n">paste</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">collapse</span><span class="o">=</span><span class="s2">""</span><span class="p">)})</span><span class="w">
+
+</span><span class="c1"># Make euploid karyotypes orange and aneuploid karyotypes grey</span><span class="w">
+</span><span class="n">nodecolors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">apply</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">karyotypes</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">}),</span><span class="w"> </span><span class="s2">"Orange"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Grey"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Gimme that network plot</span><span class="w">
+</span><span class="n">plot.network</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w">
+             </span><span class="n">vertex.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nodecolors</span><span class="p">,</span><span class="w">
+             </span><span class="n">vertex.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w">
+             </span><span class="n">displaylabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">,</span><span class="w">
+             </span><span class="n">label.pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w">
+             </span><span class="n">label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="https://github.com/andrewrlynch/andrewrlynch.github.io/blob/master/post_files/2021-10-karyotype-fitness-landscapes/networkplots.png?raw=true" width="900" align="center" /></p>
+
+<p>As you can see things quickly get out of control as dimensionality increases. And the real karyotype space has 23 dimensions! I think the most visually useful plot was the 3D surface, but that is derived under the assumption that always decreases with aneuploidy. While this is probably a fair assumption in non-tumor tissue, we don’t actually know what that surface looks like. I think these networks are a more interesting way to think about the karyotype fitness landscape, but I think more work is needed to figure out how these could be useful visually. In the mean time, perhaps it would be useful to look at specific copy number interactions in this way?</p>
+
+<h3 id="footnotes">Footnotes</h3>
+<ol>
+  <li><a href="https://www.biorxiv.org/content/biorxiv/early/2021/08/31/2021.08.31.458318.full.pdf">DOI:10.1101/2021.08.31.458318</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/21872963/">DOI:10.1016/j.tig.2011.07.003</a></li>
+</ol>
+
+    </div>
+    <div class="site-footer-container grid-width-full">
+      <div class="site-footer-content">
+        <p><a href="https://bsky.app/profile/arlynch.bsky.social">bluesky</a> ⸱ <a href="https://github.com/andrewrlynch">github</a> ⸱ <a href="www.linkedin.com/in/andrewrlynch">linkedin</a> ⸱ <a href="/cv">cv</a> ⸱ <a href="https://orcid.org/0000-0002-0238-682X">orcid</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

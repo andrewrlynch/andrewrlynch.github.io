@@ -1,0 +1,56 @@
+---
+layout: default
+title: Andrew Lynch
+---
+{{ content }}
+<div class="site-section-container">
+    <span class="grid-width-7 site-section-head"><b>Recent Posts</b></span>
+    <span style="text-align: right;"><a href="{{site.baseurl}}/posts">see all</a></span>
+    <div class="grid-width-full">
+        {% for post in site.posts limit: 3%}
+            <p><a href="{{post.url}}">{{post.date | date: "%d %b, %Y"}} - {{post.title}}</a></p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="site-section-container">
+    <span class="grid-width-7 site-section-head"><b>Recent Papers</b></span>
+    <span style="text-align: right;"><a href="{{site.baseurl}}/publications">see all</a></span>
+    <div class="grid-width-full">
+
+        {% assign sorted_publications = "" %}
+
+        {% for publication in site.data.pubs %}
+            {% assign date_parts = publication.issued['date-parts'][0] %}
+            {% assign year = date_parts[0] %}
+            {% assign month = date_parts[1] %}
+            {% assign day = date_parts[2] %}
+            {% assign full_date = year | append: "-" | append: month | append: "-" | append: day %}
+
+            {% capture publication_entry %}
+            {{ full_date }}||{{ publication.URL }}||{{ publication.title }}||{{ publication['container-title'] }}||{% for author in publication.author %}{{ author.given }} {{ author.family }}{% if forloop.last == false %}...{% endif %}{% endfor %}
+            {% endcapture %}
+
+            {% assign sorted_publications = sorted_publications | append: publication_entry | append: ";;" %}
+        {% endfor %}
+
+        {% assign sorted_publications = sorted_publications | split: ";;" | sort | reverse %}
+
+        {% for entry in sorted_publications limit: 3%}
+            {% assign parts = entry | split: "||" %}
+            {% assign full_date = parts[0] %}
+            {% assign url = parts[1] %}
+            {% assign title = parts[2] %}
+            {% assign container_title = parts[3] %}
+            {% assign authors = parts[4] | split: "..." %}
+
+            <p><a href="{{ url }}">
+                {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}{% endif %}{% endfor %}.
+                <em>"{{ title }}"</em>.
+                <strong>{{ container_title }}</strong>.
+                {{ full_date | date: "%d %b, %Y" }}.
+            </a></p>
+        {% endfor %}
+
+    </div>
+</div>

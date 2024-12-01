@@ -1,0 +1,32 @@
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+title: "Andrew Lynch" # the name of your site, e.g. ACME Corp.
+
+# Collections ----------------------------------------------
+permalink: /:collection/:path
+collections_dir: collections
+collections:
+  news:
+    output: true
+  papers:
+    output: true
+  projects:
+    output: true
+  pages:
+    output: true
+  posts:
+    output: true
+  recipes:
+    output: true
+  photos:
+    output: true
+  resources:
+    output: true
+
+# Highlighting ----------------------------------------------
+markdown: kramdown
+kramdown:
+    highlighter: rouge
+    syntax_highlighter_opts:
+        block:
+            line_numbers: false

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Andrew Lynch</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <div class="site-container">
+    <div class="site-header-container grid-width-full">
+      <a href = "http://localhost:4000"><b>Andrew Lynch</a></b> &rarr; theme_pubready | a ggplot theme for small, publication-ready plots
+    </div>
+    <div class="site-body-container grid-width-full">
+      <p>A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to ‘declutter’ the small visuals. To save time, I generated this ggplot theme.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">theme_pubready</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(){</span><span class="w">
+   </span><span class="n">font</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Arial"</span><span class="w">
+   </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">%+replace%</span><span class="w">
+   
+      </span><span class="n">theme</span><span class="p">(</span><span class="w">
+         </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.25</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">),</span><span class="w">
+         </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w">
+      </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now let’s plot an example.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggpubr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rnorm</span><span class="p">(</span><span class="m">50</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">rnorm</span><span class="p">(</span><span class="m">50</span><span class="p">))</span><span class="w">
+
+</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+   </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+   </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"theme_grey"</span><span class="p">)</span><span class="w">
+   
+</span><span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+   </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+   </span><span class="n">theme_pubready</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+   </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"theme_pubready"</span><span class="p">)</span><span class="w">
+   
+</span><span class="n">ggarrange</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p><br />
+<img src="/assets/writing/2021-10-21-theme-pubready/theme_pubready_example.png" alt="" /></p>
+
+    </div>
+    <div class="site-footer-container grid-width-full">
+      <div class="site-footer-content">
+        <p><a href="https://bsky.app/profile/arlynch.bsky.social">bluesky</a> ⸱ <a href="https://github.com/andrewrlynch">github</a> ⸱ <a href="www.linkedin.com/in/andrewrlynch">linkedin</a> ⸱ <a href="/cv">cv</a> ⸱ <a href="https://orcid.org/0000-0002-0238-682X">orcid</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{{ site.title }}</title>
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
+</head>
+<body>
+  <div class="site-container">
+    <div class="site-header-container grid-width-full">
+      <a href = "{{site.url}}"><b>Andrew Lynch</a></b>{% if page.title != "Andrew Lynch" %} &rarr; {{page.title}}{% endif %}
+    </div>
+    <div class="site-body-container grid-width-full">
+      {{ content }}
+    </div>
+    <div class="site-footer-container grid-width-full">
+      <div class="site-footer-content">
+        <p><a href="https://bsky.app/profile/arlynch.bsky.social">bluesky</a> ⸱ <a href="https://github.com/andrewrlynch">github</a> ⸱ <a href="www.linkedin.com/in/andrewrlynch">linkedin</a> ⸱ <a href="{{site.baseurl}}/cv">cv</a> ⸱ <a href="https://orcid.org/0000-0002-0238-682X">orcid</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

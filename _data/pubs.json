@@ -1,0 +1,390 @@
+[
+	{
+		"id": "http://zotero.org/users/6178081/items/6QHS4SKL",
+		"type": "article-journal",
+		"abstract": "Quantitative measures of CIN are crucial to our understanding of its role in cancer. Technological advances have changed the way CIN is quantified, offering increased accuracy and insight. Here, we review measures of CIN through its rise as a field, discuss considerations for its measurement, and look forward to future quantification of CIN.",
+		"container-title": "Chromosome Research",
+		"DOI": "10.1007/s10577-024-09746-y",
+		"ISSN": "1573-6849",
+		"issue": "1",
+		"journalAbbreviation": "Chromosome Res",
+		"language": "en",
+		"license": "All rights reserved",
+		"page": "2",
+		"source": "DOI.org (Crossref)",
+		"title": "The reckoning of chromosomal instability: past, present, future",
+		"title-short": "The reckoning of chromosomal instability",
+		"URL": "https://link.springer.com/10.1007/s10577-024-09746-y",
+		"volume": "32",
+		"author": [
+			{
+				"family": "Lynch",
+				"given": "Andrew"
+			},
+			{
+				"family": "Bradford",
+				"given": "Shermineh"
+			},
+			{
+				"family": "Burkard",
+				"given": "Mark E."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					2,
+					26
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					2,
+					17
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/6178081/items/3L4N4C8B",
+		"type": "article-journal",
+		"abstract": "Microtubule-targeted agents are commonly used for cancer treatment, though many patients do not benefit. Microtubule-targeted drugs were assumed to elicit anticancer activity via mitotic arrest because they cause cell death following mitotic arrest in cell culture. However, we recently demonstrated that intratumoral paclitaxel concentrations are insufficient to induce mitotic arrest and rather induce chromosomal instability (CIN) via multipolar mitotic spindles. Here, we show in metastatic breast cancer and relevant human cellular models that this mechanism is conserved among clinically useful microtubule poisons. While multipolar divisions typically produce inviable progeny, multipolar spindles can be focused into near-normal bipolar spindles at any stage of mitosis. Using a novel method to quantify the rate of CIN, we demonstrate that cell death positively correlates with net loss of DNA. Spindle focusing decreases CIN and causes resistance to diverse microtubule poisons, which can be counteracted by addition of a drug that increases CIN without affecting spindle polarity. These results demonstrate conserved mechanisms of action and resistance for diverse microtubule-targeted agents. Trial registration: clinicaltrials.gov, NCT03393741.",
+		"container-title": "PLOS Biology",
+		"DOI": "10.1371/journal.pbio.3002339",
+		"ISSN": "1545-7885",
+		"issue": "10",
+		"journalAbbreviation": "PLOS Biology",
+		"language": "en",
+		"license": "All rights reserved",
+		"note": "publisher: Public Library of Science",
+		"page": "e3002339",
+		"source": "PLoS Journals",
+		"title": "Diverse microtubule-targeted anticancer agents kill cells by inducing chromosome missegregation on multipolar spindles",
+		"URL": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002339",
+		"volume": "21",
+		"author": [
+			{
+				"family": "Zhou",
+				"given": "Amber S."
+			},
+			{
+				"family": "Tucker",
+				"given": "John B."
+			},
+			{
+				"family": "Scribano",
+				"given": "Christina M."
+			},
+			{
+				"family": "Lynch",
+				"given": "Andrew R."
+			},
+			{
+				"family": "Carlsen",
+				"given": "Caleb L."
+			},
+			{
+				"family": "Pop-Vicas",
+				"given": "Sophia T."
+			},
+			{
+				"family": "Pattaswamy",
+				"given": "Srishrika M."
+			},
+			{
+				"family": "Burkard",
+				"given": "Mark E."
+			},
+			{
+				"family": "Weaver",
+				"given": "Beth A."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					10,
+					30
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					10,
+					26
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/6178081/items/ZBNQW6EN",
+		"type": "article-journal",
+		"abstract": "Many studies on the biological activity of mucin peptides derived from the VNTR domain that are considered as potential cancer vaccines have involved and focused on the immunodominant epitope PDTRP. A short peptide GVTSAPD preceding the main binding epitope and six other substituted peptides were investigated for their ability to bind mouse Muc1 monoclonal antibody (mAb, 6A4) by STD NMR. The Pro6 residue of GVTSAPD was replaced by Asp, Leu, Tyr, Phe, and Trp to obtain the Pro-substituted peptides. A sixth mutant peptide with Ser4 replaced by Asn was also studied for comparison. The results showed that substitution of Ser4 by Asn showed similar binding properties to the native peptide. The Pro-substituted peptides with position 6 occupied by Phe or Trp can bind the mAb, but not those containing Asp or Leu. The Pro-substituted peptides GVTSAFD and GVTSAWD may potentially be useful as additional epitopes toward the development of cancer vaccines.",
+		"container-title": "Journal of Undergraduate Chemistry Research",
+		"issue": "1",
+		"journalAbbreviation": "JUCR",
+		"license": "All rights reserved",
+		"page": "5-11",
+		"title": "Short Proline-Substituted Muc1 Mucin Peptides Can Bind To Mouse Muc1 Monoclonal Antibody as Revealed by STD NMR",
+		"URL": "https://www.andrewlynch.io/papers/2015-JUCR.pdf",
+		"volume": "14",
+		"author": [
+			{
+				"family": "Yang",
+				"given": "Thao"
+			},
+			{
+				"family": "Her",
+				"given": "Cheng"
+			},
+			{
+				"family": "Lynch",
+				"given": "Andrew R."
+			},
+			{
+				"family": "White",
+				"given": "Ronald J."
+			},
+			{
+				"family": "Wang",
+				"given": "Ming"
+			},
+			{
+				"family": "Westler",
+				"given": "William M."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2015",
+					5,
+					14
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/6178081/items/XPKSNT77",
+		"type": "article-journal",
+		"abstract": "Chromosomal instability (CIN)—persistent chromosome gain or loss through abnormal mitotic segregation—is a hallmark of cancer that drives aneuploidy. Intrinsic chromosome mis-­ segregation rate, a measure of CIN, can inform prognosis and is a promising biomarker for response to anti-m­ icrotubule agents. However, existing methodologies to measure this rate are labor intensive, indirect, and confounded by selection against aneuploid cells, which reduces observable diversity. We developed a framework to measure CIN, accounting for karyotype selection, using simulations with various levels of CIN and models of selection. To identify the model parameters that best fit karyotype data from single-­cell sequencing, we used approximate Bayesian computation to infer mis-s­ egregation rates and karyotype selection. Experimental validation confirmed the extensive chromosome mis-s­ egregation rates caused by the chemotherapy paclitaxel (18.5 ± 0.5/division). Extending this approach to clinical samples revealed that inferred rates fell within direct observations of cancer cell lines. This work provides the necessary framework to quantify CIN in human tumors and develop it as a predictive biomarker.",
+		"container-title": "eLife",
+		"DOI": "10.7554/eLife.69799",
+		"ISSN": "2050-084X",
+		"language": "en",
+		"license": "All rights reserved",
+		"page": "e69799",
+		"source": "DOI.org (Crossref)",
+		"title": "Quantifying chromosomal instability from intratumoral karyotype diversity using agent-based modeling and Bayesian inference",
+		"URL": "https://elifesciences.org/articles/69799",
+		"volume": "11",
+		"author": [
+			{
+				"family": "Lynch",
+				"given": "Andrew R."
+			},
+			{
+				"family": "Arp",
+				"given": "Nicholas L"
+			},
+			{
+				"family": "Zhou",
+				"given": "Amber S"
+			},
+			{
+				"family": "Weaver",
+				"given": "Beth A"
+			},
+			{
+				"family": "Burkard",
+				"given": "Mark E"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					2
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					4,
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/6178081/items/KZ9A366G",
+		"type": "article-journal",
+		"abstract": "Tumors frequently display high chromosomal instability and contain multiple copies of genomic regions. Here, we describe Gain Route Identification and Timing In Cancer (GRITIC), a generic method for timing genomic gains leading to complex copy number states, using single-sample bulk whole-genome sequencing data. By applying GRITIC to 6,091 tumors, we found that non-parsimonious evolution is frequent in the formation of complex copy number states in genome-doubled tumors. We measured chromosomal instability before and after genome duplication in human tumors and found that late genome doubling was followed by an increase in the rate of copy number gain. Copy number gains often accumulate as punctuated bursts, commonly after genome doubling. We infer that genome duplications typically affect the landscape of copy number losses, while only minimally impacting copy number gains. In summary, GRITIC is a novel copy number gain timing framework that permits the analysis of copy number evolution in chromosomally unstable tumors.Significance: Complex genomic gains are associated with whole-genome duplications, which are frequent across tumors, span a large fraction of their genomes, and are linked to poorer outcomes. GRITIC infers when these gains occur during tumor development, which will help to identify the genetic events that drive tumor evolution.",
+		"container-title": "Cancer Discovery",
+		"DOI": "10.1158/2159-8290.CD-23-1249",
+		"ISSN": "2159-8274",
+		"journalAbbreviation": "Cancer Discovery",
+		"license": "All rights reserved",
+		"page": "OF1-OF13",
+		"source": "Silverchair",
+		"title": "The History of Chromosomal Instability in Genome-Doubled Tumors",
+		"URL": "https://doi.org/10.1158/2159-8290.CD-23-1249",
+		"author": [
+			{
+				"family": "Baker",
+				"given": "Toby M."
+			},
+			{
+				"family": "Lai",
+				"given": "Siqi"
+			},
+			{
+				"family": "Lynch",
+				"given": "Andrew R."
+			},
+			{
+				"family": "Lesluyes",
+				"given": "Tom"
+			},
+			{
+				"family": "Yan",
+				"given": "Haixi"
+			},
+			{
+				"family": "Ogilvie",
+				"given": "Huw A."
+			},
+			{
+				"family": "Verfaillie",
+				"given": "Annelien"
+			},
+			{
+				"family": "Dentro",
+				"given": "Stefan"
+			},
+			{
+				"family": "Bowes",
+				"given": "Amy L."
+			},
+			{
+				"family": "Pillay",
+				"given": "Nischalan"
+			},
+			{
+				"family": "Flanagan",
+				"given": "Adrienne M."
+			},
+			{
+				"family": "Swanton",
+				"given": "Charles"
+			},
+			{
+				"family": "Spellman",
+				"given": "Paul T."
+			},
+			{
+				"family": "Tarabichi",
+				"given": "Maxime"
+			},
+			{
+				"family": "Van Loo",
+				"given": "Peter"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					9,
+					7
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					8,
+					13
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/6178081/items/5I73PVLF",
+		"type": "article-journal",
+		"abstract": "Chromosomal instability (CIN) is the persistent reshuffling of cancer karyotypes via chromosome mis-segregation during cell division. In cancer, CIN exists at varying levels that have differential effects on tumor progression. However, mis-segregation rates remain challenging to assess in human cancer despite an array of available measures. We evaluated measures of CIN by comparing quantitative methods using specific, inducible phenotypic CIN models of chromosome bridges, pseudobipolar spindles, multipolar spindles, and polar chromosomes. For each, we measured CIN fixed and timelapse fluorescence microscopy, chromosome spreads, six-centromere FISH, bulk transcriptomics, and single-cell DNA sequencing (scDNAseq). As expected, microscopy of tumor cells in live and fixed samples significantly correlated (R = 0.72; P < 0.001) and sensitively detect CIN. Cytogenetics approaches include chromosome spreads and 6-centromere FISH, which also significantly correlate (R = 0.76; P < 0.001) but had limited sensitivity for lower rates of CIN. Bulk genomic DNA signatures and bulk transcriptomic scores, CIN70 and HET70, did not detect CIN. By contrast, scDNAseq detects CIN with high sensitivity, and significantly correlates with imaging methods (R = 0.82; P < 0.001). In summary, single-cell methods such as imaging, cytogenetics, and scDNAseq can measure CIN, with the latter being the most comprehensive method accessible to clinical samples. To facilitate the comparison of CIN rates between phenotypes and methods, we propose a standardized unit of CIN: Mis-segregations per Diploid Division. This systematic analysis of common CIN measures highlights the superiority of single-cell methods and provides guidance for measuring CIN in the clinical setting.",
+		"container-title": "Proceedings of the National Academy of Sciences",
+		"DOI": "10.1073/pnas.2309621121",
+		"issue": "16",
+		"license": "All rights reserved",
+		"note": "publisher: Proceedings of the National Academy of Sciences",
+		"page": "e2309621121",
+		"source": "pnas.org (Atypon)",
+		"title": "A survey of chromosomal instability measures across mechanistic models",
+		"URL": "https://www.pnas.org/doi/10.1073/pnas.2309621121",
+		"volume": "121",
+		"author": [
+			{
+				"family": "Lynch",
+				"given": "Andrew R."
+			},
+			{
+				"family": "Bradford",
+				"given": "Shermineh"
+			},
+			{
+				"family": "Zhou",
+				"given": "Amber S."
+			},
+			{
+				"family": "Oxendine",
+				"given": "Kim"
+			},
+			{
+				"family": "Henderson",
+				"given": "Les"
+			},
+			{
+				"family": "Horner",
+				"given": "Vanessa L."
+			},
+			{
+				"family": "Weaver",
+				"given": "Beth A."
+			},
+			{
+				"family": "Burkard",
+				"given": "Mark E."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					10,
+					7
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					4,
+					16
+				]
+			]
+		}
+	}
+]

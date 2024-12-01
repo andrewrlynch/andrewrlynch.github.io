@@ -1,0 +1,9 @@
+---
+layout: default
+permalink: posts/index.html
+title: Posts (index)
+---
+<p><a href="{{site.baseurl}}/post-reel">Reel</a></p>
+{% for post in site.posts %}
+<p><a href="{{post.url}}">{{post.date | date: "%d %b, %Y"}} - {{post.title}}</a></p>
+{% endfor %}

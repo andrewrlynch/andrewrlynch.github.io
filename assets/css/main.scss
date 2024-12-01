@@ -1,0 +1,146 @@
+---
+---
+// Imports --------------------------------
+@import "reset";
+@import "base";
+@import "syntax";
+
+// Layout ---------------------------------
+body {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0px;
+    margin: 0px auto;
+    //background-color: rgb(234, 229, 224);
+}
+
+.site-container {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: auto 1fr auto;
+    align-content: flex-start;
+    max-width: 640px;
+    min-height: 100vh;
+    padding: 0px;
+    margin: 0px auto;
+}
+
+.site-header-container {
+    //display: grid;
+    //grid-gap: 0;
+    //grid-template-columns: repeat(8, minmax(0, 1fr));
+    //grid-template-rows: auto 1fr auto;
+    //align-content: flex-start;
+    //min-height: 32px;
+    padding: 8px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    //background-color: rgb(168, 186, 195);
+}
+
+.site-body-container {
+    padding: 8px;
+}
+
+.site-footer-container {
+    min-height: 64px;
+    padding: 8px;
+    margin-top: 8px;
+    //background-color: rgb(158, 181, 167);
+}
+
+.site-section-container {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: auto 1fr auto;
+    align-content: flex-start;
+}
+
+.site-section-item {
+    padding: 4px;
+    margin: 4px;
+    border-radius: 8px;
+    &:hover{
+        background-color: rgb(232, 235, 224);
+    }
+}
+
+.site-section-head {
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    //border-bottom: 3px dotted;
+}
+
+.grid-width-full {
+    grid-column: 1 / 9;
+  }
+
+.grid-width-half {
+    grid-column: span 4;
+}
+
+.grid-width-2 {
+    grid-column: span 2;
+}
+
+.grid-width-6 {
+    grid-column: span 7;
+}
+
+.grid-width-7 {
+    grid-column: span 7;
+}
+
+// Content --------------------------------
+.site-footer-content {
+    text-align: center;
+}
+// Typography -----------------------------
+p {font-size: 1rem; font-weight: 200; line-height: 1.5rem; margin-bottom: 16px;}
+h1,h2,h3,h4,h5,h6 {font-weight: 600;}
+h1 {font-size: 1.6rem;}
+h2 {font-size: 1.4rem;}
+h3 {font-size: 1.2rem;}
+b {font-weight: 600;}
+em {font-style:italic;}
+u {text-decoration: underline;}
+
+a {
+    text-decoration: none;
+    color: $bodyColor;
+
+    &:hover{
+        text-decoration: underline;
+        color: $bodyColor;
+    }
+}
+
+small {
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+
+strong {
+    font-weight: 400;
+}
+
+.hanging {text-indent: 2rem hanging;}
+
+pre {
+    max-width: 100%;
+    background: whitesmoke;
+    padding: 8px;
+    border-radius: 8px;
+    overflow-x: scroll;
+    font-family: $codeFont;
+    font-size: $codeSize;
+}
+// Images ---------------------------------
+img {
+    max-width: 100%;
+}
+
+// Notes ----------------------------------
+// Remember to try to adhere to the 8pt grid system (i.e. multiples of eight - 8, 16, 32, 64, 128, 256, 512, 1024, 1440).
