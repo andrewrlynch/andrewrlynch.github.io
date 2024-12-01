@@ -7,7 +7,7 @@ title: Andrew Lynch
     <span class="grid-width-7 site-section-head"><b>Recent Posts</b></span>
     <span style="text-align: right;"><a href="{{site.baseurl}}/posts">see all</a></span>
     <div class="grid-width-full">
-        {% for post in site.posts limit: 3%}
+        {% for post in site.posts limit: 2%}
             <p><a href="{{post.url}}">{{post.date | date: "%d %b, %Y"}} - {{post.title}}</a></p>
         {% endfor %}
     </div>
@@ -36,7 +36,7 @@ title: Andrew Lynch
 
         {% assign sorted_publications = sorted_publications | split: ";;" | sort | reverse %}
 
-        {% for entry in sorted_publications limit: 3%}
+        {% for entry in sorted_publications limit: 2%}
             {% assign parts = entry | split: "||" %}
             {% assign full_date = parts[0] %}
             {% assign url = parts[1] %}
