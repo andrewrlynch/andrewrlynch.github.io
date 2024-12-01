@@ -57,6 +57,7 @@ body {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: auto 1fr auto;
     align-content: flex-start;
+    margin-top: 32px;
 }
 
 .site-section-item {
