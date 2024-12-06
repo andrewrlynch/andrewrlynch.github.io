@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Publications
-permalink: /publications/
+title: Papers
+permalink: /papers/
 published: true
 ---
 
@@ -31,10 +31,12 @@ published: true
     {% assign container_title = parts[3] %}
     {% assign authors = parts[4] | split: "..." %}
 
-    <p><a href="{{ url }}">
-        {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}{% endif %}{% endfor %}.
-        <em>"{{ title }}"</em>.
+    <a href="{{ url }}"><div class="site-section-item">
+        <strong>{{ title }}</strong><br>
+        <small>
+        {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}.{% endif %}{% endfor %}
         <strong>{{ container_title }}</strong>.
         {{ full_date | date: "%d %b, %Y" }}.
-    </a></p>
+        </small>
+    </a></div>
 {% endfor %}

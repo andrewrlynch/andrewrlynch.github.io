@@ -29,27 +29,27 @@
 <h3 id="calculating-ploidy-aneuploidy-and-theoretical-fitness-of-each-karyotype">Calculating ploidy, aneuploidy, and <em>theoretical</em> fitness of each karyotype</h3>
 <p>We can now calculate the individual characteristics of these karyotypes that are actually interesting. Ploidy and aneuploidy are pretty easy to calculate as just the average copy number and average intra-karyotype variance respectively. But how do you calculate fitness of aneuploid karyotypes? One way to look at this is through the lens of stabilizing selection—selection against clones with karyotypes that stray too far from a ‘core’ karyotype. Current evidence, at least in non-cancer-derived tissue suggests that aneuploid cellular fitness is negatively correlated to the number of genes on the chromosome(s) for which a cell is aneuploid<sup>1,2</sup>. For example, aneuploidy of chromosome 1 having a larger fitness detriment than that of chromosome 18 [1,2]. So in this case it’s all about balancing the stoichiometry of expressed genes.</p>
 
-<pre><code class="language-{r}"># Sum the number of annotated genes on each chromosome
-chrscores &lt;- c(2880 + 2615, 1647 + 2557, 1392 + 1806, 746 + 1917, 710 + 2282, 1541 + 1539, 1082 + 1947, 959 + 1536)
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sum the number of annotated genes on each chromosome</span><span class="w">
+</span><span class="n">chrscores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2880</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2615</span><span class="p">,</span><span class="w"> </span><span class="m">1647</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2557</span><span class="p">,</span><span class="w"> </span><span class="m">1392</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1806</span><span class="p">,</span><span class="w"> </span><span class="m">746</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1917</span><span class="p">,</span><span class="w"> </span><span class="m">710</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2282</span><span class="p">,</span><span class="w"> </span><span class="m">1541</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1539</span><span class="p">,</span><span class="w"> </span><span class="m">1082</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1947</span><span class="p">,</span><span class="w"> </span><span class="m">959</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1536</span><span class="p">)</span><span class="w">
 
-# Normalize the gene abundance of each chromosome to the sum across the karyotype to get relative gene abundance (relative importance to fitness). 
-chrscores &lt;- chrscores / sum(chrscores
+</span><span class="c1"># Normalize the gene abundance of each chromosome to the sum across the karyotype to get relative gene abundance (relative importance to fitness). </span><span class="w">
+</span><span class="n">chrscores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">chrscores</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">chrscores</span><span class="w">
 
-# Calculate the ploidy for each karyotype
-karyos$ploidy &lt;- apply(karyos[,1:k], 1, function(x){sum(x)/k})
+</span><span class="c1"># Calculate the ploidy for each karyotype</span><span class="w">
+</span><span class="n">karyos</span><span class="o">$</span><span class="n">ploidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">karyos</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">})</span><span class="w">
 
-# Calculate the aneuploidy of each karyotype
-karyos$aneuploidy &lt;- apply(karyos[,1:k], 1, function(x){var(x)})
+</span><span class="c1"># Calculate the aneuploidy of each karyotype</span><span class="w">
+</span><span class="n">karyos</span><span class="o">$</span><span class="n">aneuploidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">karyos</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)})</span><span class="w">
 
-# Calculate the fitness of each karyotype (this takes a few seconds)
-karyos$fitness &lt;- apply(karyos[,1:k], 1, function(x){
-  f &lt;- vector() #Create a vector to hold the modified fitness values of each chromosome
-  for(c in 1:k){
-    f[c] &lt;- chrscores[c] - (chrscores[c] * (abs(x[c] - mean(x))))/ mean(x) # Modify the fitness value of each chromosome by how unbalanced it is from the ploidy of the cell.
-  }
-  sum(f)
-})
-</code></pre>
+</span><span class="c1"># Calculate the fitness of each karyotype (this takes a few seconds)</span><span class="w">
+</span><span class="n">karyos</span><span class="o">$</span><span class="n">fitness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">karyos</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="w">
+  </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">vector</span><span class="p">()</span><span class="w"> </span><span class="c1">#Create a vector to hold the modified fitness values of each chromosome</span><span class="w">
+  </span><span class="k">for</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span><span class="w">
+    </span><span class="n">f</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">chrscores</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">chrscores</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span><span class="o">/</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c1"># Modify the fitness value of each chromosome by how unbalanced it is from the ploidy of the cell.</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="nf">sum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Great! What did we just do? We generated chromosome scores for chromosomes 1-8; we calculated the ploidy and aneuploidy of each karyotype in the set; and we used these values to calculate the fitness of the karyotype by assuming a balanced (i.e. euploid) karyotype has a perfect fitness with all chromosome scores summing to 1. We also modified the chromosome scores such that chromosomes that were more unbalanced from the ploidy of the cell experienced a fitness detriment, so the sum of chromosome scores for that karyotype would be &lt; 1. There are some caveats to these assumptions like 1) the ploidy of 2.5 indicates the cell is already aneuploid so this may not be the best denominator and 2) the assumption that gains will be roughly equally detrimental as losses, which may not be true in normal tissue due to haploinsufficiency of many genes. Yet I think this is a good place to start.</p>
 
@@ -186,7 +186,7 @@ karyos$fitness &lt;- apply(karyos[,1:k], 1, function(x){
     </div>
     <div class="site-footer-container grid-width-full">
       <div class="site-footer-content">
-        <p><a href="https://bsky.app/profile/arlynch.bsky.social">bluesky</a> ⸱ <a href="https://github.com/andrewrlynch">github</a> ⸱ <a href="www.linkedin.com/in/andrewrlynch">linkedin</a> ⸱ <a href="/cv">cv</a> ⸱ <a href="https://orcid.org/0000-0002-0238-682X">orcid</a></p>
+        <a href="/about">about</a> ⸱ <a href="https://bsky.app/profile/arlynch.bsky.social">bluesky</a> ⸱ <a href="https://github.com/andrewrlynch">github</a> ⸱ <a href="www.linkedin.com/in/andrewrlynch">linkedin</a> ⸱ <a href="/cv">cv</a> ⸱ <a href="https://orcid.org/0000-0002-0238-682X">orcid</a>
       </div>
     </div>
   </div>

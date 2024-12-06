@@ -1,9 +1,20 @@
 ---
 layout: default
 permalink: posts/index.html
-title: Posts (index)
+title: Posts
 ---
-<p><a href="{{site.baseurl}}/post-reel">Reel</a></p>
-{% for post in site.posts %}
-<p><a href="{{post.url}}">{{post.date | date: "%d %b, %Y"}} - {{post.title}}</a></p>
-{% endfor %}
+<!-- <div class="site-section-item">
+    <button class="btn" href="{{site.baseurl}}/posts"><img src="{{site.baseurl}}/assets/icons/list-items.png" height="16px" width="auto">Index</button>
+    <a href="{{site.baseurl}}/post-reel" class="button btn"><img src="{{site.baseurl}}/assets/icons/scroll.png" height="16px" width="auto">Scroll</a>
+</div> -->
+
+<div class="grid-width-full">
+    {% for post in site.posts limit: 3 %}
+    <div class="site-section-item">
+    <a href="{{post.url}}">
+            <strong>{{post.title}}</strong><br>
+            <small>Posted: {{post.date | date: "%d %b, %Y"}}</small>
+        </a>
+    </div>
+    {% endfor %}
+</div>

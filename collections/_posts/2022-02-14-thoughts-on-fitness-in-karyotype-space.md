@@ -24,7 +24,7 @@ karyos <- as.data.frame(permutations(x=1:4,k=k,replace=T))
 ### Calculating ploidy, aneuploidy, and *theoretical* fitness of each karyotype
 We can now calculate the individual characteristics of these karyotypes that are actually interesting. Ploidy and aneuploidy are pretty easy to calculate as just the average copy number and average intra-karyotype variance respectively. But how do you calculate fitness of aneuploid karyotypes? One way to look at this is through the lens of stabilizing selection—selection against clones with karyotypes that stray too far from a 'core' karyotype. Current evidence, at least in non-cancer-derived tissue suggests that aneuploid cellular fitness is negatively correlated to the number of genes on the chromosome(s) for which a cell is aneuploid<sup>1,2</sup>. For example, aneuploidy of chromosome 1 having a larger fitness detriment than that of chromosome 18 [1,2]. So in this case it's all about balancing the stoichiometry of expressed genes.
 
-```{r}
+~~~
 # Sum the number of annotated genes on each chromosome
 chrscores <- c(2880 + 2615, 1647 + 2557, 1392 + 1806, 746 + 1917, 710 + 2282, 1541 + 1539, 1082 + 1947, 959 + 1536)
 
@@ -45,7 +45,8 @@ karyos$fitness <- apply(karyos[,1:k], 1, function(x){
   }
   sum(f)
 })
-```
+~~~
+{: .language-r}
 
 Great! What did we just do? We generated chromosome scores for chromosomes 1-8; we calculated the ploidy and aneuploidy of each karyotype in the set; and we used these values to calculate the fitness of the karyotype by assuming a balanced (i.e. euploid) karyotype has a perfect fitness with all chromosome scores summing to 1. We also modified the chromosome scores such that chromosomes that were more unbalanced from the ploidy of the cell experienced a fitness detriment, so the sum of chromosome scores for that karyotype would be < 1. There are some caveats to these assumptions like 1) the ploidy of 2.5 indicates the cell is already aneuploid so this may not be the best denominator and 2) the assumption that gains will be roughly equally detrimental as losses, which may not be true in normal tissue due to haploinsufficiency of many genes. Yet I think this is a good place to start.
 

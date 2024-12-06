@@ -56,12 +56,14 @@ body {
   background: #ffffff;
   color: #202020;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 200;
 }
 
 .highlight pre {
   background-color: rgb(38, 42, 47);
   border-radius: 4px;
   padding: 8px;
+  margin: 16px 0px;
 }
 
 .highlight .hll {
@@ -306,9 +308,9 @@ body {
   grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-template-rows: auto 1fr auto;
   align-content: flex-start;
-  max-width: 640px;
+  max-width: 720px;
   min-height: 100vh;
-  padding: 0px;
+  padding: 0px 8px;
   margin: 0px auto;
 }
 
@@ -334,16 +336,20 @@ body {
   grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-template-rows: auto 1fr auto;
   align-content: flex-start;
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 .site-section-item {
+  margin-bottom: 16px;
+}
+
+.spacer {
   padding: 4px;
   margin: 4px;
-  border-radius: 8px;
 }
-.site-section-item:hover {
-  background-color: rgb(232, 235, 224);
+
+.outline {
+  border: 1px solid rgb(78, 76, 72);
 }
 
 .site-section-head {
@@ -371,6 +377,11 @@ body {
   grid-column: span 7;
 }
 
+@media screen and (max-width: 576px) {
+  .grid-width-half {
+    grid-column: 1/9;
+  }
+}
 .site-footer-content {
   text-align: center;
 }
@@ -378,12 +389,13 @@ body {
 p {
   font-size: 1rem;
   font-weight: 200;
-  line-height: 1.5rem;
+  line-height: 1.3rem;
   margin-bottom: 8px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
+  padding: 8px 0px;
 }
 
 h1 {
@@ -415,13 +427,19 @@ a {
   color: #202020;
 }
 a:hover {
+  color: tomato;
+}
+
+p > a {
+  color: tomato;
+}
+p > a:hover {
   text-decoration: underline;
   color: #202020;
 }
 
 small {
-  font-size: 0.9rem;
-  line-height: 1rem;
+  font-size: 0.8rem;
 }
 
 strong {
@@ -440,6 +458,21 @@ pre {
   overflow-x: scroll;
   font-family: Menlo;
   font-size: 0.8rem;
+}
+
+.btn {
+  background-color: rgb(255, 255, 255);
+  padding: 4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.active, .btn:hover {
+  background-color: rgb(240, 240, 240);
 }
 
 img {

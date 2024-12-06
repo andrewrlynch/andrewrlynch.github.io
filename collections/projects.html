@@ -1,0 +1,14 @@
+---
+layout: default
+permalink: projects/index.html
+title: Projects
+---
+
+<div class="grid-width-full site-section-container">
+    {% for project in site.projects %}
+    <a href="{{project.url}}" class="site-section-item grid-width-half spacer">
+        <h2>{{project.title}}</h2>
+        {{ project.description }}
+    </a>
+    {% endfor %}
+</div>

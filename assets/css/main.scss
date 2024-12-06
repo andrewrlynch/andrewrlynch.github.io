@@ -21,9 +21,9 @@ body {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: auto 1fr auto;
     align-content: flex-start;
-    max-width: 640px;
+    max-width: 720px;
     min-height: 100vh;
-    padding: 0px;
+    padding: 0px 8px;
     margin: 0px auto;
 }
 
@@ -57,22 +57,26 @@ body {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: auto 1fr auto;
     align-content: flex-start;
-    margin-top: 32px;
+    margin-top: 16px;
 }
 
 .site-section-item {
+    margin-bottom: 16px;
+}
+
+.spacer {
     padding: 4px;
     margin: 4px;
-    border-radius: 8px;
-    &:hover{
-        background-color: rgb(232, 235, 224);
-    }
+}
+
+.outline {
+    border: 1px solid rgb(78, 76, 72);
 }
 
 .site-section-head {
     margin-bottom: 8px;
     padding-bottom: 4px;
-    //border-bottom: 3px dotted;
+    //border-bottom: 0.5px solid rgb(79, 79, 79);
 }
 
 .grid-width-full {
@@ -95,13 +99,19 @@ body {
     grid-column: span 7;
 }
 
+@media screen and (max-width: 576px) {
+    .grid-width-half {
+        grid-column: 1/9;
+    }
+}
+
 // Content --------------------------------
 .site-footer-content {
     text-align: center;
 }
 // Typography -----------------------------
-p {font-size: 1rem; font-weight: 200; line-height: 1.5rem; margin-bottom: 8px;}
-h1,h2,h3,h4,h5,h6 {font-weight: 600;}
+p {font-size: 1rem; font-weight: 200; line-height: 1.3rem; margin-bottom: 8px;}
+h1,h2,h3,h4,h5,h6 {font-weight: 600; padding: 8px 0px;}
 h1 {font-size: 1.6rem;}
 h2 {font-size: 1.4rem;}
 h3 {font-size: 1.2rem;}
@@ -112,7 +122,13 @@ u {text-decoration: underline;}
 a {
     text-decoration: none;
     color: $bodyColor;
+    &:hover{
+        color: $linkColor;
+    }
+}
 
+p > a {
+    color: $linkColor;
     &:hover{
         text-decoration: underline;
         color: $bodyColor;
@@ -120,8 +136,7 @@ a {
 }
 
 small {
-    font-size: 0.9rem;
-    line-height: 1rem;
+    font-size: 0.8rem;
 }
 
 strong {
@@ -139,6 +154,24 @@ pre {
     font-family: $codeFont;
     font-size: $codeSize;
 }
+
+// Modules --------------------------------
+.btn {
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.active, .btn:hover {
+    background-color: rgb(240, 240, 240);
+  }
+
+
 // Images ---------------------------------
 img {
     max-width: 100%;
