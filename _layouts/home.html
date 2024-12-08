@@ -58,8 +58,7 @@ title: Andrew Lynch
         <div class="site-section-item">
         <a href="{{ url }}">
                 <strong>{{ title }}</strong><br>
-                <small>{{ authors[0] | split: " "| last }} et al. {{ container_title }}. {{ full_date | date: "%Y"
-                    }}.</small>
+                <small>{{ authors[0] | split: " "| last }} et al. {{ container_title }}. {{ full_date | date: "%Y"}}.</small>
                 <!-- {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}.{% endif %}{% endfor %} -->
             </a>
         </div>
@@ -76,7 +75,7 @@ title: Andrew Lynch
     <div class="grid-width-full site-section-container">
         {% for project in site.projects limit: 3 %}
         <a href="{{project.url}}" class="site-section-item grid-width-half">
-            <strong>{{project.title}}</strong>-{{project.description}}<br>
+            <strong>{{project.title}}</strong> - {{project.description}}<br>
             <small>Posted: {{project.date | date: "%d %b, %Y"}}</small>
         </a>
         {% endfor %}

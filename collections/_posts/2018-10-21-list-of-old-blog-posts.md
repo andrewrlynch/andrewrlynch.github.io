@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Old blog posts for which one would ostensibly want a convenient list
 tags: meta
 toc: "off"

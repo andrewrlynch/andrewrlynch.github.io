@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: A Decade In-Review
 date: 31 Dec 2019
 published: true
@@ -131,8 +131,8 @@ p2 <- ggplot(monthly_in_situ_co2_mlo, aes(x = yearmonth, y = seasonally)) +
 ggarrange(p1, p2)
 ~~~
 {: .language-r}
-<br>
-![](/images/Climate.png)
-<br>
+
+<img src="{{site.baseurl}}/assets/posts/2019-12-18-end-of-year-decade-wrap-up/Climate.png" class="img-center">
+
 ### Google Search Trends
-![](/images/Trends.png)
+<img src = "{{site.baseurl}}/assets/posts/2019-12-18-end-of-year-decade-wrap-up/Trends.png" class="img-center">

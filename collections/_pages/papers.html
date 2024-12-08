@@ -34,7 +34,7 @@ published: true
     <a href="{{ url }}"><div class="site-section-item">
         <strong>{{ title }}</strong><br>
         <small>
-        {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}.{% endif %}{% endfor %}
+        {% for author in authors %}{% if forloop.first %}{% elsif forloop.last %}, and {% else %}, {%endif %}{% if author contains "Andrew" and author contains "Lynch" %}<u>{{ author }}</u>{% else %}{{ author }}{% endif %}{% endfor %}. 
         <strong>{{ container_title }}</strong>.
         {{ full_date | date: "%d %b, %Y" }}.
         </small>

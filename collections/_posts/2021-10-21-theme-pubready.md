@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: theme_pubready | a ggplot theme for small, publication-ready plots
 date: 2021-10-21
 published: true
@@ -48,4 +48,4 @@ ggarrange(p1,p2)
 ~~~
 {: .language-r}
 <br>
-![](/assets/writing/2021-10-21-theme-pubready/theme_pubready_example.png)
+<img src="{{site.baseurl}}/assets/posts/2021-10-21-theme-pubready/theme_pubready_example.png" class="img-center img-66">

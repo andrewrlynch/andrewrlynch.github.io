@@ -57,7 +57,7 @@ body {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: auto 1fr auto;
     align-content: flex-start;
-    margin-top: 16px;
+    //margin-top: 16px;
 }
 
 .site-section-item {
@@ -109,6 +109,22 @@ body {
 .site-footer-content {
     text-align: center;
 }
+
+.post > p {font-family: "Cormorant Garamond"; font-weight: 400; font-size: 1.1rem;}
+.post-header {padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid rgb(58, 58, 58);}
+.post-title {font-size: 1.8rem; font-weight: 700;; margin-bottom: 8px; line-height: 1.8rem;}
+.post-subtitle {font-size: 1.6rem; font-weight: 300; color: rgb(38, 35, 32); margin-bottom: 8px;}
+.post-date {font-size: 1.2rem; font-weight: 300; color: rgb(38, 35, 32);}
+img {border-radius: 4px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2)}
+.img-center {
+    display: block;
+    margin: 16px auto;
+}
+
+.img-66 {
+    max-width: 66.7%;
+}
+
 // Typography -----------------------------
 p {font-size: 1rem; font-weight: 200; line-height: 1.3rem; margin-bottom: 8px;}
 h1,h2,h3,h4,h5,h6 {font-weight: 600; padding: 8px 0px;}
@@ -118,9 +134,18 @@ h3 {font-size: 1.2rem;}
 b {font-weight: 600;}
 em {font-style:italic;}
 u {text-decoration: underline;}
+blockquote {
+    color: rgb(102, 97, 93);
+    font-style: italic;
+    margin-right: 24px;
+    margin-left: 24px;
+    padding-left: 4px;
+    //background-color: rgb(236, 233, 228);
+    //border-left: 4px solid rgb(40, 137, 186);
+    border-radius: 4px;
+}
 
-a {
-    text-decoration: none;
+a {text-decoration: none;
     color: $bodyColor;
     &:hover{
         color: $linkColor;
