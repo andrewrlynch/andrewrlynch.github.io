@@ -6,10 +6,6 @@ title: "Andrew Lynch" # the name of your site, e.g. ACME Corp.
 permalink: /:collection/:path
 collections_dir: collections
 collections:
-  news:
-    output: true
-  papers:
-    output: true
   projects:
     output: true
   pages:
