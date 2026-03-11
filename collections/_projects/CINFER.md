@@ -1,7 +1,7 @@
 ---
 layout: default
 title: CINFER
-description: "Produces scDNAseq-based estimates of chromosome mis-segregation rates."
+description: "scDNAseq-based estimates of chromosome mis-segregation rates."
 permalink: /projects/CINFER/
 published: true
 repo: "https://github.com/Burkard-Lab/CINFER"
