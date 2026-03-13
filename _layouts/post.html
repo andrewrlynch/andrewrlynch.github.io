@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-<div class="post">
-    <div class="post-header">
-        <p class="post-title">{{page.title}}</p>
-        <p class="post-date">Posted: {{page.date | date: '%b %m, %Y'}}</p>
-    </div>
+<div class="post-header">
+    <p class="post-title">{{page.title}}</p>
+    <p class="post-date">Posted: {{page.date | date: '%b %m, %Y'}}</p>
+</div>
+<div class="post-container">
     {{ content }}
 </div>

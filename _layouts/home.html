@@ -3,17 +3,15 @@ layout: default
 title: Andrew Lynch
 ---
 
-<div class="site-splash-container">
 {{ content }}
-</div>
 
 <div class="section-vertical-header-container">
 <div class="section-vertical-header">posts</div>
 <div class="section-vertical-header-body">
 
-    {% for post in site.posts limit: 3 %}
-    <p><a href="{{post.url}}">{{post.title}}</a> · <small>{{post.date | date: "%d %b, %Y"}}</small></p>
-    {% endfor %} <a href="{{site.baseurl}}/posts"><small>[see more]</small></a>
+    <p>{% for post in site.posts limit: 3 %}
+    <a href="{{post.url}}"><small>{{post.title}}</small></a><small> - {{post.date | date: "%d %b, %Y"}}</small>{% if forloop.last == false %} · {% endif %}
+    {% endfor %} <a href="{{site.baseurl}}/posts"><small>[ + ]</small></a></p>
 
 </div>
 </div>
@@ -21,37 +19,39 @@ title: Andrew Lynch
 <div class="section-vertical-header-container">
 <div class="section-vertical-header">papers</div>
 <div class="section-vertical-header-body">
+    <p>
+    {% assign sorted_publications = "" %}
 
-        {% assign sorted_publications = "" %}
+    {% for publication in site.data.pubs %}
+    {% assign date_parts = publication.issued['date-parts'][0] %}
+    {% assign year = date_parts[0] %}
+    {% assign month = date_parts[1] %}
+    {% assign day = date_parts[2] %}
+    {% assign full_date = year | append: "-" | append: month | append: "-" | append: day %}
 
-        {% for publication in site.data.pubs %}
-        {% assign date_parts = publication.issued['date-parts'][0] %}
-        {% assign year = date_parts[0] %}
-        {% assign month = date_parts[1] %}
-        {% assign day = date_parts[2] %}
-        {% assign full_date = year | append: "-" | append: month | append: "-" | append: day %}
+    {% capture publication_entry %}
+    {{ full_date }}||{{ publication.URL }}||{{ publication.title }}||{{ publication['container-title'] }}||{% for
+    author in publication.author %}{{ author.given }} {{ author.family }}{% if forloop.last == false %}...{% endif
+    %}{% endfor %}
+    {% endcapture %}
 
-        {% capture publication_entry %}
-        {{ full_date }}||{{ publication.URL }}||{{ publication.title }}||{{ publication['container-title'] }}||{% for
-        author in publication.author %}{{ author.given }} {{ author.family }}{% if forloop.last == false %}...{% endif
-        %}{% endfor %}
-        {% endcapture %}
+    {% assign sorted_publications = sorted_publications | append: publication_entry | append: ";;" %}
+    {% endfor %}
 
-        {% assign sorted_publications = sorted_publications | append: publication_entry | append: ";;" %}
-        {% endfor %}
+    {% assign sorted_publications = sorted_publications | split: ";;" | sort | reverse %}
 
-        {% assign sorted_publications = sorted_publications | split: ";;" | sort | reverse %}
+    {% for entry in sorted_publications limit: 3 %}
+    {% assign parts = entry | split: "||" %}
+    {% assign full_date = parts[0] %}
+    {% assign url = parts[1] %}
+    {% assign title = parts[2] %}
+    {% assign container_title = parts[3] %}
+    {% assign authors = parts[4] | split: "..." %}
 
-        {% for entry in sorted_publications limit: 3 %}
-        {% assign parts = entry | split: "||" %}
-        {% assign full_date = parts[0] %}
-        {% assign url = parts[1] %}
-        {% assign title = parts[2] %}
-        {% assign container_title = parts[3] %}
-        {% assign authors = parts[4] | split: "..." %}
-
-        <a href="{{ url }}"><p>{{ title }}</a> · <small>{{ authors[0] | split: " "| last }} et al. <em>{{ container_title }}.</em> {{ full_date | date: "%Y"}}.</small></p>
-        {% endfor %}<a href="{{site.baseurl}}/papers"><small>[see more]</small></a>
+    <a href="{{ url }}"><small>{{ title }}</small></a><small> - {{ authors[0] | split: " "| last }} et al. <em>{{ container_title }}.</em> {{ full_date | date: "%Y"}}.</small>{% if forloop.last == false %} · {% endif %}
+    {% endfor %}
+    <a href="{{site.baseurl}}/papers"><small>[ + ]</small></a>
+</p>
 
 </div>
 </div>
@@ -60,10 +60,11 @@ title: Andrew Lynch
 <div class="section-vertical-header">projects</div>
 <div class="section-vertical-header-body">
 
+     <p>
     {% for project in site.projects limit: 3 %}
-    <p><a href="{{project.url}}" class="site-section-item grid-width-half"><strong>{{project.title}}</strong> · <small>{{project.description}}</small></a></p>
-    {% endfor %}<a href="{{site.baseurl}}/projects"><small>[see more]</small></a>
-
+    <a href="{{project.url}}"><small>{{project.title}}</small></a>: <small>{{project.description}}</small>{% if forloop.last == false %} · {% endif %}
+    {% endfor %}<a href="{{site.baseurl}}/projects"><small>[ + ]</small></a>
+    </p>
 </div>
 </div>
 
