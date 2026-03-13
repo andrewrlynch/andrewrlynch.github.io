@@ -153,6 +153,7 @@ body {
 }
 
 .post-container {max-width: 100%; width: 720px; margin: 0 auto;}
+.post-container > p {line-height: calc($fs-base * 1.75); font-size: $fs-base; font-weight: 300; margin-bottom:8px;}
 .post-header {padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid rgb(172, 172, 172);}
 .post-title {font-size: $fs-lg; font-weight: 700;; margin-bottom: 8px; line-height: $fs-xl;}
 .post-subtitle {font-size: $fs-md; font-weight: 300; color: rgb(38, 35, 32); margin-bottom: 8px;}

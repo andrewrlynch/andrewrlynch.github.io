@@ -437,6 +437,13 @@ body {
   margin: 0 auto;
 }
 
+.post-container > p {
+  line-height: calc(clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem) * 1.75);
+  font-size: clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem);
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+
 .post-header {
   padding-bottom: 8px;
   margin-bottom: 16px;
