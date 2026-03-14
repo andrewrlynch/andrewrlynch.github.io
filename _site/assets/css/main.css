@@ -363,7 +363,7 @@ body {
 .section-vertical-header-container {
   display: flex;
   gap: 2rem;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   padding-top: 8px;
 }
 
@@ -371,7 +371,7 @@ body {
   padding-top: 8px;
   writing-mode: sideways-lr;
   font-weight: 600;
-  letter-spacing: calc(clamp(0.7rem, 0.17vi + 0.75rem, 1rem) * 0.05);
+  letter-spacing: 0.05;
   font-size: clamp(0.7rem, 0.17vi + 0.75rem, 1rem);
   color: rgb(78, 76, 72);
   text-align: right;
@@ -384,7 +384,7 @@ body {
 
 .section-vertical-header-body {
   font-size: clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem);
-  line-height: calc(clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem) * 1.5);
+  line-height: 1.5;
   align-items: start;
 }
 
@@ -438,7 +438,7 @@ body {
 }
 
 .post-container > p {
-  line-height: calc(clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem) * 1.75);
+  line-height: 1.75;
   font-size: clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem);
   font-weight: 300;
   margin-bottom: 8px;
@@ -489,7 +489,7 @@ body {
   color: #202020;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 300;
-  line-height: calc(clamp(0.8rem, 0.34vi + 0.9rem, 1.1rem) * 1.5);
+  line-height: 1.75;
 }
 
 p {

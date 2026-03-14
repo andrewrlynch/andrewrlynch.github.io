@@ -77,7 +77,7 @@ body {
 .section-vertical-header-container {
     display: flex; 
     gap: 2rem;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
     padding-top: 8px;
 }
 
@@ -85,7 +85,7 @@ body {
     padding-top: 8px;
     writing-mode: sideways-lr;
     font-weight: 600;
-    letter-spacing: calc($fs-sm * 0.05);
+    letter-spacing: 0.05;
     font-size: $fs-sm;
     color: rgb(78, 76, 72);
     text-align: right;
@@ -96,14 +96,9 @@ body {
     transition: ease 0.2s;
 }
 
-//.section-vertical-header-container:hover > .section-vertical-header {
-//    transform:rotate(90deg);
-//    transform-origin: 100% 0;
-//}
-
 .section-vertical-header-body {
     font-size: $fs-base;
-    line-height: calc($fs-base * 1.5);
+    line-height: 1.5;
     align-items: start;
 }
 
@@ -153,7 +148,7 @@ body {
 }
 
 .post-container {max-width: 100%; width: 720px; margin: 0 auto;}
-.post-container > p {line-height: calc($fs-base * 1.75); font-size: $fs-base; font-weight: 300; margin-bottom:8px;}
+.post-container > p {line-height: 1.75; font-size: $fs-base; font-weight: 300; margin-bottom:8px;}
 .post-header {padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid rgb(172, 172, 172);}
 .post-title {font-size: $fs-lg; font-weight: 700;; margin-bottom: 8px; line-height: $fs-xl;}
 .post-subtitle {font-size: $fs-md; font-weight: 300; color: rgb(38, 35, 32); margin-bottom: 8px;}
@@ -178,7 +173,7 @@ body {
   color: $bodyColor;
   font-family: $bodyFont;
   font-weight: 300;
-  line-height: calc($fs-base * 1.5)
+  line-height: 1.75
 }
 p {font-size: $fs-base; font-weight: 300; margin-bottom:8px;}
 h1,h2,h3,h4,h5,h6 {font-weight: 600; padding: 8px 0px;}
