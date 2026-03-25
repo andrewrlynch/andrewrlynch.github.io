@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import pubs from '../data/pubs.json';
+
+const sortedPubs = [...pubs].sort((a, b) => {
+  const pa = a.issued['date-parts'][0];
+  const pb = b.issued['date-parts'][0];
+  const da = `${pa[0]}-${String(pa[1] ?? 1).padStart(2, '0')}-${String(pa[2] ?? 1).padStart(2, '0')}`;
+  const db = `${pb[0]}-${String(pb[1] ?? 1).padStart(2, '0')}-${String(pb[2] ?? 1).padStart(2, '0')}`;
+  return db.localeCompare(da);
+});
+
+function formatDate(dateParts: (string | number)[]) {
+  const [year, month, day] = dateParts;
+  const d = new Date(Number(year), Number(month ?? 1) - 1, Number(day ?? 1));
+  return d.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+
+<BaseLayout title="Papers">
+  {sortedPubs.map((pub) => {
+    const authors = pub.author;
+    const dateStr = formatDate(pub.issued['date-parts'][0]);
+    return (
+      <a href={pub.URL}>
+        <div class="site-section-item">
+          <strong>{pub.title}</strong><br />
+          <small>
+            {authors.map((author, i) => {
+              const name = `${author.given} ${author.family}`;
+              const isMe = author.family === 'Lynch' && author.given.includes('Andrew');
+              const sep = i === 0 ? '' : i === authors.length - 1 ? ', and ' : ', ';
+              return (
+                <Fragment>
+                  {sep}
+                  {isMe ? <u>{name}</u> : name}
+                </Fragment>
+              );
+            })}.{' '}
+            <strong>{pub['container-title']}</strong>.{' '}
+            {dateStr}.
+          </small>
+        </div>
+      </a>
+    );
+  })}
+</BaseLayout>

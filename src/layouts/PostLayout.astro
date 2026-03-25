@@ -1,0 +1,25 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+}
+
+const { title, date } = Astro.props;
+const formattedDate = date.toLocaleDateString('en-US', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={title}>
+  <div class="post-header">
+    <p class="post-title">{title}</p>
+    <p class="post-date">Posted: {formattedDate}</p>
+  </div>
+  <div class="post-container">
+    <slot />
+  </div>
+</BaseLayout>

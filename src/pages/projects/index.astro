@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout title="Projects">
+  <div class="grid-width-full site-section-container">
+    {projects.map((project) => (
+      <a href={`/projects/${project.slug}`} class="site-section-item grid-width-half spacer">
+        <h2>{project.data.title}</h2>
+        {project.data.description}
+      </a>
+    ))}
+  </div>
+</BaseLayout>

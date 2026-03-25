@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => data.published !== false))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Posts">
+  <div>
+    {posts.map((post) => (
+      <div class="site-section-item">
+        <a href={`/posts/${post.slug}`}>
+          <strong>{post.data.title}</strong><br />
+          <small>Posted: {post.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}</small>
+        </a>
+      </div>
+    ))}
+  </div>
+</BaseLayout>
