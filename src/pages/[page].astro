@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import PostMeta from '../components/PostMeta.astro';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const pages = await getCollection('pages', ({ data }) => data.published !== false);
+  return pages.map((page) => ({
+    params: { page: page.slug },
+    props: { page },
+  }));
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { Content, headings } = await page.render();
+
+// ── Layout resolution (mirrors PostLayout.astro logic) ──────────
+const pageLayout = page.data.pageLayout;
+
+function widthToCSS(w?: string): string {
+  const map: Record<string, string> = {
+    'full':          '100%',
+    'three-quarter': '75%',
+    'two-third':     '66.67%',
+    'half':          '50%',
+    'one-third':     '33.33%',
+    'quarter':       '25%',
+    'none':          '0%',
+  };
+  return w ? (map[w] ?? '25%') : '25%';
+}
+
+const leftConfig   = pageLayout?.left;
+const centerConfig = pageLayout?.center;
+const rightConfig  = pageLayout?.right;
+
+// If pageLayout is defined but a panel isn't mentioned, default it to 'none' (hidden)
+// If pageLayout is undefined entirely, default to showing no panels (simple page)
+const leftWidthName   = leftConfig?.width   ?? (pageLayout ? 'none' : 'none');
+const centerWidthName = centerConfig?.width ?? 'half';
+const rightWidthName  = rightConfig?.width  ?? (pageLayout ? 'none' : 'none');
+
+const showLeftPanel  = leftWidthName  !== 'none';
+const showRightPanel = rightWidthName !== 'none';
+
+const leftComponents  = leftConfig?.components  ?? {};
+const rightComponents = rightConfig?.components ?? {};
+
+const tocInLeft   = !!leftComponents.toc;
+const metaInRight = !!rightComponents.metadata;
+
+const tocLayout  = (typeof leftComponents.toc  === 'object' ? leftComponents.toc?.layout  : undefined) ?? 'vertical';
+const metaLayout = (typeof rightComponents.metadata === 'object' ? rightComponents.metadata?.layout : undefined) ?? 'vertical';
+
+const suppressHeaderMeta = metaInRight;
+
+const tags = page.data.tags
+  ? page.data.tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+  : [];
+---
+
+<PageLayout
+  title={page.data.title}
+  subtitle={page.data.subtitle}
+  date={page.data.date?.toISOString()}
+  updated={page.data.updated?.toISOString()}
+  tags={tags}
+  headerImage={page.data.headerImage}
+  showLeftPanel={showLeftPanel}
+  showRightPanel={showRightPanel}
+  leftWidth={widthToCSS(leftWidthName)}
+  centerWidth={widthToCSS(centerWidthName)}
+  rightWidth={widthToCSS(rightWidthName)}
+  suppressHeaderMeta={suppressHeaderMeta}
+>
+  {showLeftPanel && tocInLeft && (
+    <TableOfContents headings={headings} slot="left" />
+  )}
+  {showRightPanel && metaInRight && (
+    <PostMeta
+      date={page.data.date?.toISOString()}
+      updated={page.data.updated?.toISOString()}
+      tags={tags}
+      layout={metaLayout}
+      slot="right"
+    />
+  )}
+  <Content />
+</PageLayout>

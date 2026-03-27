@@ -1,0 +1,143 @@
+---
+/**
+ * Ticker — fixed bottom marquee of news/update items
+ *
+ * Props:
+ *   items: string[] — optional array of ticker strings.
+ *     Falls back to src/data/ticker.ts if not provided.
+ *
+ * The CSS custom property --ticker-height is set on :root in main.scss
+ * and equals the height of this element so other elements can pad against it.
+ *
+ * Hidden on mobile (≤768px) via display: none.
+ */
+
+import { tickerItems } from '../data/ticker';
+
+interface Props {
+  items?: string[];
+}
+
+const { items = tickerItems } = Astro.props;
+// Duplicate items to ensure smooth loop
+const displayItems = [...items, ...items];
+---
+
+<!-- Ticker is disabled. Remove the `hidden` attribute (and the early-exit block in the script below) to re-enable. -->
+<div class="ticker" id="ticker" role="marquee" aria-label="Recent updates" hidden>
+  <div class="ticker-track">
+    {displayItems.map((item) => (
+      <span class="ticker-item">{item}<span class="ticker-sep" aria-hidden="true"> · </span></span>
+    ))}
+  </div>
+  <button class="ticker-close" id="ticker-close" aria-label="Hide ticker" title="Hide">×</button>
+</div>
+
+<style>
+  .ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--ticker-height, 2rem);
+    background: #ffffff;
+    color: #202020;
+    border-top: 1px solid var(--color-border, rgb(172, 172, 172));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 90;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.75rem;
+    /* Needed so .ticker-close can be position:absolute */
+    /* Note: position:fixed already provides a containing block in modern browsers */
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-scroll 50s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker-item {
+    flex-shrink: 0;
+    padding: 0 8px;
+    letter-spacing: 0.03em;
+  }
+
+  .ticker-sep {
+    color: rgb(172, 172, 172);
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .ticker-close {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    color: rgb(172, 172, 172);
+    padding: 0 4px;
+    transition: color 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .ticker-close:hover {
+    color: #202020;
+  }
+
+  @keyframes ticker-hide {
+    from { height: var(--ticker-height, 2rem); opacity: 1; }
+    to   { height: 0; opacity: 0; }
+  }
+
+  .ticker--hidden {
+    animation: ticker-hide 0.25s ease forwards;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .ticker {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const ticker = document.getElementById('ticker') as HTMLElement | null;
+  // Disabled: clear the reserved height and stop here. Remove this block to re-enable.
+  if (!ticker || (ticker as HTMLElement).hidden) {
+    document.documentElement.style.setProperty('--ticker-height', '0px');
+  } else {
+  const closeBtn = document.getElementById('ticker-close');
+
+  // Respect session preference
+  if (sessionStorage.getItem('ticker-hidden') === '1' && ticker) {
+    ticker.style.display = 'none';
+    document.documentElement.style.setProperty('--ticker-height', '0px');
+  }
+
+  closeBtn?.addEventListener('click', () => {
+    if (!ticker) return;
+    ticker.classList.add('ticker--hidden');
+    ticker.addEventListener('animationend', () => {
+      ticker.style.display = 'none';
+      document.documentElement.style.setProperty('--ticker-height', '0px');
+    }, { once: true });
+    sessionStorage.setItem('ticker-hidden', '1');
+  });
+  } // end enabled block
+</script>

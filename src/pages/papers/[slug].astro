@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import PaperLayout from '../../layouts/PaperLayout.astro';
+
+export async function getStaticPaths() {
+  const papers = await getCollection('papers', ({ data }) => data.published !== false);
+  return papers.map((paper) => ({
+    params: { slug: paper.slug },
+    props: { paper },
+  }));
+}
+
+const { paper } = Astro.props;
+const { Content } = await paper.render();
+const tags = paper.data.tags ? paper.data.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
+---
+
+<PaperLayout
+  title={paper.data.title}
+  authors={paper.data.authors}
+  journal={paper.data.journal}
+  year={paper.data.year}
+  date={paper.data.date?.toISOString()}
+  abstract={paper.data.abstract}
+  doi={paper.data.doi}
+  pdf={paper.data.pdf}
+  fulltext={paper.data.fulltext}
+  code={paper.data.code}
+  data={paper.data.data}
+  thumbnail={paper.data.thumbnail}
+  tags={tags}
+>
+  <Content />
+</PaperLayout>

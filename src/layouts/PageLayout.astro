@@ -1,0 +1,547 @@
+---
+/**
+ * PageLayout — three-column page/article layout
+ *
+ * Slots:
+ *   (default) — main body content (50% column on desktop)
+ *   left      — left panel content (25% column, e.g. table of contents)
+ *   right     — right panel content (25% column, e.g. metadata)
+ *
+ * Usage example:
+ *   <PageLayout title="My Post" date="2026-03-01" tags={["genomics"]}>
+ *     <nav slot="left">...TOC...</nav>
+ *     <p>Body content here</p>
+ *     <aside slot="right">...Metadata...</aside>
+ *   </PageLayout>
+ *
+ * Full-bleed images in body:
+ *   Add class="full-bleed" or data-bleed to any <img> inside the body slot
+ *   to have it extend beyond the 50% column.
+ *   CSS custom property --bleed (default 25vw) controls the bleed amount.
+ */
+
+import '../styles/main.scss';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+import PostMeta from '../components/PostMeta.astro';
+
+interface Version {
+  slug: string;
+  version: number;
+  url: string;
+  date?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  date?: string;                // ISO date string
+  updated?: string;             // ISO date string for last updated
+  tags?: string[];
+  versions?: Version[];
+  currentVersion?: number;
+  headerImage?: string;         // optional URL for header image
+  showLeftPanel?: boolean;      // default true
+  showRightPanel?: boolean;     // default true
+  leftWidth?: string;           // CSS value e.g. "25%", defaults to "25%"
+  centerWidth?: string;         // CSS value e.g. "50%", defaults to "50%"
+  rightWidth?: string;          // CSS value e.g. "25%", defaults to "25%"
+  narrowBody?: boolean;         // keep body at 50% width even when panels hidden (legacy compat)
+  suppressHeaderMeta?: boolean; // hide meta row in header (when shown in a side panel)
+}
+
+const {
+  title,
+  subtitle,
+  date,
+  updated,
+  tags = [],
+  versions = [],
+  currentVersion,
+  headerImage,
+  showLeftPanel = true,
+  showRightPanel = true,
+  leftWidth,
+  centerWidth,
+  rightWidth,
+  narrowBody = false,
+  suppressHeaderMeta = false,
+} = Astro.props;
+
+// Build grid-template-columns based on panel visibility and explicit widths.
+const lw = showLeftPanel ? (leftWidth ?? '25%') : '0';
+const cw = centerWidth ?? '50%';
+const rw = showRightPanel ? (rightWidth ?? '25%') : '0';
+
+let gridCols: string;
+let bodyGridCol: string;
+
+if (narrowBody) {
+  // Legacy: preserve body width centered regardless of panel state
+  gridCols = `${showLeftPanel ? (leftWidth ?? '25%') : '1fr'} ${cw} ${showRightPanel ? (rightWidth ?? '25%') : '1fr'}`;
+  bodyGridCol = '2';
+} else if (!showLeftPanel && !showRightPanel) {
+  // Center the body column
+  const sideWidth = `calc((100% - ${cw}) / 2)`;
+  gridCols = `${sideWidth} ${cw} ${sideWidth}`;
+  bodyGridCol = '2';
+} else if (!showLeftPanel) {
+  gridCols = `1fr ${cw} ${rw}`;
+  bodyGridCol = '2';
+} else if (!showRightPanel) {
+  gridCols = `${lw} ${cw} 1fr`;
+  bodyGridCol = '2';
+} else {
+  gridCols = `${lw} ${cw} ${rw}`;
+  bodyGridCol = '2';
+}
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Andrew Lynch → {title}</title>
+</head>
+<body class="site-body">
+
+  <SiteHeader />
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE HEADER — full viewport width
+       ═══════════════════════════════════════════════════════ -->
+  <header id="page-header" class="page-header">
+    {headerImage && (
+      <div class="page-header-image">
+        <img src={headerImage} alt="" role="presentation" />
+      </div>
+    )}
+    <div class="page-header-inner">
+      <h1 class="page-title">{title}</h1>
+      {subtitle && <p class="page-subtitle">{subtitle}</p>}
+      {!suppressHeaderMeta && (
+        <div class="page-header-meta">
+          <PostMeta date={date} updated={updated} tags={tags} versions={versions} currentVersion={currentVersion} />
+        </div>
+      )}
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       THREE-COLUMN GRID
+       Left (25%) | Body (50%) | Right (25%)
+       Collapses to single column on mobile.
+       Panels hidden on mobile (non-critical UI, e.g. TOC).
+       ═══════════════════════════════════════════════════════ -->
+  <div
+    class="page-grid"
+    style={`--page-grid-cols: ${gridCols};`}
+    data-show-left={showLeftPanel ? 'true' : 'false'}
+    data-show-right={showRightPanel ? 'true' : 'false'}
+  >
+
+    <!-- Left panel -->
+    <aside
+      id="left-panel"
+      class:list={['page-panel page-panel--left', { 'page-panel--hidden': !showLeftPanel }]}
+      aria-label="Left panel"
+    >
+      <!-- Lines strip: always visible, click to toggle TOC content -->
+      <div
+        class="panel-lines"
+        id="panel-lines-strip"
+        role="button"
+        tabindex="0"
+        aria-label="Toggle table of contents"
+      ></div>
+      <!-- TOC content: toggled by lines strip click -->
+      <div class="panel-content">
+        <slot name="left">
+          <!-- Placeholder: no left slot content provided -->
+          <div class="panel-placeholder">
+            <span class="panel-placeholder-text">← Left panel (TOC, etc.)</span>
+          </div>
+        </slot>
+      </div>
+    </aside>
+
+    <!-- Body / main content -->
+    <article id="body" class="page-body" style={`grid-column: ${bodyGridCol};`}>
+      <!--
+        Full-bleed images: add class="full-bleed" or data-bleed attribute.
+        CSS uses --bleed (default 25vw) for the negative margin trick.
+        Example: <img src="..." class="full-bleed" alt="..." />
+      -->
+      <slot />
+    </article>
+
+    <!-- Right panel -->
+    <aside
+      id="right-panel"
+      class:list={['page-panel page-panel--right', { 'page-panel--hidden': !showRightPanel }]}
+      aria-label="Right panel"
+    >
+      <slot name="right">
+        <!-- Placeholder: no right slot content provided -->
+        <div class="panel-placeholder">
+          <span class="panel-placeholder-text">Right panel (metadata, etc.) →</span>
+        </div>
+      </slot>
+    </aside>
+
+  </div><!-- /.page-grid -->
+
+  <Footer />
+
+  <script>
+    // ── Left panel: lines strip toggle + scrollspy ──────────
+    const leftPanel = document.getElementById('left-panel');
+    const linesStrip = document.getElementById('panel-lines-strip');
+
+    // Build one line per TOC link
+    const tocLinkEls = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+    tocLinkEls.forEach((link) => {
+      if (!linesStrip) return;
+      const line = document.createElement('span');
+      line.className = 'panel-line';
+      line.title = link.textContent?.trim() ?? '';
+      linesStrip.appendChild(line);
+    });
+
+    // Restore minimized state from session
+    if (sessionStorage.getItem('left-panel-minimized') === '1') {
+      leftPanel?.classList.add('is-minimized');
+    }
+
+    // Toggle TOC content on lines strip click
+    function togglePanel() {
+      const minimized = leftPanel?.classList.toggle('is-minimized') ?? false;
+      sessionStorage.setItem('left-panel-minimized', minimized ? '1' : '0');
+    }
+
+    linesStrip?.addEventListener('click', togglePanel);
+    linesStrip?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePanel(); }
+    });
+
+    // Sync active line with scrollspy
+    function syncLines() {
+      const activeIdx = tocLinkEls.findIndex(l => l.classList.contains('toc-active'));
+      linesStrip?.querySelectorAll('.panel-line').forEach((line, i) => {
+        (line as HTMLElement).dataset.active = String(i === activeIdx);
+      });
+    }
+
+    // ── Scrollspy — highlight TOC links as sections enter viewport ──
+    const headings = document.querySelectorAll('#body h2[id], #body h3[id]');
+    const tocLinks = document.querySelectorAll('[data-toc-link]');
+
+    if (headings.length && tocLinks.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              tocLinks.forEach((link) => {
+                link.classList.toggle('toc-active', link.getAttribute('href') === `#${id}`);
+              });
+              syncLines();
+            }
+          }
+        },
+        { rootMargin: '0px 0px -70% 0px', threshold: 0 }
+      );
+      headings.forEach((h) => observer.observe(h));
+    }
+  </script>
+
+</body>
+</html>
+
+<style>
+  /* Prevent horizontal overflow from full-bleed images */
+  :global(html) {
+    overflow-x: clip;
+  }
+
+
+
+  /* ── Page Header ──────────────────────────────────── */
+  .page-header {
+    width: 100%;
+  }
+
+  .page-header-image {
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+  }
+
+  .page-header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  .page-header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 32px var(--container-padding) 24px;
+  }
+
+  .page-title {
+    font-size: clamp(1.95rem, calc(1.56vi + 1.56rem), 2.81rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #202020;
+    margin: 0 0 8px;
+    padding: 0;
+  }
+
+  .page-subtitle {
+    font-size: clamp(1.25rem, calc(0.61vi + 1.1rem), 1.58rem);
+    font-weight: 300;
+    color: rgb(78, 76, 72);
+    margin: 0 0 12px;
+  }
+
+  .page-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Three-column Grid ────────────────────────────── */
+  .page-grid {
+    display: grid;
+    grid-template-columns: var(--page-grid-cols, 25% 50% 25%);
+    gap: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    min-height: 60vh;
+    overflow-x: clip; /* contain full-bleed images at grid boundary */
+  }
+
+  @media (max-width: 768px) {
+    .page-grid {
+      grid-template-columns: 1fr;
+      padding: 0 var(--container-padding);
+    }
+  }
+
+  /* ── Panels ───────────────────────────────────────── */
+  .page-panel {
+    padding: 24px 16px;
+    min-width: 0; /* prevent CSS Grid min-width overflow */
+  }
+
+  .page-panel--left {
+    padding-left: 0;
+    padding-right: 8px;
+    position: sticky;
+    top: 56px; /* header height */
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    align-self: start; /* required: sticky only works when parent allows it */
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .page-panel--right {
+    padding-right: 0;
+  }
+
+  /* Hidden panel (via prop) */
+  .page-panel--hidden {
+    display: none !important;
+  }
+
+  /* Panels hidden on mobile */
+  @media (max-width: 768px) {
+    .page-panel {
+      display: none;
+    }
+  }
+
+  /* ── Lines strip — always-visible TOC progress indicator & toggle ── */
+  .panel-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 24px 10px 24px 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    width: 20px;
+    align-items: flex-start;
+    user-select: none;
+  }
+
+  .panel-lines:focus-visible {
+    outline: 2px solid #f87f28;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /*
+   * .panel-line elements are created by JS (document.createElement),
+   * so they don't receive Astro's scoping attribute.
+   * Using :global() ensures the CSS applies to them.
+   */
+  :global(.panel-line) {
+    height: 2px;
+    width: 14px;
+    background: rgb(200, 197, 193);
+    border-radius: 1px;
+    transition: background 0.15s ease, width 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .panel-lines:hover :global(.panel-line:not([data-active="true"])) {
+    background: rgb(140, 136, 132);
+  }
+
+  :global(.panel-line[data-active="true"]) {
+    background: #f87f28;
+    width: 18px;
+  }
+
+  /* ── TOC content area — flex sibling of lines strip ── */
+  .panel-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Minimized: hide content, keep lines strip visible */
+  .page-panel--left.is-minimized .panel-content {
+    display: none;
+  }
+
+  /* Panel placeholders */
+  .panel-placeholder {
+    padding: 16px 0;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .panel-placeholder-text {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: rgb(172, 172, 172);
+    letter-spacing: 0.06em;
+    font-style: italic;
+  }
+
+  /* ── Body / Article ───────────────────────────────── */
+  .page-body {
+    padding: 24px 0;
+    min-width: 0; /* prevent CSS Grid min-width overflow from wide content */
+
+    /*
+     * Full-bleed images:
+     * --bleed defaults to 25vw (roughly one side panel width).
+     * Images with .full-bleed or [data-bleed] extend by this amount
+     * on each side using a negative margin trick.
+     */
+    --bleed: 25vw;
+  }
+
+  .page-body :global(img.full-bleed),
+  .page-body :global([data-bleed]) {
+    width: calc(100% + (var(--bleed) * 2));
+    margin-left: calc(var(--bleed) * -1);
+    max-width: none;
+    display: block;
+  }
+
+  .page-body :global(p) {
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-weight: 300;
+    font-size: clamp(0.8rem, calc(0.34vi + 0.9rem), 1.1rem);
+  }
+
+  .page-body :global(h2),
+  .page-body :global(h3),
+  .page-body :global(h4) {
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    padding: 0;
+  }
+
+  .page-body :global(h2) { font-size: clamp(1.25rem, calc(0.61vi + 1.1rem), 1.58rem); }
+  .page-body :global(h3) { font-size: clamp(0.8rem, calc(0.34vi + 0.9rem), 1.1rem); }
+
+  .page-body :global(img) {
+    max-width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin: 16px auto;
+  }
+
+  /* Code blocks: unified background, not per-line/per-token */
+  .page-body :global(pre),
+  .page-body :global(.astro-code) {
+    overflow-x: auto;
+    max-width: 100%;
+    background: rgb(250, 249, 247) !important;
+    border: 1px solid rgb(215, 211, 204);
+    border-radius: 4px;
+    padding: 12px 16px;
+  }
+
+  /* Inside pre: code element should be transparent (pre has the background) */
+  .page-body :global(pre code),
+  .page-body :global(.astro-code code) {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* Inline code (not inside pre) */
+  .page-body :global(:not(pre) > code) {
+    background: rgb(250, 249, 247);
+    border: 1px solid rgb(215, 211, 204);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.875em;
+  }
+
+  .page-body :global(table) {
+    overflow-x: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .page-body {
+      padding: 16px 0;
+      --bleed: 0px;
+    }
+  }
+
+  /* ── Sticky footer ────────────────────────────────── */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  .page-grid {
+    flex: 1;
+  }
+
+  /* Footer styles live in Footer.astro */
+
+  /* Scrollspy: active TOC link */
+  :global([data-toc-link].toc-active) {
+    color: #f87f28 !important;
+    font-weight: 500;
+  }
+</style>

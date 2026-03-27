@@ -1,0 +1,438 @@
+---
+interface Version {
+  slug: string;
+  version: number;
+  url: string;
+  date?: string; // ISO date string
+}
+
+interface Props {
+  versions: Version[];     // sorted descending (newest first)
+  currentVersion?: number;
+  layout?: 'vertical' | 'horizontal'; // default: vertical
+}
+
+const { versions, currentVersion, layout = 'vertical' } = Astro.props;
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+// Show diff button only for versions that have a predecessor (version > min version)
+const minVersion = versions.length > 0 ? Math.min(...versions.map(v => v.version)) : 0;
+---
+
+<div class="version-history" data-current-version={currentVersion} data-layout={layout}>
+  <div class="version-list">
+    {versions.map((v) => (
+      <div class="version-item" data-version={v.version} data-url={v.url}>
+        <div class="version-row">
+          {v.version === currentVersion ? (
+            <span class="version-label version-label--current">
+              version {v.version}
+            </span>
+          ) : (
+            <button class="version-label version-label--link" data-version-btn={v.version}>
+              version {v.version}
+            </button>
+          )}
+          {v.date && (
+            <time class="version-date" datetime={v.date}>{formatDate(v.date)}</time>
+          )}
+        </div>
+        {v.version > minVersion && (
+          <button class="diff-toggle" data-diff-btn={v.version} aria-expanded="false">
+            show diff
+          </button>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // ── Utility: escape HTML special characters ──────────────────────────────
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // ── Tokenizer: split text into word/whitespace tokens ────────────────────
+  function tokenize(text: string): string[] {
+    return text.match(/\S+|\s+/g) ?? [];
+  }
+
+  // ── Full LCS diff (word-level) ───────────────────────────────────────────
+  type DiffOp = { type: 'equal' | 'insert' | 'delete'; val: string };
+
+  function computeDiff(oldTokens: string[], newTokens: string[]): DiffOp[] {
+    const m = oldTokens.length, n = newTokens.length;
+
+    // Guard: if arrays are too large, fall back to simple show-all approach
+    if (m * n > 500_000) {
+      return [
+        ...oldTokens.map(t => ({ type: 'delete' as const, val: t })),
+        ...newTokens.map(t => ({ type: 'insert' as const, val: t })),
+      ];
+    }
+
+    // Build DP table
+    const dp: Int32Array[] = Array.from({ length: m + 1 }, () => new Int32Array(n + 1));
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        if (oldTokens[i - 1] === newTokens[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+        else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+
+    // Backtrack
+    const result: DiffOp[] = [];
+    let i = m, j = n;
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0 && oldTokens[i - 1] === newTokens[j - 1]) {
+        result.unshift({ type: 'equal', val: oldTokens[i - 1] });
+        i--; j--;
+      } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
+        result.unshift({ type: 'insert', val: newTokens[j - 1] });
+        j--;
+      } else {
+        result.unshift({ type: 'delete', val: oldTokens[i - 1] });
+        i--;
+      }
+    }
+    return result;
+  }
+
+  // ── Render diff ops to HTML string ───────────────────────────────────────
+  function renderDiff(ops: DiffOp[]): string {
+    return ops.map(op => {
+      if (op.type === 'equal') return escapeHtml(op.val);
+      if (op.type === 'insert') return `<ins class="diff-ins">${escapeHtml(op.val)}</ins>`;
+      if (op.type === 'delete') return `<del class="diff-del">${escapeHtml(op.val)}</del>`;
+      return '';
+    }).join('');
+  }
+
+  // ── Fetch a version page and extract #body innerHTML ─────────────────────
+  async function fetchBodyHtml(url: string): Promise<string> {
+    const res = await fetch(url);
+    const text = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const bodyEl = doc.getElementById('body');
+    return bodyEl ? bodyEl.innerHTML : '';
+  }
+
+  async function fetchBodyText(url: string): Promise<string> {
+    const res = await fetch(url);
+    const text = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const bodyEl = doc.getElementById('body');
+    return bodyEl ? bodyEl.innerText : '';
+  }
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  // Track the currently-rendered body snapshot (HTML) so we can restore it
+  let currentBodySnapshot: string | null = null;
+  let activeDiffVersion: number | null = null;
+
+  function getBodyEl(): HTMLElement | null {
+    return document.getElementById('body');
+  }
+
+  // ── Version History container ─────────────────────────────────────────────
+  const container = document.querySelector<HTMLElement>('.version-history');
+  if (!container) throw new Error('VersionHistory: .version-history not found');
+
+  let currentVersionNum = parseInt(container.dataset.currentVersion ?? '0', 10);
+
+  // ── Helper: update UI to reflect a version switch ────────────────────────
+  function updateVersionUI(newVersion: number, newUrl: string) {
+    // Find old current item and make it a clickable button
+    const oldCurrentLabel = container.querySelector<HTMLElement>('.version-label--current');
+    if (oldCurrentLabel) {
+      const parentItem = oldCurrentLabel.closest<HTMLElement>('.version-item');
+      const oldVersionNum = parseInt(parentItem?.dataset.version ?? '0', 10);
+      const oldUrl = parentItem?.dataset.url ?? '';
+      const btn = document.createElement('button');
+      btn.className = 'version-label version-label--link';
+      btn.dataset.versionBtn = String(oldVersionNum);
+      btn.textContent = `version ${oldVersionNum}`;
+      btn.addEventListener('click', handleVersionClick);
+      oldCurrentLabel.replaceWith(btn);
+    }
+
+    // Find new current item and make it a bold span
+    const newItem = container.querySelector<HTMLElement>(`.version-item[data-version="${newVersion}"]`);
+    if (newItem) {
+      const btn = newItem.querySelector<HTMLElement>('[data-version-btn]');
+      if (btn) {
+        const span = document.createElement('span');
+        span.className = 'version-label version-label--current';
+        span.textContent = `version ${newVersion}`;
+        btn.replaceWith(span);
+      }
+    }
+
+    currentVersionNum = newVersion;
+    container.dataset.currentVersion = String(newVersion);
+  }
+
+  // ── Version switch click handler ──────────────────────────────────────────
+  async function handleVersionClick(e: Event) {
+    const btn = (e.currentTarget as HTMLElement);
+    const targetVersion = parseInt(btn.dataset.versionBtn ?? '0', 10);
+    const parentItem = btn.closest<HTMLElement>('.version-item');
+    const targetUrl = parentItem?.dataset.url ?? '';
+
+    if (!targetUrl || targetVersion === currentVersionNum) return;
+
+    // Show loading state
+    btn.dataset.loading = 'true';
+    btn.setAttribute('disabled', 'true');
+
+    try {
+      // Close any open diff first
+      if (activeDiffVersion !== null) {
+        const diffBtn = container.querySelector<HTMLElement>(`[data-diff-btn="${activeDiffVersion}"]`);
+        if (diffBtn) {
+          diffBtn.setAttribute('aria-expanded', 'false');
+          diffBtn.textContent = 'show diff';
+        }
+        activeDiffVersion = null;
+      }
+
+      const newHtml = await fetchBodyHtml(targetUrl);
+      const bodyEl = getBodyEl();
+      if (bodyEl) {
+        bodyEl.innerHTML = newHtml;
+        currentBodySnapshot = newHtml;
+      }
+
+      updateVersionUI(targetVersion, targetUrl);
+      history.pushState({ version: targetVersion }, '', targetUrl);
+    } catch (err) {
+      console.error('VersionHistory: failed to load version', targetVersion, err);
+    } finally {
+      btn.removeAttribute('data-loading');
+      btn.removeAttribute('disabled');
+    }
+  }
+
+  // ── Diff toggle click handler ─────────────────────────────────────────────
+  async function handleDiffClick(e: Event) {
+    const btn = e.currentTarget as HTMLElement;
+    const diffVersion = parseInt(btn.dataset.diffBtn ?? '0', 10);
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+    const bodyEl = getBodyEl();
+    if (!bodyEl) return;
+
+    if (isExpanded) {
+      // Collapse: restore snapshot
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'show diff';
+      if (currentBodySnapshot !== null) {
+        bodyEl.innerHTML = currentBodySnapshot;
+      }
+      activeDiffVersion = null;
+      return;
+    }
+
+    // Close any other open diff
+    if (activeDiffVersion !== null && activeDiffVersion !== diffVersion) {
+      const otherBtn = container.querySelector<HTMLElement>(`[data-diff-btn="${activeDiffVersion}"]`);
+      if (otherBtn) {
+        otherBtn.setAttribute('aria-expanded', 'false');
+        otherBtn.textContent = 'show diff';
+      }
+      activeDiffVersion = null;
+      if (currentBodySnapshot !== null) bodyEl.innerHTML = currentBodySnapshot;
+    }
+
+    // Expand: fetch predecessor and show diff
+    btn.setAttribute('aria-expanded', 'true');
+    btn.textContent = 'loading…';
+
+    try {
+      // Save current snapshot if not yet saved
+      if (currentBodySnapshot === null) {
+        currentBodySnapshot = bodyEl.innerHTML;
+      }
+
+      // Find predecessor version item (version = diffVersion - 1)
+      const predecessorVersion = diffVersion - 1;
+      const predecessorItem = container.querySelector<HTMLElement>(`.version-item[data-version="${predecessorVersion}"]`);
+      const predecessorUrl = predecessorItem?.dataset.url ?? '';
+
+      if (!predecessorUrl) {
+        throw new Error(`No predecessor URL for version ${predecessorVersion}`);
+      }
+
+      // Get current body text and predecessor body text
+      const currentText = bodyEl.innerText;
+      const predecessorText = await fetchBodyText(predecessorUrl);
+
+      // Tokenize both
+      const oldTokens = tokenize(predecessorText);
+      const newTokens = tokenize(currentText);
+
+      // Compute diff
+      const ops = computeDiff(oldTokens, newTokens);
+      const diffHtml = renderDiff(ops);
+
+      // Render diff into body as a pre-wrap div
+      bodyEl.innerHTML = `<div class="diff-view" style="white-space:pre-wrap;font-family:inherit;line-height:1.75;">${diffHtml}</div>`;
+      activeDiffVersion = diffVersion;
+      btn.textContent = 'hide diff';
+    } catch (err) {
+      console.error('VersionHistory: diff failed', err);
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'show diff';
+    }
+  }
+
+  // ── Attach event listeners ────────────────────────────────────────────────
+  container.querySelectorAll<HTMLElement>('[data-version-btn]').forEach(btn => {
+    btn.addEventListener('click', handleVersionClick);
+  });
+
+  container.querySelectorAll<HTMLElement>('[data-diff-btn]').forEach(btn => {
+    btn.addEventListener('click', handleDiffClick);
+  });
+
+  // ── Handle browser back/forward navigation ────────────────────────────────
+  window.addEventListener('popstate', async (e) => {
+    if (e.state && typeof e.state.version === 'number') {
+      const targetVersion = e.state.version as number;
+      const targetItem = container.querySelector<HTMLElement>(`.version-item[data-version="${targetVersion}"]`);
+      const targetUrl = targetItem?.dataset.url ?? '';
+      if (targetUrl) {
+        const newHtml = await fetchBodyHtml(targetUrl);
+        const bodyEl = getBodyEl();
+        if (bodyEl) {
+          bodyEl.innerHTML = newHtml;
+          currentBodySnapshot = newHtml;
+        }
+        updateVersionUI(targetVersion, targetUrl);
+      }
+    }
+  });
+
+  // ── Initialize: take initial snapshot ────────────────────────────────────
+  const initialBody = getBodyEl();
+  if (initialBody) {
+    currentBodySnapshot = initialBody.innerHTML;
+  }
+</script>
+
+<style>
+  .version-history {
+    padding: 16px 0;
+  }
+
+  .version-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Horizontal layout */
+  .version-history[data-layout="horizontal"] .version-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .version-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .version-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .version-label {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: rgb(102, 97, 93);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
+  }
+
+  .version-label--current {
+    font-weight: 700;
+    color: #202020;
+  }
+
+  .version-label--link {
+    cursor: pointer;
+    color: rgb(102, 97, 93);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .version-label--link:hover {
+    color: #f87f28;
+  }
+
+  /* Active (loading) state */
+  .version-label--link[data-loading="true"] {
+    color: rgb(152, 147, 143);
+    cursor: wait;
+  }
+
+  .version-date {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: rgb(152, 147, 143);
+    letter-spacing: 0.02em;
+  }
+
+  .diff-toggle {
+    background: none;
+    border: none;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: rgb(152, 147, 143);
+    cursor: pointer;
+    padding: 0;
+    letter-spacing: 0.04em;
+    transition: color 0.15s ease;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 2px;
+  }
+
+  .diff-toggle:hover {
+    color: #f87f28;
+  }
+
+  .diff-toggle[aria-expanded="true"] {
+    color: #f87f28;
+  }
+
+  :global(.diff-ins) {
+    background: rgba(0, 200, 100, 0.2);
+    color: #1a7a40;
+    text-decoration: none;
+  }
+
+  :global(.diff-del) {
+    background: rgba(220, 50, 50, 0.1);
+    color: #c0392b;
+    text-decoration: line-through;
+  }
+</style>

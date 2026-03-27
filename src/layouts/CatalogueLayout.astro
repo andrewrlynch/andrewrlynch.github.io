@@ -1,0 +1,465 @@
+---
+/**
+ * CatalogueLayout — index/listing layout
+ *
+ * Renders a full-width page with a masonry card grid.
+ * Slots:
+ *   (default) — catalogue cards (.catalogue-card elements)
+ *
+ * Props:
+ *   title: string
+ *   subtitle?: string
+ */
+
+import '../styles/main.scss';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  maxCols?: number; // default 3
+  minCols?: number; // default 1
+  defaultView?: 'tiles' | 'list' | 'feed'; // default 'tiles'
+  displayToggle?: boolean; // default true
+  showToggle?: boolean; // alias for displayToggle (backward compat)
+  tagFilter?: boolean; // default false — if true, show tag filter UI (placeholder)
+  thumbnails?: boolean; // default true — if false, hide card thumbnail images
+}
+
+const {
+  title,
+  subtitle,
+  maxCols = 3,
+  minCols = 1,
+  defaultView = 'tiles',
+  displayToggle,
+  showToggle,
+  tagFilter = false,
+  thumbnails = true,
+} = Astro.props;
+
+// Resolve toggle visibility: displayToggle takes precedence; showToggle is the alias fallback
+const showViewToggle = displayToggle !== undefined ? displayToggle : (showToggle !== undefined ? showToggle : true);
+
+// Compute CSS column counts, clamped to [minCols, maxCols]
+const colsWide   = Math.min(maxCols, 3);
+const colsMid    = Math.max(minCols, Math.min(maxCols, 2));
+const colsMobile = minCols;
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Andrew Lynch → {title}</title>
+</head>
+<body class="site-body">
+
+  <SiteHeader />
+
+  <header class="catalogue-header">
+    <div class="catalogue-header-inner">
+      <div class="catalogue-header-row">
+        <div class="catalogue-title-block">
+          <h1 class="catalogue-title">{title}</h1>
+          {subtitle && <p class="catalogue-subtitle">{subtitle}</p>}
+        </div>
+        {/* tagFilter: tag filter UI placeholder — implement filter buttons here when tagFilter={true} */}
+        {tagFilter && null /* TODO: render tag filter buttons */}
+        {showViewToggle && (
+          <div class="catalogue-view-toggles" role="group" aria-label="View mode">
+            <button class="view-toggle-btn" data-view="tiles" title="Tiles" aria-label="Tiles view">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="0" y="0" width="6" height="6" rx="1" fill="currentColor"/>
+                <rect x="8" y="0" width="6" height="6" rx="1" fill="currentColor"/>
+                <rect x="0" y="8" width="6" height="6" rx="1" fill="currentColor"/>
+                <rect x="8" y="8" width="6" height="6" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="view-toggle-btn" data-view="list" title="List" aria-label="List view">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="0" y="1" width="14" height="2" rx="1" fill="currentColor"/>
+                <rect x="0" y="6" width="14" height="2" rx="1" fill="currentColor"/>
+                <rect x="0" y="11" width="14" height="2" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="view-toggle-btn" data-view="feed" title="Feed" aria-label="Feed view">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="0" y="0" width="14" height="4" rx="1" fill="currentColor"/>
+                <rect x="0" y="6" width="14" height="4" rx="1" fill="currentColor"/>
+                <rect x="0" y="12" width="10" height="2" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <main class="catalogue-main" id="catalogue-main" data-default-view={defaultView} data-thumbnails={thumbnails ? 'true' : 'false'}>
+    <div class="catalogue-grid" style={`--cols-wide:${colsWide};--cols-mid:${colsMid};--cols-mobile:${colsMobile};`}>
+      <slot />
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    const main = document.getElementById('catalogue-main') as HTMLElement | null;
+    const btns = document.querySelectorAll<HTMLButtonElement>('.view-toggle-btn');
+
+    if (main && btns.length) {
+      const storageKey = 'catalogue-view:' + location.pathname;
+      const VIEWS = ['tiles', 'list', 'feed'] as const;
+      type View = typeof VIEWS[number];
+
+      function applyView(view: View) {
+        VIEWS.forEach((v) => main!.classList.remove('view-' + v));
+        main!.classList.add('view-' + view);
+        btns.forEach((b) => b.classList.toggle('active', b.dataset.view === view));
+        try { sessionStorage.setItem(storageKey, view); } catch {}
+      }
+
+      // Restore saved view or fall back to data-default-view, then 'tiles'
+      const defaultView = (main as HTMLElement).dataset.defaultView ?? 'tiles';
+      const savedRaw = (() => { try { return sessionStorage.getItem(storageKey); } catch { return null; } })();
+      const initial: View = (savedRaw && (VIEWS as readonly string[]).includes(savedRaw))
+        ? savedRaw as View
+        : (VIEWS as readonly string[]).includes(defaultView) ? defaultView as View : 'tiles';
+      applyView(initial);
+
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view as View;
+          if (view) applyView(view);
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+<style>
+  :global(html) {
+    overflow-x: clip;
+  }
+
+  .has-ticker {
+    padding-bottom: var(--ticker-height, 2rem);
+  }
+
+  /* ── Catalogue header ─────────────────────────────── */
+  .catalogue-header {
+    width: 100%;
+  }
+
+  .catalogue-header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 32px var(--container-padding) 24px;
+  }
+
+  .catalogue-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .catalogue-title-block {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .catalogue-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.95rem, calc(1.56vi + 1.56rem), 2.81rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #202020;
+    margin: 0;
+    padding: 0;
+  }
+
+  .catalogue-subtitle {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, calc(0.61vi + 1.1rem), 1.58rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgb(78, 76, 72);
+    margin: 8px 0 0;
+  }
+
+  /* ── View toggle buttons ──────────────────────────── */
+  .catalogue-view-toggles {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    padding-bottom: 4px;
+  }
+
+  .view-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 8px;
+    border-radius: 999px;
+    border: 1px solid rgb(210, 207, 203);
+    background: transparent;
+    color: rgb(102, 97, 93);
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .view-toggle-btn:hover {
+    border-color: #202020;
+    color: #202020;
+    background: rgb(248, 246, 243);
+  }
+
+  .view-toggle-btn.active {
+    background: #202020;
+    border-color: #202020;
+    color: #ffffff;
+  }
+
+  /* ── Masonry grid (tiles — default) ───────────────── */
+  .catalogue-main {
+    max-width: 1440px;
+    min-width: 67vw;
+    margin: 0 auto;
+    padding: 32px var(--container-padding) 48px;
+  }
+
+  .catalogue-grid {
+    columns: var(--cols-wide, 3);
+    column-gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .catalogue-grid {
+      columns: var(--cols-mid, 2);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .catalogue-grid {
+      columns: var(--cols-mobile, 1);
+    }
+  }
+
+  /* ── List view ────────────────────────────────────── */
+  .catalogue-main.view-list .catalogue-grid {
+    columns: 1;
+  }
+
+  .catalogue-main.view-list :global(.catalogue-card) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: baseline;
+    column-gap: 16px;
+    padding: 10px 0;
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid rgb(245, 242, 238);
+    margin-bottom: 0;
+    break-inside: auto;
+  }
+
+  /* List view: title wrapper on left, dates wrapper on right (posts card structure) */
+  .catalogue-main.view-list :global(.catalogue-card .card-title-row) {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: baseline;
+  }
+
+  .catalogue-main.view-list :global(.catalogue-card .card-dates) {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: baseline;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+  }
+
+  /* Title spans left column, date pins to right (flat card structure) */
+  .catalogue-main.view-list :global(.catalogue-card .card-title) {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .catalogue-main.view-list :global(.catalogue-card .card-date) {
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: rgb(152, 147, 143);
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+
+  /* Tags row below, spanning full width */
+  .catalogue-main.view-list :global(.catalogue-card .card-tags) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  /* Hide description/excerpt, authors, journal in list view */
+  .catalogue-main.view-list :global(.catalogue-card .card-excerpt),
+  .catalogue-main.view-list :global(.catalogue-card .card-desc),
+  .catalogue-main.view-list :global(.catalogue-card .card-authors),
+  .catalogue-main.view-list :global(.catalogue-card .card-meta) {
+    display: none;
+  }
+
+  /* ── Feed view ────────────────────────────────────── */
+  .catalogue-main.view-feed .catalogue-grid {
+    columns: 1;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card) {
+    padding: 24px;
+    margin-bottom: 16px;
+    break-inside: auto;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-title) {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-date) {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-meta) {
+    margin-bottom: 10px;
+  }
+
+  /* Excerpt with line-clamp and fade */
+  .catalogue-main.view-feed :global(.catalogue-card .card-excerpt) {
+    display: block;
+    position: relative;
+    max-height: 4.5em; /* ~3 lines */
+    overflow: hidden;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-excerpt::after) {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2em;
+    background: linear-gradient(to bottom, transparent, rgb(248, 246, 243));
+    pointer-events: none;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-tags) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-authors),
+  .catalogue-main.view-feed :global(.catalogue-card .card-desc) {
+    display: block;
+    font-size: 0.85rem;
+  }
+
+  .catalogue-main.view-feed :global(.catalogue-card .card-read-more) {
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  /* ── Tiles view — hide excerpt/read-more to keep cards compact ── */
+  .catalogue-main.view-tiles :global(.catalogue-card .card-excerpt) {
+    display: none;
+  }
+  .catalogue-main.view-tiles :global(.catalogue-card .card-read-more) {
+    display: none;
+  }
+
+  /* ── thumbnails=false: hide card thumbnail images ──────────────── */
+  .catalogue-main[data-thumbnails="false"] :global(.catalogue-card .card-thumb),
+  .catalogue-main[data-thumbnails="false"] :global(.catalogue-card .card-thumbnail) {
+    display: none;
+  }
+
+  /* ── Clickable cards ─────────────────────────────── */
+  /* Expand the title link's ::after to cover the whole card */
+  :global(.catalogue-card) {
+    position: relative;
+    cursor: pointer;
+  }
+
+  /* The pseudo-element overlay — covers entire card */
+  :global(.catalogue-card .card-title::after) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  /* Whole-card hover effect */
+  :global(.catalogue-card:hover) {
+    background: rgb(243, 240, 236);
+  }
+
+  :global(.catalogue-card:hover .card-title) {
+    color: #f87f28;
+  }
+
+  /* Keep tags, read-more, and other interactive elements above the overlay */
+  :global(.catalogue-card .card-tags),
+  :global(.catalogue-card .card-read-more),
+  :global(.catalogue-card .card-tag) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* List view: card has no background, hover is just text color */
+  .catalogue-main.view-list :global(.catalogue-card:hover) {
+    background: transparent;
+  }
+
+  /* ── Sticky footer ────────────────────────────────── */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  .catalogue-main {
+    flex: 1;
+  }
+
+  /* Footer styles live in Footer.astro */
+</style>

@@ -1,0 +1,68 @@
+---
+import SocialIcons from './SocialIcons.astro';
+---
+<footer class="site-footer-main">
+  <div class="site-footer-inner">
+    <a href="/about">colophon</a>
+    <span class="footer-sep"> · </span>
+    <a href="https://orcid.org/0000-0002-0238-682X">orcid</a>
+    <span class="footer-sep"> · </span>
+    <SocialIcons size={13} class="footer-social" />
+    <span class="footer-sep"> · </span>
+    <span class="footer-copy">&copy; 2026 Andrew Lynch</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer-main {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .site-footer-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8px var(--container-padding, 24px);
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgb(102, 97, 93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .site-footer-inner a {
+    color: #202020;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .site-footer-inner a:hover {
+    color: #f87f28;
+  }
+
+  .footer-sep {
+    color: rgb(172, 172, 172);
+    margin: 0 2px;
+  }
+
+  .footer-copy {
+    color: rgb(152, 147, 143);
+  }
+
+  .footer-social {
+    gap: 8px !important;
+  }
+
+  /* Override social icon colors for footer */
+  .footer-social :global(a) {
+    color: rgb(102, 97, 93) !important;
+    opacity: 1 !important;
+  }
+
+  .footer-social :global(a:hover) {
+    color: #f87f28 !important;
+  }
+</style>

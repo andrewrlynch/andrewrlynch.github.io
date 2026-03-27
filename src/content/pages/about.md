@@ -1,6 +1,12 @@
 ---
-layout: ../layouts/MarkdownLayout.astro
 title: About
+pageLayout:
+  left:
+    width: none
+  center:
+    width: two-third
+  right:
+    width: none
 ---
 
 ## Now

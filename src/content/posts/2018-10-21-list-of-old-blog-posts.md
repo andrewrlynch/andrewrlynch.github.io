@@ -4,6 +4,20 @@ date: 2018-10-21
 published: true
 tags: meta
 toc: "off"
+pageLayout:
+  left:
+    width: quarter
+    components:
+      toc:
+        layout: vertical
+  center:
+    width: half
+  right:
+    width: quarter
+    components:
+      metadata:
+        layout: vertical
+      version: true
 ---
 
 Because I'll be moving my blog from [*The Bioconjugate*](https://bioconjugate.blog) to this page, I thought I would leave a trail of breadcrumbs to posts from the old blog for a little while. I'm not sure when of if I'll shut that space down completely, but most of my online presence will be switching to this space.

@@ -1,0 +1,46 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Wide Body Mode"
+  subtitle="PageLayout with both panels hidden — full-width content"
+  date="2026-03-01"
+  tags={["demo", "layout"]}
+  showLeftPanel={false}
+  showRightPanel={false}
+>
+  <!-- Default slot only — both panels hidden, body fills available width -->
+  <h2>Wide body mode</h2>
+  <p>
+    This page uses <code>showLeftPanel={false}</code> and <code>showRightPanel={false}</code>
+    to demonstrate the wide body layout. The body column expands to fill the full grid width,
+    making it suitable for long-form content that benefits from more horizontal space.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+
+  <!-- Full-bleed image in wide mode -->
+  <img
+    src="https://placehold.co/1200x400/e8e8f0/4e4c48?text=Full-bleed+in+wide+mode"
+    alt="Full-bleed image in wide body mode"
+    class="full-bleed"
+  />
+  <p style="font-size: 0.75rem; color: rgb(102,97,93); text-align: center; margin-top: -8px;">
+    In wide mode, <code>--bleed</code> extends images beyond the 100% body column
+  </p>
+
+  <p>
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+    deserunt mollit anim id est laborum.
+  </p>
+  <p>
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+    sit amet quam egestas semper.
+  </p>
+</PageLayout>

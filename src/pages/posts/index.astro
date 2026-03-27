@@ -1,20 +1,196 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import CatalogueLayout from '../../layouts/CatalogueLayout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('posts', ({ data }) => data.published !== false))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function getExcerpt(body: string, wordCount = 50): string {
+  const stripped = body
+    .replace(/^---[\s\S]*?---/, '')          // strip frontmatter if any
+    .replace(/^#{1,6}\s+.+$/gm, '')          // remove headings
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → text
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, '')    // remove images
+    .replace(/`{3}[\s\S]*?`{3}/gm, '')       // remove code blocks
+    .replace(/`[^`]+`/g, '')                 // remove inline code
+    .replace(/[*_~]/g, '')                   // remove emphasis markers
+    .replace(/^>\s*/gm, '')                  // remove blockquote markers
+    .replace(/^\s*[-*+]\s*/gm, '')           // remove list markers
+    .replace(/\s+/g, ' ')                    // normalize whitespace
+    .trim();
+
+  const words = stripped.split(' ').filter(Boolean);
+  if (words.length <= wordCount) return stripped;
+  return words.slice(0, wordCount).join(' ');
+}
+
+// Deduplicate versioned posts — keep only the highest version of each base slug
+const deduplicatedPosts = posts.reduce<typeof posts>((acc, post) => {
+  const match = post.slug.match(/^(.*)-v(\d+)$/);
+  if (!match) {
+    acc.push(post);
+    return acc;
+  }
+  const [, baseSlug, vStr] = match;
+  const vNum = parseInt(vStr);
+  const existingIdx = acc.findIndex(p => {
+    const m = p.slug.match(/^(.*)-v(\d+)$/);
+    return m?.[1] === baseSlug;
+  });
+  if (existingIdx === -1) {
+    acc.push(post);
+  } else {
+    const existingV = parseInt(acc[existingIdx].slug.match(/-v(\d+)$/)?.[1] ?? '0');
+    if (vNum > existingV) acc[existingIdx] = post;
+  }
+  return acc;
+}, []);
 ---
 
-<BaseLayout title="Posts">
-  <div>
-    {posts.map((post) => (
-      <div class="site-section-item">
-        <a href={`/posts/${post.slug}`}>
-          <strong>{post.data.title}</strong><br />
-          <small>Posted: {post.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}</small>
-        </a>
+<CatalogueLayout title="Posts">
+  {deduplicatedPosts.map((post) => {
+    const tags = post.data.tags ? post.data.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
+    return (
+      <div class="catalogue-card">
+        <div class="card-dates">
+          <time class="card-date" datetime={post.data.date.toISOString()}>
+            {formatDate(post.data.date)}
+          </time>
+          {post.data.updated && (
+            <span class="card-date-sep">·</span>
+            <time class="card-date card-date--updated" datetime={post.data.updated.toISOString()}>
+              upd. {formatDate(post.data.updated)}
+            </time>
+          )}
+        </div>
+        <div class="card-title-row">
+          <a href={`/posts/${post.slug}`} class="card-title">{post.data.title}</a>
+          {post.slug.match(/-v(\d+)$/) && (
+            <span class="card-version-badge">v{post.slug.match(/-v(\d+)$/)?.[1]}</span>
+          )}
+        </div>
+        {(() => {
+          const excerpt = post.data.description ?? getExcerpt(post.body);
+          return excerpt ? <p class="card-excerpt">{excerpt}</p> : null;
+        })()}
+        <a href={`/posts/${post.slug}`} class="card-read-more">read more →</a>
+        {tags.length > 0 && (
+          <div class="card-tags">
+            {tags.map((tag) => <span class="card-tag">{tag}</span>)}
+          </div>
+        )}
       </div>
-    ))}
-  </div>
-</BaseLayout>
+    );
+  })}
+</CatalogueLayout>
+
+<style>
+  .catalogue-card {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    padding: 16px;
+    border-radius: 4px;
+    background: rgb(248, 246, 243);
+  }
+
+  .card-dates {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .card-date {
+    display: block;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+    letter-spacing: 0.03em;
+  }
+
+  .card-date-sep {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: rgb(152, 147, 143);
+  }
+
+  .card-date--updated {
+    color: rgb(152, 147, 143);
+  }
+
+  .card-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    display: inline;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #202020;
+    text-decoration: none;
+    line-height: 1.35;
+  }
+
+  .card-title:hover {
+    color: #f87f28;
+  }
+
+  .card-version-badge {
+    display: inline-block;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    padding: 1px 5px;
+    border: 1px solid rgb(210, 207, 203);
+    border-radius: 2px;
+    color: rgb(102, 97, 93);
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .card-excerpt {
+    font-size: 0.8rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+    font-weight: 300;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .card-tag {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    border: 1px solid rgb(210, 207, 203);
+    border-radius: 999px;
+    color: rgb(102, 97, 93);
+  }
+
+  .card-read-more {
+    display: none; /* hidden by default; shown in feed view by CatalogueLayout CSS */
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #f87f28;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    margin-top: 8px;
+  }
+
+  .card-read-more:hover {
+    text-decoration: underline;
+  }
+</style>

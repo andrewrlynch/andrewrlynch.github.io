@@ -2,16 +2,17 @@
 import CatalogueLayout from '../../layouts/CatalogueLayout.astro';
 import { getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects'))
+const areas = (await getCollection('areas'))
+  .filter((area) => area.data.published !== false)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
-<CatalogueLayout title="Projects">
-  {projects.map((project) => (
+<CatalogueLayout title="Areas">
+  {areas.map((area) => (
     <div class="catalogue-card">
-      <a href={`/projects/${project.slug}`} class="card-title">{project.data.title}</a>
-      {project.data.description && (
-        <p class="card-desc">{project.data.description}</p>
+      <a href={`/areas/${area.slug}`} class="card-title">{area.data.title}</a>
+      {area.data.description && (
+        <p class="card-desc">{area.data.description}</p>
       )}
     </div>
   ))}

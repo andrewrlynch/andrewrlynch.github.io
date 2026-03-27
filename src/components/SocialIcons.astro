@@ -1,0 +1,47 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 16, class: className = '' } = Astro.props;
+---
+<span class={`social-icons ${className}`}>
+  <a href="mailto:arlynch@mdanderson.org" aria-label="Email" title="Email">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L12 13 2 7"/></svg>
+  </a>
+  <a href="https://bsky.app/profile/arlynch.bsky.social" aria-label="Bluesky" title="Bluesky">
+    <svg width={size} height={size} viewBox="0 0 360 320" fill="currentColor"><path d="M180 141.964C163.747 110.885 121.211 46.758 78.166 21.232C46.442 3.175 18.419 7.755 9.04 18.36C1.36 27.02 0 38.12 0 50.408c0 27.064 15.425 113.012 24.5 143.28c11.7 40.24 52.9 54.84 91.2 47.2c-.8.12-1.6.24-2.4.36C67.14 248.108 26.11 269.28 52.28 295.44C85.7 328.84 133.14 297.84 165.34 240.36c5.8-10.08 8.72-21.44 9.84-31.52c1.12 10.08 4.04 21.44 9.84 31.52c32.2 57.48 79.64 88.48 113.06 55.08c26.17-26.16-14.86-47.33-60.82-54.08c-.8-.12-1.6-.24-2.4-.36c38.3 7.64 79.5-6.96 91.2-47.2C335.18 163.42 360 77.472 360 50.408c0-12.288-1.36-23.388-9.04-32.048c-9.379-10.605-37.402-15.185-69.126 2.872C238.789 46.758 196.253 110.885 180 141.964Z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/andrewrlynch" aria-label="LinkedIn" title="LinkedIn">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+  </a>
+  <a href="https://github.com/andrewrlynch" aria-label="GitHub" title="GitHub">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+  </a>
+  <a href="/cv" aria-label="CV" title="CV">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+  </a>
+</span>
+
+<style>
+  .social-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .social-icons a {
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: opacity 0.15s ease, color 0.15s ease;
+    text-decoration: none;
+  }
+  .social-icons a:hover {
+    opacity: 1;
+    color: #f87f28;
+  }
+  .social-icons svg {
+    display: block;
+  }
+</style>

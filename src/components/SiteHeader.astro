@@ -1,0 +1,230 @@
+---
+/**
+ * SiteHeader — sticky top navigation
+ *
+ * Props:
+ *   transparent: boolean — if true, starts transparent (for use over hero).
+ *     Transitions to opaque when user scrolls past the hero element.
+ *     Requires an element with id="hero" on the page.
+ */
+
+interface Props {
+  transparent?: boolean;
+  hideLogo?: boolean;
+}
+
+const { transparent = false, hideLogo = false } = Astro.props;
+---
+
+<header class:list={['site-header', { 'site-header--transparent': transparent }]} id="site-header">
+  <div class:list={['site-header-inner', { 'site-header-inner--no-logo': hideLogo }]}>
+    {!hideLogo && <a href="/" class="site-logo-box" aria-label="Andrew Lynch — home"></a>}
+    <nav class="site-header-nav" aria-label="Main navigation">
+      <ul class="site-header-nav-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/papers">Papers</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="https://notes.andrewlynch.io">Notes</a></li>
+      </ul>
+    </nav>
+    <!-- Mobile hamburger using <details> — no JS required for toggle -->
+    <details class="site-header-mobile-nav">
+      <summary class="site-header-hamburger" aria-label="Open menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </summary>
+      <nav class="site-header-mobile-drawer" aria-label="Mobile navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts">Posts</a></li>
+          <li><a href="/papers">Papers</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header') as HTMLElement | null;
+  if (header) {
+    const HEADER_HEIGHT = header.offsetHeight || 56;
+    let lastScrollY = window.scrollY;
+    let offsetY = 0; // px the header is shifted up (0 = fully visible, HEADER_HEIGHT = fully hidden)
+    let ticking = false;
+
+    function updateHeader() {
+      const scrollY = window.scrollY;
+      const delta = scrollY - lastScrollY;
+      lastScrollY = scrollY;
+
+      // At top of page always show fully
+      if (scrollY <= 0) {
+        offsetY = 0;
+      } else {
+        // Move header at natural scroll speed, clamped to 0..HEADER_HEIGHT
+        offsetY = Math.max(0, Math.min(HEADER_HEIGHT, offsetY + delta));
+      }
+
+      header.style.transform = `translateY(-${offsetY}px)`;
+      header.classList.toggle('is-stuck', scrollY > 4);
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateHeader();
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    /* Only transition non-transform properties; transform is driven directly by JS */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .site-header.is-stuck {
+    background-color: #ffffff;
+    box-shadow: 0 1px 0 rgba(32, 32, 32, 0.08);
+  }
+
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8px var(--container-padding, 8px);
+    height: 48px;
+  }
+
+  /* Right-align nav when logo is hidden */
+  .site-header-inner--no-logo {
+    justify-content: flex-end;
+  }
+
+  .site-logo-box {
+    display: block;
+    width: 32px;
+    height: 32px;
+    max-width: 64px;
+    max-height: 64px;
+    background: #202020;
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .site-logo-box:hover {
+    background: #f87f28;
+  }
+
+  /* Desktop nav */
+  .site-header-nav {
+    display: flex;
+  }
+
+  .site-header-nav-list {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header-nav-list a {
+    font-size: 0.85rem;
+    color: #202020;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .site-header-nav-list a:hover {
+    color: #f87f28;
+  }
+
+  /* Mobile hamburger — hidden on desktop */
+  .site-header-mobile-nav {
+    display: none;
+    position: relative;
+  }
+
+  .site-header-hamburger {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  /* Remove the default summary arrow */
+  .site-header-hamburger::-webkit-details-marker { display: none; }
+  .site-header-hamburger::marker { display: none; }
+
+  .hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #202020;
+    border-radius: 1px;
+  }
+
+  .site-header-mobile-drawer {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #ffffff;
+    border: 1px solid var(--color-border, rgb(172, 172, 172));
+    border-radius: 4px;
+    padding: 8px 0;
+    min-width: 160px;
+    z-index: 200;
+  }
+
+  .site-header-mobile-drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header-mobile-drawer li a {
+    display: block;
+    padding: 8px 16px;
+    color: #202020;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .site-header-mobile-drawer li a:hover {
+    color: #f87f28;
+    background: rgb(248, 246, 243);
+  }
+
+  @media (max-width: 768px) {
+    .site-header-nav {
+      display: none;
+    }
+    .site-header-mobile-nav {
+      display: block;
+    }
+  }
+</style>

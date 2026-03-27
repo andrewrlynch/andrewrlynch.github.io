@@ -5,6 +5,20 @@ published: true
 tags: personal
 thumbnail: assets/posts/2019-12-18-end-of-year-decade-wrap-up/Climate.png
 toc: "off"
+pageLayout:
+  left:
+    width: quarter
+    components:
+      toc:
+        layout: vertical
+  center:
+    width: half
+  right:
+    width: quarter
+    components:
+      metadata:
+        layout: vertical
+      version: true
 ---
 Well here we are. We're nearing the end of the Twenty-Tens. A decade of increasing global unrest, political polarization, climate change-related weather anomalies, CRISPR-babies, and Taylor Swift!
 <br><br>

@@ -1,0 +1,81 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// Only show h2 and h3
+const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{filtered.length > 0 && (
+  <nav class="toc" aria-label="Table of contents">
+    <ul class="toc-list">
+      {filtered.map((heading) => (
+        <li class:list={['toc-item', { 'toc-item--h3': heading.depth === 3 }]}>
+          <a
+            href={`#${heading.slug}`}
+            data-toc-link
+            class="toc-link"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc {
+    padding: 24px 0 24px 8px;
+  }
+
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .toc-item {
+    line-height: 1.3;
+  }
+
+  .toc-item--h3 {
+    padding-left: 12px;
+  }
+
+  .toc-link {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: block;
+    transition: color 0.15s ease;
+  }
+
+  .toc-link:hover {
+    color: #f87f28;
+  }
+
+  /*
+   * .toc-active is set by the scrollspy script in PageLayout.astro
+   * via classList.toggle. We use :global() so the scoped style
+   * applies to the dynamically toggled class.
+   */
+  .toc-link:global(.toc-active) {
+    color: #f87f28;
+    font-weight: 500;
+  }
+</style>

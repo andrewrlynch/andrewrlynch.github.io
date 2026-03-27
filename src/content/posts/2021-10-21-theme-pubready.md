@@ -5,6 +5,20 @@ published: true
 tags: r ggplot2 data-visualization
 thumbnail: assets/posts/2021-10-21-theme-pubready/theme_pubready_example.png
 toc: "off"
+pageLayout:
+  left:
+    width: quarter
+    components:
+      toc:
+        layout: vertical
+  center:
+    width: half
+  right:
+    width: quarter
+    components:
+      metadata:
+        layout: vertical
+      version: true
 ---
 A while back I found myself creating a lot of small plots where I was removing the gridlines and reducing the size of axis text as a way to 'declutter' the small visuals. To save time, I generated this ggplot theme.
 

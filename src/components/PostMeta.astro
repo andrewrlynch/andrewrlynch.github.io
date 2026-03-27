@@ -1,0 +1,147 @@
+---
+interface Version {
+  slug: string;
+  version: number;
+  url: string;
+  date?: string;
+}
+
+interface Props {
+  date?: string;
+  updated?: string;
+  tags?: string[];
+  versions?: Version[];
+  currentVersion?: number;
+  layout?: 'horizontal' | 'vertical'; // default: horizontal (inline row)
+}
+
+const { date, updated, tags = [], versions = [], currentVersion, layout = 'horizontal' } = Astro.props;
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+const showVersionStrip = versions.length > 1;
+---
+
+<div class:list={['post-meta', { 'post-meta--vertical': layout === 'vertical' }]}>
+  {date && (
+    <time class="post-meta-date" datetime={date}>{formatDate(date)}</time>
+  )}
+
+  {updated && (
+    <span class="post-meta-updated">Updated: <time datetime={updated}>{formatDate(updated)}</time></span>
+  )}
+
+  {tags.length > 0 && (
+    <div class="post-meta-tags">
+      {tags.map((tag) => (
+        <span class="post-meta-tag">{tag}</span>
+      ))}
+    </div>
+  )}
+
+  {showVersionStrip && (
+    <div class="post-meta-versions">
+      {versions.map((v, i) => (
+        <>
+          {i > 0 && <span class="post-meta-version-sep">·</span>}
+          {v.version === currentVersion ? (
+            <span class="post-meta-version post-meta-version--current">v{v.version}</span>
+          ) : (
+            <a href={v.url} class="post-meta-version post-meta-version--link">v{v.version}</a>
+          )}
+        </>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Vertical layout for right panel */
+  .post-meta--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 24px 0;
+  }
+
+  .post-meta-date {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: rgb(102, 97, 93);
+    letter-spacing: 0.03em;
+  }
+
+  .post-meta-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .post-meta-tag {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 2px;
+    color: rgb(102, 97, 93);
+  }
+
+  .post-meta-updated {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: rgb(152, 147, 143);
+    letter-spacing: 0.03em;
+  }
+
+  .post-meta-updated time {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  .post-meta-versions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: rgb(102, 97, 93);
+    background: rgb(242, 240, 237);
+    border: 1px solid rgb(210, 207, 203);
+    border-radius: 3px;
+    padding: 2px 8px;
+  }
+
+  .post-meta-version-sep {
+    color: rgb(172, 172, 172);
+    user-select: none;
+  }
+
+  .post-meta-version--current {
+    color: rgb(102, 97, 93);
+    font-weight: 500;
+  }
+
+  .post-meta-version--link {
+    color: rgb(102, 97, 93);
+    text-decoration: none;
+  }
+
+  .post-meta-version--link:hover {
+    color: #f87f28;
+  }
+</style>

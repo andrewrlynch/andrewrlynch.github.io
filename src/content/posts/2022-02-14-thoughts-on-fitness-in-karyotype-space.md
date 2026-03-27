@@ -5,6 +5,20 @@ published: true
 tags: science data-visualization aneuploidy
 thumbnail: assets/posts/2022-02-14-thoughts-on-fitness-in-karyotype-space/3d_fitness.png
 toc: "on"
+pageLayout:
+  left:
+    width: quarter
+    components:
+      toc:
+        layout: vertical
+  center:
+    width: half
+  right:
+    width: quarter
+    components:
+      metadata:
+        layout: vertical
+      version: true
 ---
 The publication of our [pre-print](https://www.biorxiv.org/content/10.1101/2021.04.26.441466v1) on advancing quantification of chromosomal instability is nigh. I'm wrapped up a long stretch of revisions for the re-submit and, as a result, have been thinking a great deal about karyotype selection. Ultimately, we want to be able to experimentally quantify selection. We're not there yet, but how would we represent this when that time comes? Reviews on the effects of selection, in general, are rife with toy visualizations of 'genotype spaces'. The *concept* is understandable to me and is easily generalized to the biology of aneuploidy — a 'karyotype space'. However, I've recently been attempting to plot out a fitness landscape for karyotypes and it's clear I underestimated the difficulty of implementing a *useful* visualization of karyotypic space.<br>
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Visualization_of_two_dimensions_of_a_NK_fitness_landscape.png" class = "img-center img-66">

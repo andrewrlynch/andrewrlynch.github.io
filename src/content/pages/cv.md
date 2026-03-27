@@ -1,6 +1,8 @@
 ---
-layout: ../layouts/MarkdownLayout.astro
 title: CV
+pageLayout:
+  center:
+    width: two-third
 ---
 
 ## Professional Experience

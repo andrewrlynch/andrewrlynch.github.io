@@ -1,0 +1,196 @@
+---
+import CatalogueLayout from '../layouts/CatalogueLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => data.published !== false))
+  .map(p => ({
+    slug: p.slug,
+    title: p.data.title,
+    date: p.data.date,
+    type: 'post' as const,
+    description: p.data.description,
+    tags: p.data.tags,
+    url: `/posts/${p.slug}`,
+  }));
+
+const projects = (await getCollection('projects', ({ data }) => data.published !== false))
+  .map(p => ({
+    slug: p.slug,
+    title: p.data.title,
+    date: new Date('2000-01-01'), // projects may not have dates
+    type: 'project' as const,
+    description: p.data.description,
+    tags: undefined,
+    url: `/projects/${p.slug}`,
+  }));
+
+const artifacts = [...posts, ...projects]
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const types = ['all', ...Array.from(new Set(artifacts.map(a => a.type))).sort()];
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+
+<CatalogueLayout title="Artifacts" subtitle="All posts, projects, and more">
+  <!-- Type filter bar -->
+  <div class="artifact-filter-bar" id="artifact-filter-bar">
+    {types.map(type => (
+      <button
+        class={`artifact-filter-btn${type === 'all' ? ' active' : ''}`}
+        data-type={type}
+      >
+        {type}
+      </button>
+    ))}
+  </div>
+
+  {artifacts.map((item) => (
+    <div class="catalogue-card" data-type={item.type}>
+      <div class="card-meta-row">
+        <span class={`card-type-badge card-type--${item.type}`}>{item.type}</span>
+        {item.date.getFullYear() > 2000 && (
+          <time class="card-date" datetime={item.date.toISOString()}>
+            {formatDate(item.date)}
+          </time>
+        )}
+      </div>
+      <a href={item.url} class="card-title">{item.title}</a>
+      {item.description && <p class="card-excerpt">{item.description}</p>}
+      {item.tags && (
+        <div class="card-tags">
+          {item.tags.split(',').map(t => t.trim()).filter(Boolean).map(tag => (
+            <span class="card-tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+
+  <script>
+    const bar = document.getElementById('artifact-filter-bar');
+    bar?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.artifact-filter-btn');
+      if (!btn) return;
+      const type = btn.getAttribute('data-type') ?? 'all';
+      bar.querySelectorAll('.artifact-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll<HTMLElement>('.catalogue-card[data-type]').forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+      });
+    });
+  </script>
+</CatalogueLayout>
+
+<style>
+  /* Filter bar — rendered inside CatalogueLayout's slot before the grid */
+  .artifact-filter-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    /* Escape the masonry columns so bar spans full width */
+    column-span: all;
+  }
+
+  .artifact-filter-btn {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgb(210, 207, 203);
+    background: transparent;
+    color: rgb(102, 97, 93);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .artifact-filter-btn:hover {
+    border-color: #202020;
+    background: rgb(248, 246, 243);
+    color: #202020;
+  }
+
+  .artifact-filter-btn.active {
+    background: #202020;
+    border-color: #202020;
+    color: #ffffff;
+  }
+
+  .catalogue-card {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    padding: 16px;
+    border-radius: 4px;
+    background: rgb(248, 246, 243);
+  }
+
+  .card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .card-type-badge {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    color: rgb(78, 76, 72);
+    background: rgb(240, 237, 232);
+  }
+  .card-type--post { background: rgb(232, 240, 232); }
+  .card-type--project { background: rgb(232, 236, 244); }
+
+  .card-date {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+    letter-spacing: 0.03em;
+  }
+
+  .card-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #202020;
+    text-decoration: none;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .card-title:hover {
+    color: #f87f28;
+  }
+
+  .card-excerpt {
+    font-size: 0.8rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.5;
+    margin: 0 0 6px 0;
+    font-weight: 300;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .card-tag {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    border: 1px solid rgb(210, 207, 203);
+    border-radius: 999px;
+    color: rgb(102, 97, 93);
+  }
+</style>

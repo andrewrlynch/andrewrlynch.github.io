@@ -1,25 +1,144 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import PageLayout from './PageLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import PostMeta from '../components/PostMeta.astro';
+import VersionHistory from '../components/VersionHistory.astro';
+import { getCollection } from 'astro:content';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface TocComponentConfig {
+  layout?: 'vertical' | 'horizontal';
+}
+
+interface MetadataComponentConfig {
+  layout?: 'vertical' | 'horizontal';
+}
+
+interface PanelConfig {
+  width?: 'full' | 'three-quarter' | 'two-third' | 'half' | 'one-third' | 'quarter' | 'none';
+  components?: {
+    toc?: boolean | TocComponentConfig;
+    metadata?: boolean | MetadataComponentConfig;
+    version?: boolean;
+  };
+}
+
+interface PageLayoutOptions {
+  left?: PanelConfig;
+  center?: PanelConfig;
+  right?: PanelConfig;
+}
 
 interface Props {
   title: string;
   date: Date;
+  slug?: string;
+  tags?: string[];
+  updated?: Date;
+  headings?: Heading[];
+  pageLayout?: PageLayoutOptions;
 }
 
-const { title, date } = Astro.props;
-const formattedDate = date.toLocaleDateString('en-US', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-});
+const { title, date, slug, tags = [], updated, headings = [], pageLayout } = Astro.props;
+
+// Version detection: check if slug ends with -v\d+
+const versionMatch = slug ? slug.match(/^(.*)-v(\d+)$/) : null;
+const baseSlug = versionMatch?.[1] ?? null;
+const currentVersionNum = versionMatch ? parseInt(versionMatch[2]) : null;
+let allVersions: Array<{ slug: string; version: number; url: string; date?: string }> = [];
+
+if (baseSlug) {
+  const allPosts = await getCollection('posts');
+  allVersions = allPosts
+    .filter(p => new RegExp(`^${baseSlug}-v\\d+$`).test(p.slug))
+    .map(p => ({
+      slug: p.slug,
+      version: parseInt(p.slug.match(/-v(\d+)$/)?.[1] ?? '1'),
+      url: `/posts/${p.slug}`,
+      date: p.data.date.toISOString(),
+    }))
+    .sort((a, b) => b.version - a.version); // descending: newest first
+}
+
+// Width name → CSS percentage
+function widthToCSS(w?: string): string {
+  const map: Record<string, string> = {
+    'full': '100%',
+    'three-quarter': '75%',
+    'two-third': '66.67%',
+    'half': '50%',
+    'one-third': '33.33%',
+    'quarter': '25%',
+    'none': '0%',
+  };
+  return w ? (map[w] ?? '25%') : '25%';
+}
+
+const leftConfig = pageLayout?.left;
+const centerConfig = pageLayout?.center;
+const rightConfig = pageLayout?.right;
+
+const leftWidth = leftConfig?.width ?? 'quarter';
+const centerWidth = centerConfig?.width ?? 'half';
+const rightWidth = rightConfig?.width ?? 'quarter';
+
+const showLeftPanel = leftWidth !== 'none';
+const showRightPanel = rightWidth !== 'none';
+
+// What goes in each panel?
+const leftComponents = leftConfig?.components ?? {};
+const rightComponents = rightConfig?.components ?? {};
+
+const tocInLeft = !!leftComponents.toc;
+const metaInRight = !!rightComponents.metadata;
+const versionInRight = !!rightComponents.version;
+
+const tocLayout = (typeof leftComponents.toc === 'object' ? leftComponents.toc?.layout : undefined) ?? 'vertical';
+const metaLayout = (typeof rightComponents.metadata === 'object' ? rightComponents.metadata?.layout : undefined) ?? 'vertical';
+
+const suppressHeaderMeta = metaInRight; // hide from header if shown in right panel
 ---
 
-<BaseLayout title={title}>
-  <div class="post-header">
-    <p class="post-title">{title}</p>
-    <p class="post-date">Posted: {formattedDate}</p>
-  </div>
-  <div class="post-container">
-    <slot />
-  </div>
-</BaseLayout>
+<PageLayout
+  title={title}
+  date={date.toISOString()}
+  updated={updated?.toISOString()}
+  tags={tags}
+  versions={allVersions}
+  currentVersion={currentVersionNum ?? undefined}
+  showLeftPanel={showLeftPanel}
+  showRightPanel={showRightPanel}
+  leftWidth={widthToCSS(leftWidth)}
+  centerWidth={widthToCSS(centerWidth)}
+  rightWidth={widthToCSS(rightWidth)}
+  suppressHeaderMeta={suppressHeaderMeta}
+>
+  {showLeftPanel && tocInLeft && (
+    <TableOfContents headings={headings} slot="left" />
+  )}
+  {showRightPanel && metaInRight && (
+    <PostMeta
+      date={date.toISOString()}
+      updated={updated?.toISOString()}
+      tags={tags}
+      versions={allVersions}
+      currentVersion={currentVersionNum ?? undefined}
+      layout={metaLayout}
+      slot="right"
+    />
+  )}
+  {showRightPanel && versionInRight && allVersions.length > 1 && (
+    <VersionHistory
+      versions={allVersions}
+      currentVersion={currentVersionNum ?? undefined}
+      layout="vertical"
+      slot="right"
+    />
+  )}
+  <slot />
+</PageLayout>

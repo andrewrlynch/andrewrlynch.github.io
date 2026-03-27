@@ -1,0 +1,720 @@
+---
+/**
+ * MainLayout — homepage layout
+ *
+ * Slots:
+ *   (default) — not used directly; content is composed from data
+ *
+ * Layout structure:
+ *   <SiteHeader transparent /> — sticky, transparent over hero
+ *   <main>
+ *     <section id="hero"> — ~33vh hero
+ *     <div class="feed-grid">
+ *       <section id="artifact-feed"> — 50% artifact feed (functional)
+ *       <aside id="projects"> — 50% projects placeholder
+ *     </div>
+ *     <section id="links"> — links row placeholder
+ *   </main>
+ *   <footer>
+ *   <Ticker />
+ */
+
+import '../styles/main.scss';
+import SiteHeader from '../components/SiteHeader.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import Footer from '../components/Footer.astro';
+import { getSortedArtifacts } from '../data/artifacts';
+import type { Artifact } from '../data/artifacts';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Andrew Lynch' } = Astro.props;
+const artifacts = getSortedArtifacts().slice(0, 5);
+const areas = (await getCollection('areas'))
+  .filter((area) => area.data.published !== false)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const allTypes = ['post', 'note', 'substack', 'social'] as const;
+
+// Links: pinned appear first in order, then alphabetical
+const pinnedLinks = [
+  { label: 'GitHub', url: 'https://github.com/andrewrlynch', color: '#202020' },
+  { label: 'ORCID', url: 'https://orcid.org/0000-0002-0238-682X', color: '#a6ce39' },
+  { label: 'Google Scholar', url: '#', color: '#5b9bd5' },
+  { label: 'CV', url: '/cv', color: '#f87f28' },
+  { label: 'Bluesky', url: 'https://bsky.app/profile/arlynch.bsky.social', color: '#0285ff' },
+];
+const unpinnedLinks = [
+  { label: 'CINFER', url: '/projects/CINFER', color: '#9b7fd4' },
+  { label: 'ggsuperviolin', url: '/projects/ggsuperviolin', color: '#4caf82' },
+  { label: 'iBover', url: '/projects/iBover', color: '#e5973e' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/andrewrlynch', color: '#0077b5' },
+  { label: 'PubMed', url: '#', color: '#e57373' },
+  { label: 'Demo — narrow body', url: '/demo-page-narrow', color: '#aaa' },
+  { label: 'Demo — three-column', url: '/demo-page', color: '#aaa' },
+  { label: 'Demo — wide body', url: '/demo-page-wide', color: '#aaa' },
+].sort((a, b) => a.label.localeCompare(b.label));
+const allLinks = [...pinnedLinks, ...unpinnedLinks];
+
+/** Format ISO date string to "14 Feb 2022" */
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+/** Map artifact type to display label */
+const typeLabels: Record<Artifact['type'], string> = {
+  post: 'Post',
+  note: 'Note',
+  substack: 'Article',
+  social: 'Update',
+};
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{title}</title>
+</head>
+<body class="site-body">
+  <SiteHeader hideLogo />
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — ~33vh, below the sticky nav
+       ═══════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <!-- HERO CONTENT SLOT — replace with actual content -->
+    <div class="hero-inner">
+      <h1 class="hero-title">Andrew discovers and builds and writes things.</h1>
+      <p class="hero-subtitle">Computational and experimental biologist · tumor evolution · genetic instability · trait plasticity</p>
+      <p class="hero-subtitle">Currently a postdoc at the <a href="https://www.mdanderson.org/research/departments-labs-institutes/labs/van-loo-laboratory.html">MD Anderson Cancer Genomics and Evolution Laboratory</a></p>
+      <div class="hero-icons">
+        <SocialIcons size={16} />
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TWO-COLUMN FEED GRID
+         ═══════════════════════════════════════════════════════ -->
+    <div class="feed-grid" role="region" aria-label="Content">
+
+      <!-- LEFT: Artifact Feed (functional) -->
+      <section id="artifact-feed" class="artifact-feed">
+        <div class="feed-header">
+          <a href="/artifacts" class="section-heading-link" aria-label="See all recent artifacts">
+            <h2 class="feed-section-label">Recent</h2>
+            <span class="section-arrow" aria-hidden="true">→</span>
+          </a>
+          <!--<div class="feed-filters" role="group" aria-label="Filter by type">
+            <button class="feed-filter-btn active" data-filter="all">All</button>
+            {allTypes.map((type) => (
+              <button class="feed-filter-btn" data-filter={type}>
+                {typeLabels[type]}
+              </button>
+            ))}
+          </div>-->
+        </div>
+        <ul class="artifact-list" id="artifact-list">
+          {artifacts.map((artifact) => (
+            <li class="artifact-card" data-type={artifact.type}>
+              <div class="artifact-card-meta">
+                <span class={`artifact-type-badge artifact-type--${artifact.type}`}>
+                  {typeLabels[artifact.type]}
+                </span>
+                <time class="artifact-date" datetime={artifact.date}>
+                  {formatDate(artifact.date)}
+                </time>
+              </div>
+              <a href={artifact.url} class="artifact-title">
+                {artifact.title}
+              </a>
+              {artifact.summary && (
+                <p class="artifact-summary">{artifact.summary}</p>
+              )}
+              {artifact.tags.length > 0 && (
+                <div class="artifact-tags">
+                  {artifact.tags.map((tag) => (
+                    <span class="artifact-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- RIGHT: Areas + Projects -->
+      <aside id="right-panel" class="right-panel">
+
+        <!-- Areas -->
+        <section id="areas" class="areas-section">
+          <a href="/areas" class="section-heading-link" aria-label="See all areas">
+            <h2 class="feed-section-label">Areas</h2>
+            <span class="section-arrow" aria-hidden="true">→</span>
+          </a>
+          <div class="area-rows">
+            {areas.map((area) => (
+              <a href={`/areas/${area.slug}`} class="area-row">
+                <div class="area-info">
+                  <span class="area-name">{area.data.title}</span>
+                  {area.data.description && (
+                    <span class="area-desc">{area.data.description}</span>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <div class="panel-divider" aria-hidden="true"></div>
+
+        <!-- Projects -->
+        <section id="projects" class="projects-section">
+          <a href="/projects" class="section-heading-link" aria-label="See all projects">
+            <h2 class="feed-section-label">Projects</h2>
+            <span class="section-arrow" aria-hidden="true">→</span>
+          </a>
+          <div class="project-rows">
+            <a href="/projects/CINFER" class="project-row">
+              <div class="project-thumb" style="background:#ede8f5;">
+                <span style="color:#9b7fd4;font-family:Menlo,monospace;font-size:0.7rem;font-weight:600;">CI</span>
+              </div>
+              <div class="project-info">
+                <span class="project-name">CINFER</span>
+                <span class="project-desc">Bayesian clonal inference from bulk tumour sequencing data</span>
+              </div>
+            </a>
+            <a href="/projects/ggsuperviolin" class="project-row">
+              <div class="project-thumb" style="background:#e4f0e8;">
+                <span style="color:#4caf82;font-family:Menlo,monospace;font-size:0.7rem;font-weight:600;">gg</span>
+              </div>
+              <div class="project-info">
+                <span class="project-name">ggsuperviolin</span>
+                <span class="project-desc">Supervised violin plots for R/ggplot2</span>
+              </div>
+            </a>
+            <a href="/projects/iBover" class="project-row">
+              <div class="project-thumb" style="background:#fdf0e4;">
+                <span style="color:#e5973e;font-family:Menlo,monospace;font-size:0.7rem;font-weight:600;">iB</span>
+              </div>
+              <div class="project-info">
+                <span class="project-name">iBover</span>
+                <span class="project-desc">Measuring chromosomal instability with the Boveri index</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+      </aside>
+
+    </div><!-- /.feed-grid -->
+
+    <!-- ═══════════════════════════════════════════════════════
+         QUICK LINKS — pill list
+         ═══════════════════════════════════════════════════════ -->
+    <section id="links" class="links-section">
+      <h2 class="feed-section-label">Quick links</h2>
+      <div class="links-pills">
+        {allLinks.map((link) => (
+          <a href={link.url} class="links-pill" target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener' : undefined}>
+            <span class="pill-dot" style={`background:${link.color}`}></span>
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <script>
+    // Feed type filtering
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.feed-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.artifact-card[data-type]');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        cards.forEach((card) => {
+          const show = filter === 'all' || card.dataset.type === filter;
+          card.hidden = !show;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+<style>
+
+  /* ── Sticky footer ────────────────────────────────── */
+  .site-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  /* ── Hero icons ───────────────────────────────────── */
+  .hero-icons {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .hero-icons :global(.social-icons) {
+    gap: 14px !important;
+  }
+
+  .hero-icons :global(.social-icons a) {
+    color: rgb(140, 136, 132) !important;
+    opacity: 1 !important;
+  }
+
+  .hero-icons :global(.social-icons a:hover) {
+    color: #f87f28 !important;
+    opacity: 1 !important;
+  }
+
+
+
+  /* ── Hero ─────────────────────────────────────────── */
+  /* ── Hero icons ───────────────────────────────────── */
+  .hero-icons {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .hero-icons :global(.social-icons) {
+    gap: 14px !important;
+  }
+
+  .hero-icons :global(.social-icons a) {
+    color: rgb(140, 136, 132) !important;
+    opacity: 1 !important;
+  }
+
+  .hero-icons :global(.social-icons a:hover) {
+    color: #f87f28 !important;
+    opacity: 1 !important;
+  }
+
+
+  .hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .hero-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 32px var(--container-padding);
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(2.44rem, calc(2.38vi + 1.85rem), 3.75rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #202020;
+    margin-bottom: 8px;
+    padding: 0;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.8rem, calc(0.34vi + 0.9rem), 1.1rem);
+    color: rgb(102, 97, 93);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* ── Feed Grid ────────────────────────────────────── */
+  .feed-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  @media (max-width: 768px) {
+    .feed-grid {
+      grid-template-columns: 1fr;
+    }
+    /* Right panel stacks below feed on mobile */
+    #right-panel {
+      border-top: 1px solid rgb(172, 172, 172);
+      padding-left: 0;
+    }
+  }
+
+  /* ── Section Labels ───────────────────────────────── */
+  .feed-section-label {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(102, 97, 93);
+    padding: 16px 0 8px;
+    margin: 0;
+  }
+
+  /* Feed header row: label + filters on same line */
+  .feed-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .feed-filters {
+    display: flex;
+    gap: 4px;
+    padding-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .feed-filter-btn {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+    padding: 3px 9px;
+    border: 1px solid rgb(210, 207, 203);
+    border-radius: 999px;
+    background: transparent;
+    color: #202020;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .feed-filter-btn:hover {
+    border-color: #202020;
+    background: rgb(248, 246, 243);
+  }
+
+  .feed-filter-btn.active {
+    background: #202020;
+    border-color: #202020;
+    color: #ffffff;
+  }
+
+  /* Section heading links with hover-reveal arrow */
+  .section-heading-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .section-arrow {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(172, 168, 163);
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.2s ease, color 0.2s ease;
+    line-height: 1;
+  }
+
+  .section-heading-link:hover .section-arrow {
+    transform: translateX(4px);
+    color: #f87f28;
+  }
+
+  /* Hidden card when filtered out */
+  .artifact-card[hidden] {
+    display: none;
+  }
+
+  /* ── Artifact Feed ────────────────────────────────── */
+  .artifact-feed {
+    padding: 0 16px 32px 0;
+  }
+
+  @media (max-width: 768px) {
+    .artifact-feed {
+      padding: 0 0 32px 0;
+      border-right: none;
+    }
+  }
+
+  .artifact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .artifact-card {
+    padding: 12px 0;
+    border-bottom: 1px solid rgb(240, 240, 240);
+  }
+
+  .artifact-card:last-child {
+    border-bottom: none;
+  }
+
+  .artifact-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .artifact-type-badge {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    background: rgb(240, 237, 232);
+    color: rgb(78, 76, 72);
+  }
+
+  .artifact-type--post { background: rgb(232, 240, 232); }
+  .artifact-type--note { background: rgb(240, 237, 232); }
+  .artifact-type--substack { background: rgb(232, 236, 244); }
+  .artifact-type--social { background: rgb(244, 236, 232); }
+
+  .artifact-date {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+  }
+
+  .artifact-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #202020;
+    text-decoration: none;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .artifact-title:hover {
+    color: #f87f28;
+  }
+
+  .artifact-summary {
+    font-size: 0.8rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.4;
+    margin: 0 0 4px 0;
+    font-weight: 300;
+  }
+
+  .artifact-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .artifact-tag {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    padding: 1px 5px;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 2px;
+    color: rgb(102, 97, 93);
+    background: transparent;
+  }
+
+  /* ── Right Panel (Areas + Projects) ──────────────── */
+  .right-panel {
+    padding: 0 0 32px 16px;
+  }
+
+  .areas-section {
+    padding-bottom: 0;
+  }
+
+  .projects-section {
+    padding-top: 0;
+  }
+
+  /* Thin divider between Areas and Projects */
+  .panel-divider {
+    border-bottom: 1px solid rgb(240, 238, 235);
+    margin: 16px 0;
+  }
+
+  /* ── Area rows ────────────────────────────────────── */
+  .area-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .area-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #202020;
+    border-bottom: 1px solid rgb(245, 242, 238);
+  }
+
+  .area-row:last-child {
+    border-bottom: none;
+  }
+
+  .area-row:hover .area-name {
+    color: #f87f28;
+  }
+
+  .area-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .area-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color 0.15s ease;
+  }
+
+  .area-desc {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Quick Links pills ────────────────────────────── */
+  .links-section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding) 32px;
+  }
+
+  .links-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .links-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgb(210, 207, 203);
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    color: #202020;
+    text-decoration: none;
+    background: transparent;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .links-pill:hover {
+    border-color: #202020;
+    background: rgb(248, 246, 243);
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Projects panel rows ──────────────────────────── */
+  .project-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .project-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #202020;
+    border-bottom: 1px solid rgb(245, 242, 238);
+  }
+
+  .project-row:last-child {
+    border-bottom: none;
+  }
+
+  .project-row:hover .project-name {
+    color: #f87f28;
+  }
+
+  .project-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .project-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color 0.15s ease;
+  }
+
+  .project-desc {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+/* Footer styles live in Footer.astro */
+</style>

@@ -1,0 +1,418 @@
+---
+/**
+ * PaperLayout — three-column layout for individual paper pages
+ *
+ * Left panel (25%): thumbnail + metadata (journal, year, DOI, links, tags)
+ * Body (50%): title, authors, abstract/body content
+ * Right panel (25%): Altmetric badge (if DOI provided)
+ *
+ * No lines strip / TOC (papers don't need in-page nav).
+ */
+
+import '../styles/main.scss';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  authors?: string[];
+  journal?: string;
+  year?: number;
+  date?: string;
+  abstract?: string;
+  doi?: string;
+  pdf?: string;
+  fulltext?: string;
+  code?: string;
+  data?: string;
+  thumbnail?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  authors = [],
+  journal,
+  year,
+  doi,
+  pdf,
+  fulltext,
+  code,
+  data,
+  thumbnail,
+  tags = [],
+} = Astro.props;
+
+/**
+ * Detect self-author: underline if name contains "Lynch" and ("Andrew" or starts with "A")
+ * Also handles "Lynch, A" style.
+ */
+function isSelfAuthor(name: string): boolean {
+  const hasLynch = /lynch/i.test(name);
+  const hasAndrew = /andrew/i.test(name) || /\bA\.?\s*R?\.?\s*Lynch/i.test(name) || /Lynch,?\s+A/i.test(name);
+  return hasLynch && hasAndrew;
+}
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Andrew Lynch → {title}</title>
+</head>
+<body class="site-body">
+
+  <SiteHeader />
+
+  <!-- ═══════════════════════════════════════════════════════
+       THREE-COLUMN GRID (no page-level header — title lives in body column)
+       Left (25%) | Body (50%) | Right (25%)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="page-grid">
+
+    <!-- Left panel: thumbnail + metadata -->
+    <aside id="left-panel" class="page-panel page-panel--left" aria-label="Paper metadata">
+      {thumbnail && (
+        <img
+          src={thumbnail}
+          alt=""
+          role="presentation"
+          class="paper-thumbnail"
+        />
+      )}
+
+      <div class="paper-meta">
+        {journal && (
+          <div class="meta-row">
+            <span class="meta-value meta-journal">{journal}</span>
+          </div>
+        )}
+        {year && (
+          <div class="meta-row">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">{year}</span>
+          </div>
+        )}
+        {doi && (
+          <div class="meta-row">
+            <span class="meta-label">DOI</span>
+            <a
+              class="meta-link"
+              href={`https://doi.org/${doi}`}
+              target="_blank"
+              rel="noopener"
+              title={doi}
+            >{doi}</a>
+          </div>
+        )}
+        {pdf && (
+          <div class="meta-row">
+            <a class="meta-link meta-link--icon" href={pdf} target="_blank" rel="noopener">
+              ↓ PDF
+            </a>
+          </div>
+        )}
+        {fulltext && (
+          <div class="meta-row">
+            <a class="meta-link meta-link--icon" href={fulltext} target="_blank" rel="noopener">
+              ⤴ Full text
+            </a>
+          </div>
+        )}
+        {code && (
+          <div class="meta-row">
+            <a class="meta-link meta-link--icon" href={code} target="_blank" rel="noopener">
+              ⌨ Code
+            </a>
+          </div>
+        )}
+        {data && (
+          <div class="meta-row">
+            <a class="meta-link meta-link--icon" href={data} target="_blank" rel="noopener">
+              ⊞ Data
+            </a>
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div class="meta-row meta-row--tags">
+            {tags.map((tag) => (
+              <span class="meta-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </aside>
+
+    <!-- Body / main content -->
+    <article id="body" class="page-body">
+      <h1 class="paper-title">{title}</h1>
+
+      {authors.length > 0 && (
+        <p class="paper-authors">
+          {authors.map((author, i) => {
+            const isMe = isSelfAuthor(author);
+            const sep = i === 0 ? '' : ', ';
+            return (
+              <Fragment>
+                {sep}{isMe ? <u>{author}</u> : author}
+              </Fragment>
+            );
+          })}
+        </p>
+      )}
+
+      <slot />
+    </article>
+
+    <!-- Right panel: Dimensions badge -->
+    <aside id="right-panel" class="page-panel page-panel--right" aria-label="Article metrics">
+      {doi ? (
+        <div class="dimensions-wrap">
+          <span
+            class="__dimensions_badge_embed__"
+            data-doi={doi}
+            data-style="small_rectangle"
+            data-hide-zero-citations="true"
+          ></span>
+          <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+        </div>
+      ) : null}
+    </aside>
+
+  </div><!-- /.page-grid -->
+
+  <Footer />
+
+</body>
+</html>
+
+<style>
+  :global(html) {
+    overflow-x: clip;
+  }
+
+
+
+  /* ── Three-column Grid ────────────────────────────── */
+  .page-grid {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    gap: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 32px var(--container-padding) 0;
+    min-height: 60vh;
+    overflow-x: clip;
+  }
+
+  @media (max-width: 768px) {
+    .page-grid {
+      grid-template-columns: 1fr;
+      padding: 16px var(--container-padding) 0;
+    }
+  }
+
+  /* ── Panels ───────────────────────────────────────── */
+  .page-panel {
+    padding: 24px 16px;
+    min-width: 0;
+  }
+
+  .page-panel--left {
+    padding-left: 0;
+    padding-right: 16px;
+    position: sticky;
+    top: 56px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    align-self: start;
+  }
+
+  .page-panel--right {
+    padding-right: 0;
+    padding-left: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .page-panel--left,
+    .page-panel--right {
+      display: none;
+    }
+  }
+
+  /* ── Thumbnail ────────────────────────────────────── */
+  .paper-thumbnail {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  /* ── Metadata section ─────────────────────────────── */
+  .paper-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-row--tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .meta-label {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(152, 147, 143);
+  }
+
+  .meta-value {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.4;
+  }
+
+  .meta-journal {
+    font-style: italic;
+    font-size: 0.75rem;
+    color: rgb(78, 76, 72);
+    font-weight: 500;
+  }
+
+  .meta-link {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgb(102, 97, 93);
+    text-decoration: none;
+    word-break: break-all;
+    line-height: 1.4;
+    transition: color 0.15s ease;
+  }
+
+  .meta-link:hover {
+    color: #f87f28;
+  }
+
+  .meta-link--icon {
+    font-family: inherit;
+    font-size: 0.7rem;
+    word-break: normal;
+  }
+
+  .meta-tag {
+    font-family: Menlo, 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border: 1px solid rgb(200, 197, 193);
+    border-radius: 2px;
+    color: rgb(102, 97, 93);
+  }
+
+  /* ── Body ─────────────────────────────────────────── */
+  .page-body {
+    padding: 24px 0;
+    min-width: 0;
+  }
+
+  .paper-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.5rem, calc(1.2vi + 1.2rem), 2.2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: #202020;
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  .paper-authors {
+    font-size: 0.85rem;
+    color: rgb(102, 97, 93);
+    line-height: 1.5;
+    margin: 0 0 24px;
+    font-weight: 300;
+  }
+
+  .paper-authors u {
+    text-decoration: underline;
+    color: #202020;
+  }
+
+  .page-body :global(p) {
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-weight: 300;
+    font-size: clamp(0.8rem, calc(0.34vi + 0.9rem), 1.1rem);
+  }
+
+  .page-body :global(h2),
+  .page-body :global(h3),
+  .page-body :global(h4) {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    padding: 0;
+  }
+
+  .page-body :global(h2) { font-size: clamp(1.25rem, calc(0.61vi + 1.1rem), 1.58rem); }
+  .page-body :global(h3) { font-size: clamp(0.8rem, calc(0.34vi + 0.9rem), 1.1rem); }
+
+  .page-body :global(img) {
+    max-width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin: 16px auto;
+  }
+
+  .page-body :global(pre) {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .page-body :global(table) {
+    overflow-x: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .page-body {
+      padding: 16px 0;
+    }
+  }
+
+  /* ── Dimensions badge ─────────────────────────────── */
+  .dimensions-wrap {
+    padding-top: 8px;
+  }
+
+  /* ── Sticky footer ────────────────────────────────── */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  .page-grid {
+    flex: 1;
+  }
+
+  /* Footer styles live in Footer.astro */
+</style>
