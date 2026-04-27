@@ -200,10 +200,10 @@ a {
 
 p > a {
     color: $linkColor;
-    text-decoration: none;
+    text-decoration: underline;
     &:hover{
-        color: $bodyColor;
-        text-decoration: underline;
+        color: $linkColor;
+        text-decoration: none;
     }
 }
 
