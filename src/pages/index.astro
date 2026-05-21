@@ -35,9 +35,9 @@ const sortedPubs = [...pubs].sort((a, b) => {
   <div class="section-vertical-header-container">
     <div class="section-vertical-header-body">
     <p>
-      <a href="https://bsky.app/profile/andrewlynch.io"><small>bluesky</small></a> · 
-      <a href="https://github.com/andrewrlynch"><small>github</small></a> · 
-      <a href="https://www.linkedin.com/in/andrewrlynch"><small>linkedin</small></a> · 
+      <a href="https://bsky.app/profile/andrewlynch.io"><small>bluesky</small></a> • 
+      <a href="https://github.com/andrewrlynch"><small>github</small></a> • 
+      <a href="https://www.linkedin.com/in/andrewrlynch"><small>linkedin</small></a> • 
       <a href="https://orcid.org/0000-0002-0238-682X"><small>orcid</small></a>
     </p>
     </div>
@@ -54,11 +54,11 @@ const sortedPubs = [...pubs].sort((a, b) => {
             <>
               <a href={pub.URL}><small>{pub.title}</small></a>
               <small> - {firstAuthorLastName} et al. <em>{pub['container-title']}.</em> {year}.</small>
-              {i < sortedPubs.length - 1 && ' · '}
+              <span style="color: #000000">{i < sortedPubs.length - 1 && ' • '}</span>
             </>
           );
         })}
-        {' '}<a href="/papers"><small>[ + ]</small></a>
+        {' '}<a href="/papers"><small> [ + ] </small></a>
       </p>
     </div>
   </div>
@@ -70,7 +70,7 @@ const sortedPubs = [...pubs].sort((a, b) => {
         {projects.map((project, i) => (
           <>
             <a href={`/projects/${project.slug}`}><small>{project.data.title}</small></a>: <small>{project.data.description}</small>
-            {i < projects.length - 1 && ' · '}
+              <span style="color: #000000">{i < projects.length - 1 && ' • '}</span>
           </>
         ))}
         {' '}<a href="/projects"><small>[ + ]</small></a>
